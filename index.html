@@ -200,24 +200,25 @@ body::after {
 
 /* TRUST BAR - above headline, small, earned-authority */
 .trust-bar {
-  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-  margin-bottom:20px;
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  margin-bottom:16px;
   opacity:0; animation:fadeUp .6s ease .1s forwards;
 }
 .trust-pill {
   display:inline-flex; align-items:center; gap:6px;
   background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
-  border-radius:100px; padding:6px 12px;
-  font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--silver);
+  border-radius:100px; padding:5px 10px;
+  font-size:10px; font-weight:700; letter-spacing:.03em; color:var(--silver);
+  white-space:nowrap;
 }
 .trust-pill .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); }
 
 /* HEADLINE */
 .h1 {
   font-family:'Playfair Display',serif;
-  font-size:clamp(44px,12vw,80px);
+  font-size:clamp(38px,11vw,80px);
   font-weight:900; line-height:1.0; letter-spacing:-.03em;
-  color:var(--white); margin-bottom:24px;
+  color:var(--white); margin-bottom:20px;
   opacity:0; animation:fadeUp .8s ease .22s forwards;
 }
 .h1 .gold  { color:var(--gold); }
@@ -229,7 +230,7 @@ body::after {
   font-family:'Lora',serif;
   font-size:clamp(16px,3.5vw,19px);
   font-weight:400; line-height:1.75; color:var(--silver);
-  max-width:540px; margin-bottom:32px;
+  max-width:100%; margin-bottom:28px;
   opacity:0; animation:fadeUp .8s ease .36s forwards;
 }
 .hero-sub strong { color:var(--white); font-weight:500; }
@@ -563,9 +564,9 @@ body::after {
 .final-p {
   font-family:'Lora',serif;
   font-size:clamp(15px,3vw,18px); color:var(--silver); line-height:1.75;
-  max-width:440px; margin:0 auto 40px;
+  max-width:min(440px, 100%); margin:0 auto 40px;
 }
-.final-wrap { max-width:440px; margin:0 auto; }
+.final-wrap { max-width:min(440px, 100%); margin:0 auto; }
 
 /* ============================================================
    SECTION DIVIDER
@@ -623,6 +624,19 @@ footer {
 }
 
 ::selection { background:rgba(200,155,60,.22); color:var(--white); }
+
+@media (max-width:360px) {
+  .h1 { font-size:36px; }
+  .trust-pill { font-size:9px; padding:4px 8px; }
+  .hero-sub { font-size:14px; }
+}
+@media (max-width:320px) {
+  .h1 { font-size:32px; letter-spacing:-.02em; }
+  .trust-bar { gap:4px; }
+  .trust-pill { font-size:9px; padding:4px 7px; }
+  .wrap { padding:0 16px; }
+  .free-offer { padding:18px 14px 16px; }
+}
 </style>
 </head>
 <body>
@@ -674,8 +688,7 @@ footer {
     <!-- WHO THIS IS FOR + WHAT IT IS -->
     <p class="hero-sub">
       Not because you lack commitment.<br>
-      <strong>Because the collapse pattern has a name you have not found yet.</strong><br><br>
-      <em>Stopping the Collapse</em> is a 33-chapter audiobook for founders of regenerative businesses, intentional communities, and New Earth organizations. It maps the seven structural patterns that end these projects and gives architecture to stop each one.
+      <strong>Because the collapse pattern has a name you have not found yet.</strong>
     </p>
 
     <!-- FREE OFFER ONLY - no paid tier above the fold -->
@@ -707,6 +720,17 @@ footer {
     </div>
 
   </div>
+</section>
+
+<!-- ============================================================
+     WHAT THIS IS - brief, honest, no bloat
+============================================================ -->
+<section class="section sr" style="padding:48px 0 0;" aria-label="About this work">
+<div class="wrap" style="text-align:center;">
+  <p style="font-family:'Lora',serif;font-size:clamp(15px,3vw,18px);color:var(--silver);line-height:1.8;max-width:580px;margin:0 auto;">
+    <em>Bridging Earth and Kanaria</em> is the 33-chapter audiobook. <strong style="color:var(--pearl);">Stopping the Collapse</strong> is the publication and field guide built around it. Seven structural patterns end most regenerative projects. Each has a name. Each has a repair.
+  </p>
+</div>
 </section>
 
 <!-- ============================================================
