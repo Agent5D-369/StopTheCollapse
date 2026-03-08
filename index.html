@@ -19,6 +19,42 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Your project is failing right now. The pattern has a name.">
+<meta property="og:description" content="Free Navigation Legend: maps 7 collapse patterns to the exact chapters that stop each one.">
+<meta property="og:url" content="https://stopthecollapse.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stop the Collapse">
+<meta property="og:image" content="https://stopthecollapse.com/og-preview.png">
+<meta property="og:image:secure_url" content="https://stopthecollapse.com/og-preview.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Stop the Collapse — 7 structural patterns that end regenerative projects. Free Navigation Legend by Rick Broider.">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your project is failing right now. The pattern has a name.">
+<meta name="twitter:description" content="Free Navigation Legend: maps 7 collapse patterns to the exact chapters that stop each one.">
+<meta name="twitter:image" content="https://stopthecollapse.com/og-preview.png">
+<meta name="twitter:image:alt" content="Stop the Collapse — free field guide for regenerative founders">
+<meta name="twitter:url" content="https://stopthecollapse.com/">com
+  Author: Rick Broider (Omja Brhad)
+  Topic: Structural collapse patterns in regenerative businesses, intentional communities, New Earth organizations
+  Core framework: 7 collapse patterns (conflict, vision drift, governance shadows, financial fragility, burnout, wrong-fit people, scale trap)
+  Source audiobook: Bridging Earth and Kanaria by Rick Broider
+  Free resource: Navigation Legend PDF, maps collapse patterns to chapters
+  Contact: https://rickbroider.substack.com
+  Keywords: community governance, intentional community, regenerative systems, sociocracy, community resilience, New Earth, organizational design
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07080E">
+<title>Stop the Collapse | Free Navigation Guide for Regenerative Projects &amp; Intentional Communities</title>
+<meta name="description" content="7 structural patterns end most regenerative businesses, intentional communities, and New Earth organizations. Get the free Navigation Legend, identify your collapse pattern and find the exact chapters that stop it. By Rick Broider.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Your project is failing right now. The pattern has a name.">
 <meta property="og:description" content="Free Navigation Legend: maps 7 collapse patterns to the chapters that stop each one.">
 <meta property="og:url" content="https://stopthecollapse.com">
 <meta property="og:type" content="website">
@@ -46,7 +82,7 @@
 <meta property="og:image:alt" content="Stopping the Collapse  -  7 structural patterns that end regenerative projects. Free Navigation Legend by Rick Broider.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Your project is failing right now. The pattern has a name.">
-<meta name="twitter:description" content="Free Navigation Legend: maps 7 collapse patterns to the exact chapters that stop each one. Bridging Earth and Kanaria audiobook by Rick Broider.">
+<meta name="twitter:description" content="Free Navigation Legend: maps 7 collapse patterns to the exact chapters that stop each one.">
 <meta name="twitter:image" content="https://stopthecollapse.com/og-preview.png">
 <meta name="twitter:image:alt" content="Stopping the Collapse  -  free field guide for regenerative founders">
 
@@ -384,8 +420,11 @@ body::after {
 }
 
 .form-guarantee {
-  font-size:12px; font-style:italic;
-  color:rgba(192,192,208,.5); margin-top:8px; text-align:center; line-height:1.5;
+  font-family:'Lora',serif;
+  font-size:15px; font-style:italic;
+  color:rgba(237,232,220,.7); margin-top:14px; text-align:center;
+  line-height:1.6; max-width:400px; margin-left:auto; margin-right:auto;
+  border-top:1px solid rgba(200,155,60,.15); padding-top:12px;
 }
 
 .form-micro {
@@ -396,11 +435,25 @@ body::after {
 
 /* SCROLL NUDGE */
 .scroll-nudge {
-  display:flex; align-items:center; gap:10px; margin-top:28px;
+  display:flex; align-items:center; gap:12px; margin-top:32px;
   opacity:0; animation:fadeUp .7s ease .9s forwards;
+  flex-direction:column;
 }
-.sn-line { width:32px; height:1px; background:linear-gradient(90deg,rgba(200,155,60,.5),transparent); }
-..sn-text { font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(192,192,208,.6); }
+.sn-line { width:1px; height:28px; background:linear-gradient(180deg,rgba(200,155,60,.6),transparent); }
+.sn-text {
+  font-family:'Syne',sans-serif;
+  font-size:13px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(200,155,60,.75);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+.sn-arrow {
+  display:block; font-size:18px; color:rgba(200,155,60,.6);
+  animation:bounce .9s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,100% { transform:translateY(0); }
+  50%      { transform:translateY(5px); }
+}
 
 /* ============================================================
    PROOF STRIP
@@ -941,8 +994,11 @@ footer {
     </div>
 
     <div class="scroll-nudge">
+      <span class="sn-text">
+        The 7 fires are below
+        <span class="sn-arrow">&#8595;</span>
+      </span>
       <span class="sn-line"></span>
-      <span class="sn-text">The 7 fires are below</span>
     </div>
 
   </div>
@@ -1408,10 +1464,16 @@ footer {
 
     <!-- PORTRAIT + QUOTE ROW -->
     <div style="display:flex;align-items:flex-start;gap:22px;margin-bottom:24px;flex-wrap:wrap;">
-      <img src="rick-portrait-600.jpg"
-           alt="Rick Broider"
-           style="width:90px;height:90px;border-radius:50%;object-fit:cover;flex-shrink:0;
-                  border:2px solid rgba(200,155,60,.4);box-shadow:0 0 24px rgba(200,155,60,.15);">
+      <a href="about.html" title="About Rick Broider" style="flex-shrink:0;display:block;">
+        <img src="rick-portrait-600.jpg"
+             alt="Rick Broider  -  click to read full bio"
+             style="width:130px;height:130px;border-radius:50%;object-fit:cover;
+                    border:2px solid rgba(200,155,60,.5);
+                    box-shadow:0 0 32px rgba(200,155,60,.2);
+                    transition:box-shadow .2s,transform .2s;"
+             onmouseover="this.style.transform='scale(1.04)';this.style.boxShadow='0 0 44px rgba(200,155,60,.4)'"
+             onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 0 32px rgba(200,155,60,.2)'">
+      </a>
       <div style="flex:1;min-width:200px;">
         <p class="about-q" style="border-left:none;padding-left:0;font-size:clamp(16px,2.8vw,20px);">
           "I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places. The names needed to exist before the repair could begin."
@@ -1441,7 +1503,18 @@ footer {
       </div>
     </div>
 
-    <span class="about-sig">Rick Broider &nbsp;·&nbsp; StopTheCollapse.com</span>
+    <a href="about.html"
+     style="display:inline-block;margin-bottom:14px;
+            font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
+            letter-spacing:.08em;text-transform:uppercase;
+            color:var(--gold);text-decoration:none;
+            border-bottom:1px solid rgba(200,155,60,.3);padding-bottom:2px;
+            transition:border-color .18s;"
+     onmouseover="this.style.borderColor='rgba(200,155,60,.8)'"
+     onmouseout="this.style.borderColor='rgba(200,155,60,.3)'">
+    Read the full story &#8594;
+  </a><br>
+  <span class="about-sig">Rick Broider &nbsp;·&nbsp; StopTheCollapse.com</span>
   </div>
 </div>
 </section>
