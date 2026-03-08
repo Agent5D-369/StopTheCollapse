@@ -167,7 +167,7 @@
   --silver:   #C0C0D0;
   --mist:     #7878A0;
   --r:        14px;
-  --max:      860px;
+  --max:      920px;
 }
 
 /* ============================================================
@@ -229,7 +229,7 @@ body::after {
    LAYOUT
 ============================================================ */
 .page { position:relative; z-index:1; }
-.wrap { max-width:var(--max); margin:0 auto; padding:0 32px; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 clamp(20px,4vw,48px); }
 
 /* ============================================================
    STICKY NAV
@@ -267,7 +267,7 @@ body::after {
   position:relative;
   min-height:100svh;
   display:flex; flex-direction:column; justify-content:center;
-  padding:80px 0 60px;
+  padding:40px 0 40px;
   overflow:hidden;
 }
 
@@ -291,7 +291,7 @@ body::after {
 .hero-content {
   position:relative; z-index:1;
   max-width:680px; margin:0 auto; width:100%;
-  padding:0 28px;
+  padding:0;
 }
 
 /* TRUST BAR - above headline, small, earned-authority */
@@ -336,7 +336,7 @@ body::after {
   background:rgba(255,255,255,.04);
   border:1.5px solid rgba(200,155,60,.28);
   border-radius:var(--r);
-  padding:24px 22px 20px;
+  padding:28px 26px 24px;
   margin-bottom:6px;
   opacity:0; animation:fadeUp .8s ease .5s forwards;
   box-shadow:0 0 60px rgba(200,155,60,.08);
@@ -382,8 +382,8 @@ body::after {
   display:flex; align-items:center; gap:10px; margin-top:28px;
   opacity:0; animation:fadeUp .7s ease .9s forwards;
 }
-.sn-line { width:28px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); }
-.sn-text { font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--mist); }
+.sn-line { width:32px; height:1px; background:linear-gradient(90deg,rgba(200,155,60,.5),transparent); }
+..sn-text { font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(192,192,208,.6); }
 
 /* ============================================================
    PROOF STRIP
@@ -417,15 +417,15 @@ body::after {
 /* ============================================================
    SECTIONS - shared
 ============================================================ */
-.section { padding:96px 0; }
+.section { padding:80px 0; }
 .section-sm { padding:48px 0; }
 
 .eyebrow {
   display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;
 }
-.ey-bar { width:22px; height:2px; background:var(--gold); }
+.ey-bar { width:24px; height:2px; background:var(--gold); flex-shrink:0; }
 .ey-txt {
-  font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
   color:var(--gold);
 }
 
@@ -672,7 +672,7 @@ body::after {
   max-width:var(--max); margin:0 auto; padding:0 32px;
 }
 .div-line { flex:1; height:1px; background:linear-gradient(90deg,transparent,rgba(200,155,60,.35),transparent); }
-.div-word { font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:rgba(200,155,60,.65); white-space:nowrap; }
+.div-word { font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:rgba(200,155,60,.75); white-space:nowrap; }
 
 /* ============================================================
    FOOTER
@@ -712,7 +712,18 @@ footer {
   .upgrade-reveal { padding:26px 20px; }
   .tcard { padding:22px 18px; }
   .tcard-tag { display:none; }
-  /* hero-img placeholder removed */
+  .hero { padding:24px 0 28px; min-height:100svh; }
+  .section { padding:60px 0; }
+  .h1 { font-size:clamp(40px,13vw,60px); margin-bottom:16px; }
+  .hero-sub { font-size:15px; margin-bottom:22px; }
+  .free-offer { padding:20px 16px 18px; }
+  .fg-row { font-size:13px; }
+  .ey-txt { font-size:12px; letter-spacing:.12em; }
+  .div-word { font-size:12px; }
+  .sn-text { font-size:11px; }
+  .sec-h2 { font-size:clamp(30px,8vw,44px); }
+  .nav { padding:10px 16px; }
+  .wrap { padding:0 18px; }
 }
 
 @media (min-width:640px) {
@@ -732,6 +743,22 @@ footer {
   .trust-pill { font-size:9px; padding:4px 7px; }
   .wrap { padding:0 16px; }
   .free-offer { padding:18px 14px 16px; }
+}
+
+@media (min-width:1200px) {
+  :root { --max: 980px; }
+  .hero-content { max-width:740px; }
+  .h1 { font-size:clamp(64px,5.5vw,88px); }
+  .hero-sub { font-size:20px; }
+  .sec-h2 { font-size:clamp(40px,3.8vw,58px); }
+  .section { padding:96px 0; }
+  .wrap { padding:0 clamp(32px,5vw,64px); }
+  .ey-txt { font-size:14px; }
+  .div-word { font-size:14px; }
+}
+
+@media (min-width:1600px) {
+  :root { --max: 1060px; }
 }
 </style>
 </head>
