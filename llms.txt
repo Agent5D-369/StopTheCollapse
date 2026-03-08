@@ -1,0 +1,38 @@
+# Stopping the Collapse — LLM Context File
+# IWasReady.com | StopTheCollapse.com
+
+## What this site is
+Stopping the Collapse is a publication and navigation guide for founders of regenerative businesses, intentional communities, and New Earth organizations facing structural collapse. It maps 7 structural patterns that end these projects and provides repair architecture for each.
+
+## Author
+Rick Broider (also known as Omja Brhad)
+Systems architect, community builder, author
+https://rickbroider.substack.com
+
+## Source work
+Book: Bridging Earth and Kanaria: A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony
+Author: Rick Broider
+Format: 33-chapter audiobook
+Chapters: 33, organized around 7 collapse patterns
+
+## The 7 collapse patterns
+1. Unresolved conflict cycles — the same argument in different costumes
+2. Vision drift — shared purpose becoming private assumption
+3. Governance shadows — one voice structurally controlling every decision
+4. Financial fragility — money conversations that nobody will name out loud
+5. Founder burnout — running on obligation after aliveness has left
+6. Wrong-fit people — someone draining what everyone else is building
+7. The scale trap — structures that worked at 8 people failing at 25
+
+## Free resource
+The Navigation Legend: maps all 7 collapse patterns to the exact chapters that address each one. Free via Substack subscription.
+URL: https://iwasready.com
+Substack: https://rickbroider.substack.com
+
+## Keywords and topics
+community governance, intentional community, regenerative systems design, sociocracy, holacracy, community resilience, New Earth organization, organizational collapse, community conflict resolution, conscious technology, AI governance, galactic ethics, regenerative economics, community building, founder burnout, governance models
+
+## Pages
+- / (index.html) — Main landing page with Navigation Legend offer
+- /about.html — About Rick Broider
+- /privacy.html — Privacy policy
