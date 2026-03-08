@@ -16,6 +16,9 @@
 <meta name="theme-color" content="#07080E">
 <title>Stop the Collapse | Free Navigation Guide for Regenerative Projects &amp; Intentional Communities</title>
 <meta name="description" content="7 structural patterns end most regenerative businesses, intentional communities, and New Earth organizations. Get the free Navigation Legend, identify your collapse pattern and find the exact chapters that stop it. By Rick Broider.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Rick Broider">
+<meta name="og:locale" content="en_US">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Your project is failing right now. The pattern has a name.">
@@ -36,22 +39,29 @@
 <meta name="twitter:description" content="Free Navigation Legend: maps 7 collapse patterns to the exact chapters that stop each one.">
 <meta name="twitter:image" content="https://stopthecollapse.com/og-preview.png">
 <meta name="twitter:image:alt" content="Stop the Collapse — free field guide for regenerative founders">
-<meta name="twitter:url" content="https://stopthecollapse.com/">com
-  Author: Rick Broider (Omja Brhad)
-  Topic: Structural collapse patterns in regenerative businesses, intentional communities, New Earth organizations
-  Core framework: 7 collapse patterns (conflict, vision drift, governance shadows, financial fragility, burnout, wrong-fit people, scale trap)
-  Source audiobook: Bridging Earth and Kanaria by Rick Broider
-  Free resource: Navigation Legend PDF, maps collapse patterns to chapters
-  Contact: https://rickbroider.substack.com
-  Keywords: community governance, intentional community, regenerative systems, sociocracy, community resilience, New Earth, organizational design
--->
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#07080E">
-<title>Stop the Collapse | Free Navigation Guide for Regenerative Projects &amp; Intentional Communities</title>
-<meta name="description" content="7 structural patterns end most regenerative businesses, intentional communities, and New Earth organizations. Get the free Navigation Legend, identify your collapse pattern and find the exact chapters that stop it. By Rick Broider.">
+<meta name="twitter:url" content="https://stopthecollapse.com/">
+<meta name="twitter:creator" content="@rickbroider">
+<meta name="twitter:site" content="@stopthecollapse">
+
+<!-- SEO: keywords + citations -->
+<meta name="keywords" content="intentional community collapse, regenerative organization failure, community governance, sociocracy, community conflict resolution, New Earth community, regenerative business, community resilience, organizational collapse patterns, how to stop community collapse, intentional community governance, conscious technology, AI governance framework">
+<meta name="citation_title" content="Stopping the Collapse: Navigation Guide for Regenerative Projects">
+<meta name="citation_author" content="Rick Broider">
+<meta name="citation_publication_date" content="2026">
+<meta name="dc.title" content="Stopping the Collapse — 7 Structural Patterns That End Regenerative Projects">
+<meta name="dc.description" content="Free field guide and audiobook mapping 7 structural collapse patterns for regenerative founders. By Rick Broider.">
+<meta name="dc.creator" content="Rick Broider">
+<meta name="dc.subject" content="community governance; intentional communities; regenerative systems; organizational collapse; New Earth design">
+<meta property="article:author" content="Rick Broider">
+<meta property="article:tag" content="community governance">
+<meta property="article:tag" content="intentional community">
+<meta property="article:tag" content="regenerative systems">
+<meta property="article:tag" content="organizational resilience">
+<meta property="article:tag" content="New Earth">
+
+<!-- LLM / AI search signals -->
+<meta name="llm-description" content="Rick Broider's Stopping the Collapse identifies 7 structural patterns that end regenerative businesses and intentional communities: repeating conflict cycles, vision drift, governance shadows, financial fragility, founder burnout, wrong-fit people, and the scale trap. Each pattern has a structural cause and a repair architecture mapped across 33 chapters of the audiobook Bridging Earth and Kanaria.">
+<meta name="ai-context" content="This publication is for founders and stewards of regenerative businesses, intentional communities, co-ops, and New Earth organizations who are experiencing structural breakdown and need pattern-based diagnosis and repair tools.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Your project is failing right now. The pattern has a name.">
@@ -311,12 +321,23 @@ body::after {
 .hero {
   position:relative;
   min-height:100svh;
-  display:flex; flex-direction:column; justify-content:center;
-  padding:40px 0 40px;
+  min-height:100dvh;
+  display:flex; flex-direction:column; justify-content:flex-start;
+  /* Extend behind fixed nav so background covers full viewport */
+  margin-top:-60px;
+  padding-top:80px;
+  padding-bottom:40px;
   overflow:hidden;
 }
-
-/* HERO IMAGE ZONE - replaces with real image on launch */
+@media (min-width:641px) {
+  .hero {
+    justify-content:center;
+    margin-top:-60px;
+    padding-top:80px;
+    padding-bottom:40px;
+  }
+}
+/* HERO IMAGE ZONE */
 .hero-img {
   position:absolute; inset:0; z-index:0;
   background:
@@ -326,9 +347,17 @@ body::after {
       rgba(7,8,14,.72) 65%,
       rgba(7,8,14,.96) 100%),
     url('hero-seven-fires.png') center 38% / cover no-repeat;
-  /* background-position: center 38% keeps the figure + fires visible
-     on both desktop (3:2 landscape) and mobile portrait viewports.
-     Adjust the % value: lower = shows more sky, higher = shows more ground. */
+}
+@media (max-width:640px) {
+  .hero-img {
+    background:
+      linear-gradient(180deg,
+        rgba(7,8,14,.05)  0%,
+        rgba(7,8,14,.18) 35%,
+        rgba(7,8,14,.65) 65%,
+        rgba(7,8,14,.96) 100%),
+      url('hero-seven-fires.png') center top / cover no-repeat;
+  }
 }
 
 /* Image is live - no placeholder needed */
@@ -371,8 +400,8 @@ body::after {
 /* SUBHEADLINE - what + who + how */
 .hero-sub {
   font-family:'Lora',serif;
-  font-size:clamp(17px,3.2vw,20px);
-  font-weight:400; line-height:1.8; color:var(--silver);
+  font-size:clamp(20px,3.5vw,24px);
+  font-weight:400; line-height:1.85; color:var(--silver);
   max-width:100%; margin-bottom:28px;
   opacity:0; animation:fadeUp .8s ease .36s forwards;
 }
@@ -389,8 +418,9 @@ body::after {
   box-shadow:0 0 60px rgba(200,155,60,.08);
 }
 .free-offer-label {
-  font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  font-size:13px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
   color:var(--gold); margin-bottom:16px; display:block;
+  line-height:1.5;
 }
 .free-give {
   display:flex; flex-direction:column; gap:9px; margin-bottom:18px;
@@ -511,8 +541,8 @@ body::after {
 
 .sec-body {
   font-family:'Lora',serif;
-  font-size:clamp(17px,2.5vw,19px); color:var(--silver);
-  line-height:1.88; margin-bottom:24px; max-width:100%;
+  font-size:clamp(18px,2.8vw,21px); color:var(--silver);
+  line-height:1.9; margin-bottom:26px; max-width:100%;
 }
 .sec-body strong { color:var(--white); font-weight:500; }
 
@@ -580,11 +610,11 @@ body::after {
 }
 .fire-pain {
   font-family:'Playfair Display',serif;
-  font-size:clamp(16px,3vw,18px); font-style:italic; font-weight:700;
+  font-size:clamp(18px,3.2vw,21px); font-style:italic; font-weight:700;
   color:var(--pearl); line-height:1.5; margin-bottom:6px;
 }
 .fire-sub {
-  font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  font-size:14px; font-weight:700; letter-spacing:.10em; text-transform:uppercase;
   color:var(--mist);
 }
 .fire-arr { font-size:14px; color:rgba(200,155,60,.3); transition:color .18s, transform .18s; }
@@ -613,7 +643,7 @@ body::after {
 .gate-h .ital { font-style:italic; }
 .gate-p {
   font-family:'Lora',serif;
-  font-size:15px; color:var(--silver); line-height:1.72;
+  font-size:clamp(16px,2.2vw,18px); color:var(--silver); line-height:1.75;
   max-width:400px; margin:0 auto 28px;
 }
 .gate-lbl {
@@ -687,7 +717,7 @@ body::after {
   font-size:13px; font-weight:800; color:var(--navy);
 }
 .tcard-name { font-size:15px; font-weight:700; color:var(--white); }
-.tcard-role { font-size:13px; color:var(--mist); }
+.tcard-role { font-size:14px; color:var(--mist); }
 .tcard-tag {
   margin-left:auto; flex-shrink:0;
   font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
@@ -711,7 +741,7 @@ body::after {
 }
 .about-body {
   font-family:'Lora',serif;
-  font-size:15px; color:var(--silver); line-height:1.8; margin-bottom:16px;
+  font-size:clamp(15px,2vw,17px); color:var(--silver); line-height:1.8; margin-bottom:16px;
 }
 .about-body strong { color:var(--pearl); font-weight:500; }
 .about-sig {
@@ -786,13 +816,13 @@ footer {
   .upgrade-reveal { padding:26px 20px; }
   .tcard { padding:22px 18px; }
   .tcard-tag { display:none; }
-  .hero { padding:20px 0 24px; min-height:100svh; }
+  .hero { padding:76px 0 36px; min-height:100dvh; justify-content:flex-start; }
   .section { padding:56px 0; }
-  .h1 { font-size:clamp(34px,11vw,56px); line-height:1.0; margin-bottom:14px; }
-  .hero-sub { font-size:17px; margin-bottom:20px; line-height:1.75; }
-  .free-offer { padding:20px 16px 18px; }
-  .fg-row { font-size:15px; gap:10px; }
-  .free-offer-label { font-size:11px; }
+  .h1 { font-size:clamp(38px,11vw,58px); line-height:1.0; margin-bottom:16px; }
+  .hero-sub { font-size:21px; margin-bottom:24px; line-height:1.8; }
+  .free-offer { padding:22px 18px 20px; }
+  .fg-row { font-size:17px; gap:10px; line-height:1.75; }
+  .free-offer-label { font-size:11px; letter-spacing:.10em; }
   .ey-txt { font-size:12px; letter-spacing:.12em; }
   .div-word { font-size:12px; letter-spacing:.1em; }
   .sn-text { font-size:11px; }
@@ -821,7 +851,7 @@ footer {
 @media (max-width:360px) {
   .h1 { font-size:clamp(30px,10vw,36px); }
   .trust-pill { font-size:10px; padding:3px 8px; }
-  .hero-sub { font-size:15px; }
+  .hero-sub { font-size:18px; }
   .hero-content { padding:0 14px; }
   .wrap { padding:0 14px; }
 }
@@ -892,7 +922,7 @@ footer {
 /* ── TCARD RESULT ─────────────────────────────────────── */
 .tcard-result {
   font-family:'Syne',sans-serif;
-  font-size:13px; font-weight:700; color:var(--gold);
+  font-size:14px; font-weight:700; color:var(--gold);
   letter-spacing:.04em; margin-top:12px; padding-top:12px;
   border-top:1px solid rgba(200,155,60,.15);
 }
@@ -1504,11 +1534,11 @@ footer {
     </div>
 
     <a href="about.html"
-     style="display:inline-block;margin-bottom:14px;
-            font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
-            letter-spacing:.08em;text-transform:uppercase;
+     style="display:inline-block;margin-bottom:16px;
+            font-family:'Syne',sans-serif;font-size:15px;font-weight:800;
+            letter-spacing:.06em;text-transform:uppercase;
             color:var(--gold);text-decoration:none;
-            border-bottom:1px solid rgba(200,155,60,.3);padding-bottom:2px;
+            border-bottom:1px solid rgba(200,155,60,.35);padding-bottom:3px;
             transition:border-color .18s;"
      onmouseover="this.style.borderColor='rgba(200,155,60,.8)'"
      onmouseout="this.style.borderColor='rgba(200,155,60,.3)'">
