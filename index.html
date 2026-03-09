@@ -970,31 +970,47 @@ footer {
   .trust-pill { flex-shrink:0; font-size:10px; padding:3px 8px; }
 }
 
-/* ── FAQ ─────────────────────────────────────────────── */
+/* ── FAQ — collapsible details/summary ───────────────── */
 .faq-list { display:flex; flex-direction:column; }
 .faq-item {
   border-top:1px solid rgba(255,255,255,.07);
-  padding:28px 0 24px;
 }
 .faq-item:last-child { border-bottom:1px solid rgba(255,255,255,.07); }
+.faq-item[open] { background:rgba(200,155,60,.03); }
 .faq-q {
   font-family:'Syne',sans-serif;
   font-size:clamp(15px,2.2vw,18px); font-weight:800;
   color:var(--gold); letter-spacing:.02em;
-  margin:0 0 10px; line-height:1.4;
-  display:flex; align-items:flex-start; gap:10px;
+  line-height:1.4;
+  padding:24px 40px 24px 0;
+  cursor:pointer;
+  list-style:none;
+  position:relative;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
 }
-.faq-q::before {
-  content:'Q';
-  font-size:11px; font-weight:800; letter-spacing:.1em;
-  color:rgba(200,155,60,.5); background:rgba(200,155,60,.08);
-  border:1px solid rgba(200,155,60,.2); border-radius:4px;
-  padding:2px 6px; margin-top:3px; flex-shrink:0;
+.faq-q::-webkit-details-marker { display:none; }
+.faq-q::marker { display:none; content:""; }
+.faq-q::after {
+  content:'+';
+  position:absolute; right:0; top:50%; transform:translateY(-50%);
+  font-size:22px; font-weight:300; color:rgba(200,155,60,.6);
+  transition:transform .25s ease, color .2s;
+  line-height:1;
+}
+details[open] > .faq-q::after {
+  transform:translateY(-50%) rotate(45deg);
+  color:var(--gold);
 }
 .faq-a {
   font-family:'Lora',serif;
   font-size:clamp(15px,2.2vw,17px); color:var(--silver);
-  line-height:1.85; margin:0; padding-left:28px;
+  line-height:1.85; margin:0; padding:0 0 24px 0;
+  animation:faqOpen .25s ease;
+}
+@keyframes faqOpen {
+  from { opacity:0; transform:translateY(-6px); }
+  to   { opacity:1; transform:translateY(0); }
 }
 
 /* ── TCARD RESULT ─────────────────────────────────────── */
@@ -1062,27 +1078,30 @@ footer {
       <strong>They are identifiable. They are named. And they are almost certainly active in your project right now.</strong>
     </p>
 
-    <p style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(200,155,60,.65);margin:-8px 0 28px;display:flex;align-items:center;gap:10px;">
-      <span style="display:inline-block;width:28px;height:1px;background:rgba(200,155,60,.35);flex-shrink:0;"></span>
-      From the 33-chapter audiobook&nbsp;
-      <em style="font-family:'Lora',serif;text-transform:none;letter-spacing:0;font-style:italic;color:rgba(200,155,60,.85);">Bridging Earth &amp; Kanaria</em>
+    <p style="font-family:'Lora',serif;font-size:clamp(15px,2.2vw,17px);font-style:italic;color:rgba(200,155,60,.9);margin:-4px 0 24px;line-height:1.5;display:flex;align-items:center;gap:12px;">
+      <span style="display:inline-block;width:24px;height:1px;background:rgba(200,155,60,.4);flex-shrink:0;"></span>
+      Based on the 33-chapter audiobook <em style="font-style:normal;font-weight:600;color:var(--white);margin-left:4px;">Bridging Earth &amp; Kanaria</em>
     </p>
 
     <!-- FREE OFFER - Top 7 Report as primary cold magnet -->
     <div class="free-offer">
-      <span class="free-offer-label">Free field report: The 7 Patterns That Collapse Good Projects</span>
+      <span class="free-offer-label">What you get when you subscribe free</span>
       <div class="free-give">
         <div class="fg-row">
           <span class="fg-check">✓</span>
-          <span><strong>The 7 collapse patterns named and diagnosed.</strong> With field research, real cases, and a self-diagnostic question for each one.</span>
+          <span><strong>The Navigation Legend PDF   -   immediately.</strong> Maps all 7 collapse patterns to the exact chapters that address each one.</span>
         </div>
         <div class="fg-row">
           <span class="fg-check">✓</span>
-          <span><strong>The Navigation Legend.</strong> Maps all 7 patterns to the exact audiobook chapters that address each one. Delivered with your first email.</span>
+          <span><strong>Three full chapters from the audiobook,</strong> matched to your pattern. Real structural diagnosis, not inspiration filler.</span>
         </div>
         <div class="fg-row">
           <span class="fg-check">✓</span>
-          <span><strong>3 full chapters free.</strong> Structural diagnosis, not inspiration. Start with the one that names your situation.</span>
+          <span><strong>Weekly diagnosis essays:</strong> structural causes, real cases, no inspiration filler.</span>
+        </div>
+        <div class="fg-row">
+          <span class="fg-check">✓</span>
+          <span><strong>The Builder Pass upgrade is optional,</strong> separate, and clearly explained when you are ready.</span>
         </div>
       </div>
       <div class="sb-shell">
@@ -1127,7 +1146,7 @@ footer {
   <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
               padding:20px 22px 16px;
               border-bottom:1px solid rgba(255,255,255,.05);">
-    <span class="trust-pill"><span class="dot"></span>33-chapter audiobook</span>
+    <span class="trust-pill"><span class="dot"></span>Based on the 33-chapter audiobook</span>
     <span class="trust-pill"><span class="dot"></span>Delivered to your podcast app</span>
     <span class="trust-pill"><span class="dot"></span>Free to start</span>
   </div>
@@ -1157,14 +1176,13 @@ footer {
 <section class="section sr" aria-label="Why projects fail">
 <div class="wrap">
   <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Why these projects fail</span></div>
-  <h2 class="sec-h2">These projects fail<br>for <span class="gold ital">structural reasons.</span><br>Not personal ones.</h2>
+  <h2 class="sec-h2">The project isn't<br>failing. <span class="gold ital">A pattern</span><br>is running it.</h2>
   <p class="sec-body">
-    Regenerative businesses, intentional communities, co-ops, impact startups, and mission-driven organizations rarely fail because the founders stopped caring or the vision was wrong. They fail because structural patterns moved through the architecture before anyone could name them.</p>
+    Most founders who lose a project did everything right. They cared. They showed up. They adapted. The project failed anyway   -   because a structural pattern was operating underneath everything else, and nobody named it in time.</p>
   <p class="sec-body">
-    The real enemy is not conflict, money stress, or a difficult person. <strong>The enemy is structural patterns operating without names.</strong> Unnamed patterns can't be diagnosed. They can't be designed around. They just repeat  -  in different projects, different teams, different years  -  until someone finally calls it what it is.
-  </p>
+        The real threat is not the conflict, the money stress, or the difficult person. Those are symptoms. <strong>The pattern underneath them is the cause.</strong> Unnamed patterns cannot be diagnosed, designed around, or stopped. They repeat  -  in different projects, different teams, different years  -  until someone names them.</p>
   <p class="sec-body">
-    Name it, and everything changes. The blame lifts. The repair becomes visible. The architecture can be rebuilt.
+    Name the pattern and everything changes. It stops being a referendum on your character or the worthiness of the vision. It becomes a solvable structural problem   -   with a known repair path, because every one of these patterns has been survived by builders who named them in time.
   </p>
 </div>
 </section>
@@ -1328,10 +1346,10 @@ footer {
 <div class="wrap">
 
   <div class="fires-intro">
-    <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">The collapse map</span></div>
-    <h2 class="sec-h2">At least one of these<br>is <span class="gold ital">active</span> in your project.</h2>
+    <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">The 7 collapse patterns</span></div>
+    <h2 class="sec-h2">One of these is costing<br>you <span class="gold ital">right now.</span></h2>
     <p class="sec-body">
-      Each line below is what a collapse pattern <strong>feels like from the inside.</strong> One of these is active in your project right now. Find it. That's where you start.
+      Each line is what a collapse pattern <strong>feels like from the inside.</strong> Most projects carry two or three at once. Find yours. That is where the repair begins.
     </p>
   </div>
 
@@ -1427,9 +1445,9 @@ footer {
       <span class="gold ital">Start the repair.</span>
     </h3>
     <p class="gate-p">
-      Subscribe free to get the <strong>Top 7 Collapse Patterns report</strong>  -  field research and structural diagnosis for every pattern, with a self-diagnostic question for each one. Plus the Navigation Legend, which maps all 7 patterns to the exact chapters that address yours. Both arrive in your first email.
+      Subscribe free. The <strong>Navigation Legend PDF arrives immediately</strong>  -  maps all 7 patterns to exact chapters. Three full audiobook chapters matched to your pattern. Weekly diagnosis essays. The Builder Pass is optional, separate, and explained clearly when you are ready.
     </p>
-    <span class="gate-lbl">Send me the Legend</span>
+    <span class="gate-lbl">Get the Free Report + Legend</span>
     <div class="gate-wrap">
       <div class="sb-shell">
         <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
@@ -1495,8 +1513,8 @@ footer {
 ============================================================ -->
 <section class="section sr" aria-label="Testimonials">
 <div class="wrap">
-  <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Real builders. Real patterns.</span></div>
-  <h2 class="sec-h2" style="margin-bottom:16px;">They were<br><span class="gold ital">already inside it</span><br>when they found this.</h2>
+  <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">From builders in the field.</span></div>
+  <h2 class="sec-h2" style="margin-bottom:16px;">They named it.<br><span class="gold ital">Then they fixed it.</span></h2>
   <p style="font-family:'Lora',serif;font-size:16px;color:var(--mist);line-height:1.7;margin-bottom:32px;">
     Over 260 builders across 4 continents have read this work. Below are eight of them  -  in their own words.
   </p>
@@ -1611,7 +1629,7 @@ footer {
       </a>
       <div style="flex:1;min-width:200px;">
         <p class="about-q" style="border-left:none;padding-left:0;font-size:clamp(16px,2.8vw,20px);">
-          "I did not write this to explain collapse from the outside. I wrote it because I had been inside enough of these situations to see the same patterns ending different projects in different places. The names needed to exist before the repair could begin."
+          "I didn't build this from research. I built it from inside the fire  -  in enough projects, in enough places, watching the same patterns end different communities. The names did not exist. So I made them."
         </p>
       </div>
     </div>
@@ -1664,15 +1682,15 @@ footer {
     without a <span class="gold ital">name.</span>
   </h2>
   <p class="final-p">
-    The free report names all 7 patterns. The self-diagnostic in each one takes under a minute. Most projects carry two or three. Start with the one causing the most acute pain right now.
+    Subscribe free. The Navigation Legend arrives immediately. Three audiobook chapters matched to your pattern. Weekly diagnosis essays. No inspiration filler. No upsell pressure. Just the architecture.
   </p>
   <div class="final-wrap">
-    <span class="free-offer-label">Send me the Legend</span>
+    <span class="free-offer-label">Subscribe free to get all of this</span>
     <div class="sb-shell">
       <iframe src="https://rickbroider.substack.com/embed" width="100%" height="180" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free"></iframe>
     </div>
     <p class="form-micro">Powered by Substack. No spam. Unsubscribe any time.</p>
-    <p class="form-guarantee">Doesn't name your situation? Reply to the welcome email. Rick will.</p>
+    <p class="form-guarantee">Report doesn't name your situation? Reply to the welcome email. Rick diagnoses it personally.</p>
   </div>
 </div>
 </section>
@@ -1680,43 +1698,46 @@ footer {
 <!-- ============================================================
      FAQ - OBJECTION KILLERS
 ============================================================ -->
-<section class="section sr" style="padding-top:0;padding-bottom:64px;" aria-label="Frequently asked questions">
-<div class="wrap" style="max-width:680px;">
+<section class="section sr" aria-label="Frequently asked questions">
+<div class="wrap">
 
-  <div class="eyebrow" style="justify-content:center;margin-bottom:32px;">
-    <span class="ey-bar"></span>
-    <span class="ey-txt">Common questions</span>
-    <span class="ey-bar"></span>
-  </div>
+  <div class="eyebrow"><span class="ey-bar"></span><span class="ey-txt">Common questions</span></div>
+  <h2 class="sec-h2" style="margin-bottom:48px;">If you have doubts,<br><span class="gold ital">they are answered here.</span></h2>
 
   <div class="faq-list">
 
-    <div class="faq-item sr">
-      <p class="faq-q">Is this only for intentional communities and communes?</p>
-      <p class="faq-a">No. The same seven patterns collapse regenerative businesses, impact nonprofits, co-ops, New Earth organizations, and mission-driven teams of any kind. If you're building something that depends on shared values and collective decision-making, the patterns apply.</p>
-    </div>
+    <details class="faq-item" open>
+      <summary class="faq-q">What exactly do I get when I subscribe free?</summary>
+      <p class="faq-a">The Navigation Legend PDF arrives immediately  -  it maps all 7 collapse patterns to the exact audiobook chapters that address each one. Three full chapters from the 33-chapter audiobook arrive matched to your pattern. Weekly diagnosis essays follow: structural causes, real cases, no inspiration filler. The Builder Pass upgrade is optional, separate, and clearly explained when you are ready. Nothing is hidden, gated without warning, or bait-and-switched.</p>
+    </details>
 
-    <div class="faq-item sr">
-      <p class="faq-q">What if more than one pattern is active right now?</p>
-      <p class="faq-a">Most projects have two or three running simultaneously. The Navigation Legend helps you identify which is the load-bearing pattern  -  the one that, if addressed first, reduces pressure on the others. That's your entry point.</p>
-    </div>
+    <details class="faq-item">
+      <summary class="faq-q">Is this only for intentional communities and communes?</summary>
+      <p class="faq-a">No. The same seven patterns collapse regenerative businesses, impact nonprofits, co-ops, land projects, AI ethics initiatives, and mission-driven teams of any kind. If your project depends on shared values and collective decision-making  -  and the people in it actually care about what they are building  -  the patterns apply.</p>
+    </details>
 
-    <div class="faq-item sr">
-      <p class="faq-q">What exactly do I get when I subscribe free?</p>
-      <p class="faq-a">The Navigation Legend PDF immediately  -  maps all 7 patterns to exact chapters. Three full chapters from the audiobook, matched to your pattern. Weekly diagnosis essays: structural causes, real cases, no inspiration filler. The Builder Pass upgrade is optional, separate, and clearly explained when you're ready.</p>
-    </div>
+    <details class="faq-item">
+      <summary class="faq-q">What if more than one pattern is active right now?</summary>
+      <p class="faq-a">Most projects carry two or three simultaneously. The Navigation Legend helps you identify the load-bearing pattern  -  the one that, if addressed first, reduces pressure on the others. Start there. The other patterns become clearer once the primary one is named.</p>
+    </details>
 
-    <div class="faq-item sr">
-      <p class="faq-q">The title mentions "Kanaria" and galactic ethics. What is that?</p>
-      <p class="faq-a">Bridging Earth and Kanaria is the full title of the audiobook. The Kanaria layer explores the cosmological and ethical frameworks that inform the architecture, for readers who want that depth. The collapse patterns and repair protocols work completely on their own. You do not need the galactic lens to use the field guide. Most readers start with the patterns and find the broader framework later, when they are ready for it.</p>
-    </div>
+    <details class="faq-item">
+      <summary class="faq-q">The title mentions "Kanaria" and galactic ethics. What is that?</summary>
+      <p class="faq-a">Bridging Earth and Kanaria is the full title of the audiobook. The Kanaria layer explores the cosmological and ethical frameworks that inform the architecture  -  for readers who want that depth. The collapse patterns and repair protocols work completely without it. You do not need the galactic lens to use the field guide. Most readers start with the patterns and find the broader framework later, when they are ready for it.</p>
+    </details>
 
-    <div class="faq-item sr">
-      <p class="faq-q">Are these patterns validated, or is this one person's theory?</p>
-      <p class="faq-a">Rick has worked directly inside regenerative communities, mission-driven organizations, and intentional living projects across multiple continents over more than a decade. The patterns are documented structural observations from real projects, many of which collapsed or nearly did. The testimonials on this page are from builders who recognized their own situation in the diagnosis.</p>
-    </div>
+    <details class="faq-item">
+      <summary class="faq-q">Are these patterns validated, or is this one person's framework?</summary>
+      <p class="faq-a">Rick has worked directly inside regenerative communities, mission-driven organizations, and systems-change projects across multiple countries and cultures. The seven patterns are drawn from field observation across those projects and from the existing body of community research, including the work of Diana Leafe Christian and the Fellowship for Intentional Community. They are named and organized into an original framework  -  but they are not invented. They were already happening. This work names them.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">How is the audiobook delivered? Do I need a special app?</summary>
+      <p class="faq-a">The full audiobook is delivered via private podcast RSS  -  the same way any podcast reaches your phone. It appears in Apple Podcasts, Pocket Casts, Overcast, or Spotify like any other show. No special app, no extra login, no portal to navigate. The free subscription gives you the Navigation Legend PDF and three chapters via your welcome email. The Builder Pass ($7/month) adds the full private RSS feed.</p>
+    </details>
 
   </div>
+
 </div>
 </section>
 
@@ -1732,7 +1753,7 @@ footer {
             padding:8px 20px;border-radius:4px;transition:border-color .18s;"
      onmouseover="this.style.borderColor='rgba(200,155,60,.7)'"
      onmouseout="this.style.borderColor='rgba(200,155,60,.3)'">
-    Send me the Legend &#8594;
+    Get the Free Report + Legend &#8594;
   </a>
   <div class="ft-links">
     <a href="https://rickbroider.substack.com" target="_blank" rel="noopener" class="ft-link">Substack</a>
