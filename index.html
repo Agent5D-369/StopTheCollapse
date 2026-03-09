@@ -392,7 +392,7 @@ body::after {
   position:relative;
   min-height:100svh;
   min-height:100dvh;
-  display:flex; flex-direction:column; justify-content:center;
+  display:flex; flex-direction:column; justify-content:center; align-items:stretch;
   margin-top:-60px;
   padding-top:72px;
   padding-bottom:48px;
@@ -420,14 +420,12 @@ body::after {
       url('hero-seven-fires.png') center top / cover no-repeat;
   }
 }
-/* TWO-COLUMN WRAPPER */
+/* CONTENT WRAPPER - full width, two columns on desktop */
 .hero-content {
   position:relative; z-index:1;
   width:100%;
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 clamp(24px,5vw,72px);
   box-sizing:border-box;
+  padding:0 clamp(24px,5vw,80px);
   display:grid;
   grid-template-columns:1fr;
   gap:28px;
@@ -435,8 +433,8 @@ body::after {
 }
 @media (min-width:860px) {
   .hero-content {
-    grid-template-columns:1.1fr 380px;
-    gap:40px;
+    grid-template-columns:55fr 45fr;
+    gap:clamp(28px,4vw,56px);
     align-items:start;
     padding-top:8px;
   }
@@ -920,10 +918,10 @@ footer {
   .scroll-nudge { display:none; }
 }
 
-/* On desktop, H1 is in a narrower column so cap the size */
+/* On desktop, left column is 55% of viewport so headline needs to fit cleanly */
 @media (min-width:860px) {
-  .h1 { font-size:clamp(44px,5vw,72px); }
-  .hero-sub { font-size:clamp(17px,1.7vw,20px); }
+  .h1 { font-size:clamp(40px,4vw,64px); line-height:1.05; }
+  .hero-sub { font-size:clamp(16px,1.6vw,20px); }
 }
 
 @media (min-width:640px) {
