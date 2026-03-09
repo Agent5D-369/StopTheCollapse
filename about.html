@@ -59,7 +59,7 @@
         "url": "https://stopthecollapse.com/about.html",
         "image": {
           "@type": "ImageObject",
-          "url": "https://stopthecollapse.com/rick-portrait-600.jpg",
+          "url": "https://stopthecollapse.com/rick-portrait-600.png",
           "width": 600,
           "height": 600
         },
@@ -116,7 +116,7 @@
 }
 </script>
 
-<link rel="preload" href="rick-portrait-600.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="rick-portrait-600.png" as="image" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
@@ -223,17 +223,49 @@ body {
 }
 
 .portrait-wrap {
-  position: relative; width: 140px; height: 140px; margin: 0 auto 56px;
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 56px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  border: 1px solid rgba(200,155,60,.2);
 }
 .portrait-wrap img {
-  width: 140px; height: 140px; border-radius: 50%;
-  object-fit: cover; object-position: center top;
-  border: 2px solid rgba(200,155,60,.4); display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+  border-radius: 16px;
+  transition: transform .6s ease;
+}
+.portrait-wrap:hover img {
+  transform: scale(1.02);
 }
 .portrait-glow {
-  position: absolute; inset: -8px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,155,60,.18) 0%, transparent 70%);
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 55%,
+    rgba(7,8,14,.45) 100%
+  );
   pointer-events: none;
+  border-radius: 16px;
+  z-index: 1;
+}
+.portrait-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  padding: 20px 24px;
+  font-family: "Syne", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(200,155,60,.85);
 }
 
 /* SECTIONS */
@@ -359,24 +391,19 @@ footer a:hover { text-decoration: underline; }
     <em>the collapse.</em>
   </h1>
 
+  <div class="portrait-wrap">
+    <div class="portrait-glow" aria-hidden="true"></div>
+    <img src="rick-portrait-600.png"
+         alt="Rick Broider in Costa Rica rainforest, author of Bridging Earth and Kanaria"
+         fetchpriority="high"
+         decoding="async">
+    <div class="portrait-caption">Costa Rica &nbsp;&middot;&nbsp; Systems architect &nbsp;&middot;&nbsp; Community builder</div>
+  </div>
+
   <p class="deck">
     He didn't study these projects from a distance.
     He was inside them when the patterns moved through.
   </p>
-  <p style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
-            letter-spacing:.1em;text-transform:uppercase;color:var(--mist);
-            margin-top:-28px;margin-bottom:36px;">
-    Systems architect &nbsp;&middot;&nbsp; Community builder &nbsp;&middot;&nbsp; Author of <em style="font-style:italic;font-family:'Lora',serif;text-transform:none;letter-spacing:0;">Bridging Earth and Kanaria</em>
-  </p>
-
-  <div class="portrait-wrap">
-    <div class="portrait-glow" aria-hidden="true"></div>
-    <img src="rick-portrait-600.jpg"
-         alt="Rick Broider, author of Bridging Earth and Kanaria   systems architect and community builder"
-         width="140" height="140"
-         fetchpriority="high"
-         decoding="async">
-  </div>
 
 </div>
 </section>
@@ -483,6 +510,45 @@ footer a:hover { text-decoration: underline; }
 </section>
 
 <div class="gold-rule"></div>
+
+<!-- ATMOSPHERIC DIVIDER -->
+<div style="
+  position: relative; z-index: 1;
+  width: 100%; max-width: var(--max);
+  margin: 0 auto 64px;
+  padding: 0 24px;
+">
+  <div style="
+    width: 100%;
+    height: 220px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 12px 40px rgba(0,0,0,.4);
+  ">
+    <img src="cracked-earth-dusk.png"
+         alt="Cracked earth at dusk, the moment before collapse becomes visible"
+         loading="lazy"
+         decoding="async"
+         style="
+           width: 100%; height: 100%;
+           object-fit: cover;
+           object-position: center 55%;
+           display: block;
+         ">
+  </div>
+  <p style="
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--mist);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.6;
+  ">
+    Most fractures are visible long before anyone names them.
+  </p>
+</div>
 
 
 <!-- WHAT RICK WITNESSED , replaces pattern list with credibility story -->
