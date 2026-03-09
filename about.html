@@ -186,6 +186,19 @@ body {
     #07080E;
 }
 
+.nav-home {
+  display:flex; align-items:center; gap:8px;
+  text-decoration:none; color:inherit;
+  transition:opacity .18s;
+}
+.nav-home:hover { opacity:.75; }
+.nav-home-arrow {
+  font-size:16px;
+  color:rgba(200,155,60,.7);
+  line-height:1;
+  transition:transform .18s;
+}
+.nav-home:hover .nav-home-arrow { transform:translateX(-3px); }
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -404,7 +417,10 @@ footer a:hover { text-decoration: underline; }
 <div class="cosmos" aria-hidden="true"></div>
 
 <nav class="nav">
-  <span class="nav-brand"><a href="/">Stopping the Collapse</a></span>
+  <a href="/" class="nav-home" aria-label="Back to StopTheCollapse.com homepage">
+    <span class="nav-home-arrow">&#8592;</span>
+    <span class="nav-brand">Stopping the Collapse</span>
+  </a>
   <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="nav-cta">Get the Free Report</a>
 </nav>
 
@@ -535,6 +551,52 @@ footer a:hover { text-decoration: underline; }
   <p class="body-p">
     This work is the result of naming them. All seven.
     Each with its cause, its structural diagnosis, and its repair architecture.
+  </p>
+
+</div>
+</section>
+
+<div class="gold-rule"></div>
+
+<!-- MIDPOINT SUBSCRIBE BLOCK -->
+<section class="section sr" aria-label="Midpoint subscribe" style="padding:56px 0;">
+<div class="wrap" style="max-width:560px;margin:0 auto;text-align:center;">
+
+  <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,155,60,.65);margin-bottom:20px;">
+    If any of this is landing
+  </p>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,38px);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:16px;">
+    The report is free.<br>
+    <em style="color:var(--gold);font-style:italic;">It arrives immediately.</em>
+  </h2>
+
+  <p style="font-family:'Lora',serif;font-size:clamp(15px,2.2vw,17px);color:var(--silver);line-height:1.8;margin-bottom:28px;">
+    The Navigation Legend PDF maps all 7 patterns to the exact chapters that address each one.
+    Three full audiobook chapters matched to your pattern.
+    Weekly diagnosis essays. No inspiration filler.
+  </p>
+
+  <a href="https://rickbroider.substack.com/subscribe"
+     target="_blank" rel="noopener"
+     style="
+       display:inline-flex; align-items:center; gap:10px;
+       background:var(--gold); color:#07080E;
+       font-family:'Syne',sans-serif; font-size:15px; font-weight:800;
+       letter-spacing:.04em; text-transform:uppercase;
+       padding:16px 36px; border-radius:6px;
+       text-decoration:none;
+       transition:background .18s, transform .12s;
+       margin-bottom:14px;
+     "
+     onmouseover="this.style.background='#d4a84b';this.style.transform='translateY(-1px)'"
+     onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'"
+  >
+    Get the Free Report + Legend &#8594;
+  </a>
+
+  <p style="font-size:12px;color:var(--mist);font-style:italic;">
+    No spam. Unsubscribe any time. Powered by Substack.
   </p>
 
 </div>
