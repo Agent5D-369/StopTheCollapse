@@ -386,64 +386,77 @@ body::after {
 .nav-cta:hover { background:var(--gold-hi); transform:translateY(-1px); }
 
 /* ============================================================
-   HERO - TWO-COLUMN DESKTOP / STACKED MOBILE
+   HERO
 ============================================================ */
 .hero {
   position:relative;
-  min-height:100svh;
-  min-height:100dvh;
-  margin-top:-60px;
   overflow:hidden;
-  /* Center content vertically using padding instead of flex */
-  display:block;
+  margin-top:-60px;
 }
-/* HERO IMAGE ZONE */
 .hero-img {
   position:absolute; inset:0; z-index:0;
   background:
     linear-gradient(180deg,
-      rgba(7,8,14,0)    0%,
-      rgba(7,8,14,.2)  38%,
-      rgba(7,8,14,.72) 65%,
-      rgba(7,8,14,.96) 100%),
+      rgba(7,8,14,0)   0%,
+      rgba(7,8,14,.25) 40%,
+      rgba(7,8,14,.80) 68%,
+      rgba(7,8,14,.97) 100%),
     url('hero-seven-fires.png') center 38% / cover no-repeat;
 }
-@media (max-width:640px) {
+@media (max-width:767px) {
   .hero-img {
     background:
       linear-gradient(180deg,
-        rgba(7,8,14,.05)  0%,
-        rgba(7,8,14,.18) 35%,
-        rgba(7,8,14,.65) 65%,
-        rgba(7,8,14,.96) 100%),
+        rgba(7,8,14,.1)  0%,
+        rgba(7,8,14,.4)  45%,
+        rgba(7,8,14,.88) 75%,
+        rgba(7,8,14,.97) 100%),
       url('hero-seven-fires.png') center top / cover no-repeat;
   }
 }
-/* CONTENT WRAPPER - true full-width two-column grid */
-.hero-content {
+
+/* HERO INNER: mobile = single column stack */
+.hero-inner {
   position:relative; z-index:1;
-  /* Full bleed edge to edge */
-  width:100%;
-  box-sizing:border-box;
-  padding:clamp(80px,10vh,120px) clamp(28px,6vw,88px) clamp(60px,8vh,96px);
-  /* Single column mobile */
-  display:grid;
-  grid-template-columns:1fr;
-  gap:32px;
-  align-items:start;
+  width:100%; box-sizing:border-box;
+  padding:100px 28px 64px;
+  display:block;
 }
-@media (min-width:860px) {
-  .hero-content {
-    /* True two-column: copy gets 58%, form gets 42% */
-    grid-template-columns:58fr 42fr;
-    gap:clamp(32px,4vw,64px);
+
+/* OFFER BOX: mobile = normal flow below copy */
+.hero-copy  { display:block; }
+.hero-offer { display:block; margin-top:36px; }
+
+/* DESKTOP: left copy fills remaining space, right offer is fixed 400px */
+@media (min-width:900px) {
+  .hero-inner {
+    padding:110px 60px 90px;
+    display:flex;
     align-items:center;
-    min-height:100svh;
-    min-height:100dvh;
+    gap:60px;
+  }
+  .hero-copy  {
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .hero-offer {
+    flex:0 0 400px;
+    width:400px;
+    min-width:400px;
+    max-width:400px;
+    align-self:center;
+    margin-top:0;
   }
 }
-.hero-copy { display:flex; flex-direction:column; }
-.hero-offer { width:100%; }
+@media (min-width:1200px) {
+  .hero-offer {
+    flex:0 0 440px;
+    width:440px;
+    min-width:440px;
+    max-width:440px;
+  }
+  .hero-inner { padding:120px 80px 100px; gap:72px; }
+}
 
 /* TRUST BAR - above headline, small, earned-authority */
 .trust-bar {
@@ -491,7 +504,6 @@ body::after {
   border-radius:var(--r);
   padding:22px 22px 20px;
   margin-bottom:6px;
-  opacity:0; animation:fadeUp .8s ease .5s forwards;
   box-shadow:0 8px 48px rgba(0,0,0,.55), 0 0 40px rgba(200,155,60,.06);
 }
 .free-offer-label {
@@ -907,7 +919,6 @@ footer {
   .sec-h2 { font-size:clamp(30px,8vw,44px); }
   .nav { padding:10px 16px; }
   .wrap { padding:0 clamp(16px,5vw,24px); }
-  .hero-content { padding:0 clamp(16px,5vw,24px); }
   .trust-bar { gap:6px; margin-bottom:16px; }
   .trust-pill { font-size:11px; padding:4px 9px; border-radius:4px; }
   .trust-pill .dot { width:4px; height:4px; }
@@ -918,14 +929,13 @@ footer {
   }
   .fire-pain { font-size:15px; }
   .proof-inner { gap:8px 0; }
-  /* Hide scroll nudge on mobile - stacked layout makes it redundant */
   .scroll-nudge { display:none; }
 }
 
-/* Desktop: left column is 58% of viewport, headline can breathe */
-@media (min-width:860px) {
-  .h1 { font-size:clamp(52px,5.5vw,88px); line-height:1.0; }
-  .hero-sub { font-size:clamp(17px,1.5vw,21px); line-height:1.8; }
+/* Desktop: left column fills remaining space after 400px offer panel */
+@media (min-width:900px) {
+  .h1 { font-size:clamp(52px,4.2vw,76px); line-height:1.0; }
+  .hero-sub { font-size:clamp(17px,1.3vw,20px); line-height:1.8; }
 }
 
 @media (min-width:640px) {
@@ -945,7 +955,7 @@ footer {
   .h1 { font-size:clamp(30px,10vw,36px); }
   .trust-pill { font-size:10px; padding:3px 8px; }
   .hero-sub { font-size:18px; }
-  .hero-content { padding:0 14px; }
+  .hero-inner { padding:80px 14px 48px; }
   .wrap { padding:0 14px; }
 }
 @media (max-width:320px) {
@@ -958,8 +968,7 @@ footer {
 
 @media (min-width:1200px) {
   :root { --max: 980px; }
-  .hero-content { max-width:760px; }
-  .h1 { font-size:clamp(64px,5.5vw,92px); }
+  .h1 { font-size:clamp(64px,5vw,88px); }
   .hero-sub { font-size:21px; }
   .sec-h2 { font-size:clamp(42px,3.8vw,60px); }
   .section { padding:100px 0; }
@@ -1077,9 +1086,9 @@ details[open] > .faq-q::after {
 
   <div class="hero-img" aria-hidden="true"></div>
 
-  <div class="hero-content">
+  <div class="hero-inner">
 
-    <!-- LEFT: headline + subhead + byline -->
+    <!-- LEFT: headline + subhead + byline + scroll nudge -->
     <div class="hero-copy">
 
       <h1 class="h1">
@@ -1094,13 +1103,12 @@ details[open] > .faq-q::after {
         <strong>They are identifiable. They are named. And they are almost certainly active in your project right now.</strong>
       </p>
 
-      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.8vw,16px);font-style:italic;color:rgba(200,155,60,.9);margin:0 0 0;line-height:1.5;display:flex;align-items:center;gap:10px;">
+      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.4vw,16px);font-style:italic;color:rgba(200,155,60,.9);margin:0;line-height:1.5;display:flex;align-items:center;gap:10px;">
         <span style="display:inline-block;width:20px;height:1px;background:rgba(200,155,60,.4);flex-shrink:0;"></span>
         Based on the 33-chapter audiobook <em style="font-style:normal;font-weight:600;color:var(--white);margin-left:4px;">Bridging Earth &amp; Kanaria</em>
       </p>
 
-      <!-- Scroll nudge: desktop only -->
-      <div class="scroll-nudge" style="margin-top:36px;margin-bottom:0;">
+      <div class="scroll-nudge" style="margin-top:32px;margin-bottom:0;">
         <span class="sn-text">
           See the 7 patterns below
           <span class="sn-arrow">&#8595;</span>
