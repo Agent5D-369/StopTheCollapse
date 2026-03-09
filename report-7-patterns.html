@@ -5,1167 +5,755 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The 7 Structural Collapse Patterns | Stopping the Collapse — Rick Broider</title>
   <meta name="robots" content="noindex, nofollow">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-
   <style>
-    /* ── TOKENS ── */
     :root {
-      --navy:    #07080E;
-      --deep:    #0C0F1E;
-      --surface: #111526;
-      --card:    #161A2E;
-      --gold:    #C89B3C;
-      --gold-hi: #F0C050;
-      --gold-dim: rgba(200,155,60,.12);
-      --ember:   #E07830;
-      --ember-dim: rgba(224,120,48,.1);
-      --teal:    #0E8A7A;
-      --red:     #C0392B;
-      --green:   #1A6B3C;
-      --white:   #FFFFFF;
-      --pearl:   #EDE8DC;
-      --silver:  #C0C0D0;
-      --mist:    #7878A0;
-      --border:  rgba(255,255,255,.07);
-      --max:     800px;
+      --navy:#07080E; --deep:#0C0F1E; --surface:#111526; --card:#161A2E; --card2:#181C30;
+      --gold:#C89B3C; --gold-hi:#F0C050; --gold-dim:rgba(200,155,60,.1);
+      --ember:#E07830; --teal:#0E8A7A; --teal-dim:rgba(14,138,122,.1);
+      --violet:#7B5EA7; --violet-dim:rgba(123,94,167,.1);
+      --white:#FFFFFF; --pearl:#EDE8DC; --silver:#C0C0D0; --mist:#7878A0;
+      --border:rgba(255,255,255,.07); --max:820px;
+      --c1:#E87830; --c2:#C89B3C; --c3:#9B6BCC; --c4:#4A9E7A; --c5:#E05555; --c6:#5B9BD5; --c7:#0E8A7A;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy);color:var(--white);font-family:'Lora',serif;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+    @media print{body{background:#fff;color:#0a0a0a;font-size:10.5pt;}.cosmos,.no-print,.print-bar{display:none!important;}.pattern-card,.pillar-card,.sector-card{break-inside:avoid;}*{-webkit-print-color-adjust:exact;print-color-adjust:exact;}a{color:inherit;text-decoration:none;}}
+    .cosmos{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 140% 65% at 50% -8%,#16203C 0%,var(--navy) 58%);pointer-events:none;}
+    .page{position:relative;z-index:1;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,52px);}
+    .section{padding:clamp(36px,5vw,60px) 0;}
+    .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(200,155,60,.18),transparent);}
+    .eyebrow{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,155,60,.55);margin-bottom:12px;}
+    .h2{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,34px);font-weight:900;line-height:1.2;color:var(--white);margin-bottom:18px;}
+    .h2 em{color:var(--gold);font-style:italic;}
+    .prose{font-family:'Lora',serif;font-size:clamp(15px,2vw,17px);color:var(--silver);line-height:1.82;}
+    .prose p+p{margin-top:16px;}.prose strong{color:var(--white);font-weight:600;}
 
-      /* pattern accent colors */
-      --c1: #E87830; --c2: #C89B3C; --c3: #9B6BCC;
-      --c4: #4A9E7A; --c5: #E05555; --c6: #5B9BD5; --c7: #0E8A7A;
-    }
+    /* HERO */
+    .hero{background:linear-gradient(170deg,#0C0F1E 0%,#07080E 100%);border-bottom:1px solid rgba(200,155,60,.12);padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,72px);text-align:center;}
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,155,60,.65);border:1px solid rgba(200,155,60,.2);border-radius:100px;padding:6px 16px;margin-bottom:28px;}
+    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    .hero-h1{font-family:'Playfair Display',serif;font-size:clamp(34px,6vw,64px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:12px;}
+    .hero-h1 em{color:var(--gold);font-style:italic;}
+    .hero-sub{font-size:clamp(15px,2.2vw,18px);color:var(--silver);max-width:580px;margin:0 auto 28px;line-height:1.75;}
+    .hero-byline{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);}
+    .hero-byline strong{color:var(--gold);}
+    a.sl{color:var(--mist);text-decoration:none;border-bottom:1px solid rgba(120,120,160,.3);transition:color .15s,border-color .15s;}
+    a.sl:hover{color:var(--gold);border-color:var(--gold);}
 
-    /* ── RESET ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    /* STATS */
+    .stat-strip{display:flex;justify-content:center;gap:clamp(20px,5vw,60px);flex-wrap:wrap;padding:28px 0;border-bottom:1px solid var(--border);}
+    .stat-num{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,38px);font-weight:900;color:var(--gold);line-height:1;}
+    .stat-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin-top:5px;text-align:center;}
 
-    /* ── BASE ── */
-    body {
-      background: var(--navy);
-      color: var(--white);
-      font-family: 'Lora', serif;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+    /* PULL QUOTE */
+    .pull-quote{background:var(--gold-dim);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:22px 0;font-style:italic;font-size:clamp(14px,1.9vw,16px);color:var(--pearl);line-height:1.65;}
+    .pull-quote cite{display:block;margin-top:8px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);font-style:normal;}
 
-    /* ── PRINT OVERRIDES ── */
-    @media print {
-      body { background: #fff; color: #0a0a0a; font-size: 11pt; }
-      .cosmos, .no-print { display: none !important; }
-      .page { padding-top: 0; }
-      .pattern-card { break-inside: avoid; page-break-inside: avoid; }
-      .hero { background: #07080E; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      a { color: inherit; text-decoration: none; }
-      .score-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
+    /* HOW TO USE */
+    .how-box{background:var(--card);border:1px solid rgba(200,155,60,.18);border-radius:12px;padding:clamp(20px,4vw,32px);margin-bottom:44px;}
+    .how-box h3{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+    .how-box ol{padding-left:18px;}
+    .how-box li{font-size:clamp(14px,1.9vw,16px);color:var(--silver);line-height:1.75;margin-bottom:8px;}
+    .how-box li strong{color:var(--white);}
+    .score-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;}
+    .score-pip{display:flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--silver);}
+    .pip{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;}
+    .pip-0{background:rgba(255,255,255,.06);color:var(--mist);}
+    .pip-1{background:rgba(200,155,60,.15);color:var(--gold);}
+    .pip-2{background:rgba(224,88,48,.2);color:#F08060;}
 
-    /* ── COSMOS ── */
-    .cosmos {
-      position: fixed; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 140% 65% at 50% -8%, #16203C 0%, var(--navy) 58%);
-      pointer-events: none;
-    }
+    /* AXIS HEADER */
+    .axis-hdr{background:linear-gradient(135deg,var(--card) 0%,rgba(10,12,22,.95) 100%);border:1px solid rgba(200,155,60,.15);border-radius:12px 12px 0 0;padding:clamp(18px,3vw,28px) clamp(18px,3vw,28px) 14px;margin-bottom:0;}
+    .axis-code{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+    .axis-q{font-family:'Playfair Display',serif;font-size:clamp(16px,2.5vw,21px);font-style:italic;color:var(--pearl);line-height:1.45;margin-bottom:10px;}
+    .axis-desc{font-size:clamp(13px,1.8vw,15px);color:var(--mist);line-height:1.65;}
 
-    /* ── LAYOUT ── */
-    .page { position: relative; z-index: 1; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(20px,5vw,52px); }
+    /* PATTERN CARDS */
+    .pattern-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--ac,rgba(200,155,60,.4));border-top:none;border-radius:0;padding:clamp(18px,3.5vw,30px);transition:border-left-color .2s;}
+    .pattern-card:last-of-type{border-radius:0 0 12px 12px;margin-bottom:8px;}
+    .pattern-card:hover{border-left-color:var(--ac);}
+    .pattern-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+    .pcode{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ac,var(--gold));border:1px solid var(--ac,rgba(200,155,60,.3));padding:2px 9px;border-radius:4px;}
+    .rbadge{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:2px 9px;border-radius:4px;}
+    .re{background:rgba(200,155,60,.1);color:var(--gold);}
+    .rh{background:rgba(224,120,48,.1);color:var(--ember);}
+    .rc{background:rgba(192,57,43,.1);color:#F07060;}
+    .pname{font-family:'Playfair Display',serif;font-size:clamp(17px,2.6vw,24px);font-weight:700;line-height:1.2;color:var(--white);margin-bottom:4px;}
+    .ptag{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:.05em;color:var(--mist);margin-bottom:12px;}
+    .pfeel{font-style:italic;font-size:clamp(14px,1.9vw,16px);color:rgba(200,155,60,.75);line-height:1.6;border-left:2px solid rgba(200,155,60,.18);padding-left:14px;margin-bottom:14px;}
+    .pbody{font-size:clamp(14px,1.9vw,16px);color:var(--silver);line-height:1.8;margin-bottom:14px;}
+    .pbody p+p{margin-top:12px;}.pbody strong{color:var(--white);}
+    .fbox{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:12px 16px;margin:12px 0;}
+    .flabel{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-bottom:6px;}
+    .fbox p{font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.68;}
+    .wlist{list-style:none;margin:10px 0;}
+    .wlist li{display:flex;gap:8px;align-items:flex-start;font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.6;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);}
+    .wlist li:last-child{border-bottom:none;}
+    .wi{color:var(--ac,var(--gold));font-size:11px;margin-top:4px;flex-shrink:0;}
 
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(170deg, #0C0F1E 0%, #07080E 100%);
-      border-bottom: 1px solid rgba(200,155,60,.15);
-      padding: clamp(56px,8vw,96px) 0 clamp(48px,6vw,72px);
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(200,155,60,.65);
-      border: 1px solid rgba(200,155,60,.2);
-      border-radius: 100px;
-      padding: 6px 16px;
-      margin-bottom: 28px;
-    }
-    .hero-badge::before {
-      content: ''; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--gold);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+    /* DIAGNOSTIC */
+    .diag{background:linear-gradient(135deg,var(--gold-dim) 0%,rgba(14,16,34,.9) 100%);border:1px solid rgba(200,155,60,.18);border-radius:10px;padding:clamp(14px,2.5vw,22px);margin-top:14px;}
+    .dlabel{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,155,60,.55);margin-bottom:8px;}
+    .dq{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,18px);font-style:italic;color:var(--pearl);line-height:1.5;margin-bottom:14px;}
+    .score-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .srl{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);}
+    .sbtns{display:flex;gap:5px;}
+    .sbtn{width:32px;height:32px;border-radius:7px;border:1.5px solid rgba(255,255,255,.1);background:transparent;font-family:'DM Mono',monospace;font-size:14px;color:var(--silver);cursor:pointer;transition:background .15s,border-color .15s,color .15s;display:flex;align-items:center;justify-content:center;}
+    .sbtn:hover{border-color:var(--gold);color:var(--gold);}
+    .sbtn.s0{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2);color:var(--white);}
+    .sbtn.s1{background:rgba(200,155,60,.18);border-color:var(--gold);color:var(--gold);}
+    .sbtn.s2{background:rgba(224,88,48,.18);border-color:#F08060;color:#F08060;}
+    .sm{font-style:italic;font-size:13px;color:var(--mist);min-width:130px;}
 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(34px,6vw,64px);
-      font-weight: 900; line-height: 1.08;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-    .hero h1 em { color: var(--gold); font-style: italic; }
-    .hero-sub {
-      font-family: 'Lora', serif;
-      font-size: clamp(16px,2.2vw,19px);
-      color: var(--silver); line-height: 1.75;
-      max-width: 580px; margin: 0 auto 28px;
-    }
-    .hero-byline {
-      font-family: 'Syne', sans-serif;
-      font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--mist);
-    }
-    .hero-byline strong { color: var(--gold); }
+    /* CHIPS */
+    .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
+    .chip-lbl{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);margin-bottom:5px;display:block;}
+    .chip{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.05em;color:var(--teal);background:var(--teal-dim);border:1px solid rgba(14,138,122,.22);border-radius:6px;padding:3px 9px;}
+    .chip.free{color:var(--gold);background:var(--gold-dim);border-color:rgba(200,155,60,.22);}
+    .chip.bonus{color:var(--violet);background:var(--violet-dim);border-color:rgba(123,94,167,.22);}
+    .gap-note{background:rgba(123,94,167,.07);border:1px solid rgba(123,94,167,.18);border-radius:8px;padding:11px 14px;margin-top:12px;font-size:13px;color:rgba(200,180,240,.7);line-height:1.6;}
+    .gap-note strong{color:rgba(200,180,255,.9);}
 
-    /* ── STAT STRIP ── */
-    .stat-strip {
-      display: flex; justify-content: center;
-      gap: clamp(24px,5vw,64px); flex-wrap: wrap;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .stat-item { text-align: center; }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px,4vw,38px); font-weight: 900;
-      color: var(--gold); line-height: 1;
-    }
-    .stat-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--mist); margin-top: 5px;
-    }
+    /* DASHBOARD */
+    .dash{background:var(--card);border:1px solid rgba(200,155,60,.18);border-radius:14px;padding:clamp(22px,4vw,38px);margin:52px 0 28px;}
+    .dbars{display:flex;flex-direction:column;gap:8px;margin:18px 0 22px;}
+    .drow{display:flex;align-items:center;gap:10px;}
+    .dlbl{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);width:92px;flex-shrink:0;text-align:right;}
+    .dtrack{flex:1;height:7px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden;}
+    .dfill{height:100%;border-radius:4px;transition:width .4s ease;background:var(--bc,var(--gold));}
+    .dscore{font-family:'DM Mono',monospace;font-size:13px;color:var(--white);width:16px;text-align:center;}
+    .total-block{text-align:center;padding-top:22px;border-top:1px solid var(--border);}
+    .total-lbl{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;}
+    .total-num{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,56px);font-weight:900;color:var(--gold);line-height:1;}
+    .total-max{font-size:.44em;color:var(--mist);}
+    .total-desc{font-size:clamp(14px,1.9vw,16px);color:var(--silver);line-height:1.7;max-width:480px;margin:12px auto 0;}
+    .total-next{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-top:10px;}
 
-    /* ── SECTION HEADS ── */
-    .section { padding: clamp(40px,6vw,72px) 0; }
-    .section-eyebrow {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(200,155,60,.55); margin-bottom: 14px;
-    }
-    .section-h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(22px,3.5vw,34px); font-weight: 900; line-height: 1.2;
-      color: var(--white); margin-bottom: 20px;
-    }
-    .section-h2 em { color: var(--gold); font-style: italic; }
+    /* PILLAR CARDS */
+    .pillar-card{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--pc,var(--teal));border-radius:8px;padding:clamp(14px,2.5vw,22px);margin-bottom:5px;transition:border-left-color .2s;}
+    .pillar-card:hover{border-left-color:var(--pc);}
+    .ptop{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+    .pil-code{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--pc,var(--teal));border:1px solid var(--pc,rgba(14,138,122,.3));padding:2px 9px;border-radius:4px;}
+    .pil-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--white);}
+    .pil-gov{font-size:clamp(13px,1.7vw,14px);color:var(--mist);line-height:1.6;margin-bottom:8px;}
+    .pil-dep{font-style:italic;font-size:clamp(13px,1.7vw,14px);color:var(--silver);border-left:2px solid rgba(255,255,255,.07);padding-left:12px;margin-bottom:10px;line-height:1.6;}
 
-    /* ── LEAD PROSE ── */
-    .lead-prose { font-size: clamp(16px,2.2vw,18px); color: var(--silver); line-height: 1.85; }
-    .lead-prose p + p { margin-top: 18px; }
-    .lead-prose strong { color: var(--white); font-weight: 600; }
+    /* SECTOR CARDS */
+    .sector-card{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--sc,var(--teal));border-radius:8px;padding:clamp(14px,2.5vw,22px);margin-bottom:5px;}
+    .stop{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+    .sc-code{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--sc,var(--teal));border:1px solid var(--sc,rgba(14,138,122,.3));padding:2px 9px;border-radius:4px;}
+    .sc-organ{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);background:rgba(255,255,255,.04);border-radius:4px;padding:2px 9px;}
+    .sc-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-bottom:4px;}
+    .sc-gov{font-size:clamp(13px,1.7vw,14px);color:var(--mist);line-height:1.6;margin-bottom:8px;}
+    .sc-fail{font-style:italic;font-size:clamp(13px,1.7vw,14px);color:var(--silver);border-left:2px solid rgba(255,255,255,.07);padding-left:12px;margin-bottom:10px;line-height:1.6;}
 
-    /* ── STAT PULL ── */
-    .stat-pull {
-      background: var(--gold-dim);
-      border-left: 3px solid var(--gold);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 24px 0;
-      font-family: 'Lora', serif;
-      font-size: clamp(14px,2vw,16px);
-      font-style: italic;
-      color: var(--pearl);
-      line-height: 1.65;
-    }
-    .stat-pull cite {
-      display: block; margin-top: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--mist); font-style: normal;
-    }
+    /* LEGEND TABLE */
+    .ltable{width:100%;border-collapse:collapse;margin-top:18px;}
+    .ltable th{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);padding:9px 11px;text-align:left;border-bottom:1px solid var(--border);}
+    .ltable td{font-family:'Lora',serif;font-size:clamp(13px,1.7vw,14px);color:var(--silver);padding:10px 11px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:top;}
+    .ltable tr:last-child td{border-bottom:none;}
+    .lc{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.1em;}
+    .lch{font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:.05em;}
+    .lfree{color:var(--gold);font-size:12px;font-family:'Syne',sans-serif;font-weight:700;}
+    .lbonus{color:var(--violet);font-size:12px;font-family:'Syne',sans-serif;font-weight:700;}
 
-    /* ── DIVIDER ── */
-    .divider {
-      width: 100%; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(200,155,60,.2), transparent);
-      margin: 4px 0;
-    }
+    /* CASCADE */
+    .cascade-block{background:rgba(200,155,60,.04);border:1px solid rgba(200,155,60,.1);border-radius:12px;padding:clamp(20px,4vw,36px);margin:44px 0;}
+    .cascade-flow{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:16px 0;}
+    .ci{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--white);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px 10px;}
+    .ca{color:rgba(200,155,60,.45);font-size:14px;}
 
-    /* ── HOW TO USE ── */
-    .how-to-use {
-      background: var(--card);
-      border: 1px solid rgba(200,155,60,.18);
-      border-radius: 12px;
-      padding: clamp(24px,4vw,36px);
-      margin-bottom: 48px;
-    }
-    .how-to-use h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 13px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
-    }
-    .how-to-use ol {
-      padding-left: 20px;
-      font-family: 'Lora', serif;
-      font-size: clamp(15px,2vw,16px);
-      color: var(--silver); line-height: 1.75;
-    }
-    .how-to-use li { margin-bottom: 8px; }
-    .how-to-use li strong { color: var(--white); }
+    /* SOURCES */
+    .src{padding:11px 0;border-bottom:1px solid var(--border);font-size:clamp(13px,1.7vw,14px);color:var(--mist);line-height:1.65;}
+    .src:last-child{border-bottom:none;}.src strong{color:var(--silver);font-weight:600;}
+    .stag{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-right:8px;}
 
-    /* ── SCORING LEGEND ── */
-    .score-legend {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px;
-    }
-    .score-pip {
-      display: flex; align-items: center; gap: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 12px; font-weight: 700; letter-spacing: .08em;
-      color: var(--silver);
-    }
-    .pip {
-      width: 28px; height: 28px; border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 13px; font-weight: 500;
-    }
-    .pip-0 { background: rgba(255,255,255,.06); color: var(--mist); }
-    .pip-1 { background: rgba(200,155,60,.15); color: var(--gold); }
-    .pip-2 { background: rgba(224,88,48,.2); color: #F08060; }
-
-    /* ── PATTERN CARDS ── */
-    .pattern-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--ac, rgba(200,155,60,.4));
-      border-radius: 12px;
-      padding: clamp(24px,4vw,36px) clamp(20px,4vw,36px);
-      margin-bottom: 6px;
-      transition: border-color .2s, transform .15s;
-    }
-    .pattern-card:hover { border-left-color: var(--ac); transform: translateX(2px); }
-
-    .pattern-meta {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 8px; flex-wrap: wrap;
-    }
-    .pattern-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--ac, var(--gold));
-      border: 1px solid var(--ac, rgba(200,155,60,.3));
-      padding: 3px 10px; border-radius: 4px;
-    }
-    .pattern-risk {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
-      padding: 3px 10px; border-radius: 4px;
-    }
-    .risk-elevated { background: rgba(200,155,60,.12); color: var(--gold); }
-    .risk-high     { background: rgba(224,120,48,.12); color: var(--ember); }
-    .risk-critical { background: rgba(192,57,43,.12); color: #F07060; }
-
-    .pattern-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(18px,2.8vw,26px); font-weight: 700;
-      color: var(--white); line-height: 1.2; margin-bottom: 4px;
-    }
-    .pattern-tagline {
-      font-family: 'Syne', sans-serif;
-      font-size: 13px; font-weight: 600; letter-spacing: .06em;
-      color: var(--mist); margin-bottom: 18px;
-    }
-    .pattern-feel {
-      font-family: 'Lora', serif;
-      font-size: clamp(15px,2vw,17px); font-style: italic;
-      color: rgba(200,155,60,.8); line-height: 1.6;
-      border-left: 2px solid rgba(200,155,60,.2);
-      padding-left: 16px; margin-bottom: 20px;
-    }
-    .pattern-body {
-      font-family: 'Lora', serif;
-      font-size: clamp(15px,2vw,17px); color: var(--silver);
-      line-height: 1.8; margin-bottom: 18px;
-    }
-    .pattern-body p + p { margin-top: 14px; }
-    .pattern-body strong { color: var(--white); font-weight: 600; }
-
-    /* field evidence box */
-    .field-box {
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 8px;
-      padding: 16px 20px;
-      margin: 18px 0;
-    }
-    .field-box-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--mist); margin-bottom: 8px;
-    }
-    .field-box p {
-      font-family: 'Lora', serif;
-      font-size: clamp(14px,1.8vw,15px); color: var(--silver); line-height: 1.7;
-    }
-
-    /* warning signs */
-    .warning-list {
-      list-style: none;
-      margin: 16px 0;
-    }
-    .warning-list li {
-      display: flex; gap: 10px; align-items: flex-start;
-      font-family: 'Lora', serif;
-      font-size: clamp(14px,1.8vw,15px); color: var(--silver);
-      line-height: 1.6; padding: 6px 0;
-      border-bottom: 1px solid rgba(255,255,255,.04);
-    }
-    .warning-list li:last-child { border-bottom: none; }
-    .warn-icon { color: var(--ac, var(--gold)); font-size: 13px; margin-top: 3px; flex-shrink: 0; }
-
-    /* ── SELF-DIAGNOSTIC ── */
-    .diagnostic {
-      background: linear-gradient(135deg, var(--gold-dim) 0%, rgba(14,16,34,.9) 100%);
-      border: 1px solid rgba(200,155,60,.2);
-      border-radius: 10px;
-      padding: clamp(18px,3vw,28px) clamp(16px,3vw,28px);
-      margin-top: 20px;
-    }
-    .diagnostic-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(200,155,60,.6); margin-bottom: 10px;
-    }
-    .diagnostic-q {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(16px,2.2vw,20px); font-style: italic;
-      color: var(--pearl); line-height: 1.5; margin-bottom: 18px;
-    }
-    .score-row {
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-    }
-    .score-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--mist);
-    }
-    .score-btns { display: flex; gap: 6px; }
-    .score-btn {
-      width: 36px; height: 36px; border-radius: 7px;
-      border: 1.5px solid rgba(255,255,255,.12);
-      background: transparent;
-      font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500;
-      color: var(--silver); cursor: pointer;
-      transition: background .15s, border-color .15s, color .15s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .score-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .score-btn.active-0 { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.2); color: var(--white); }
-    .score-btn.active-1 { background: rgba(200,155,60,.18); border-color: var(--gold); color: var(--gold); }
-    .score-btn.active-2 { background: rgba(224,88,48,.18); border-color: #F08060; color: #F08060; }
-    .score-meaning {
-      font-family: 'Lora', serif;
-      font-size: 13px; font-style: italic; color: var(--mist);
-      margin-left: 4px; min-width: 160px;
-    }
-
-    /* chapter routing chip */
-    .chapter-chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(200,155,60,.07);
-      border: 1px solid rgba(200,155,60,.2);
-      border-radius: 100px;
-      padding: 5px 14px;
-      margin-top: 14px;
-      cursor: default;
-    }
-    .chapter-chip::before { content: '▶'; font-size: 8px; }
-
-    /* ── SCORE DASHBOARD ── */
-    .score-dashboard {
-      background: var(--card);
-      border: 1px solid rgba(200,155,60,.2);
-      border-radius: 16px;
-      padding: clamp(28px,4vw,44px);
-      margin: 56px 0 32px;
-    }
-    .dash-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(20px,3vw,28px); font-weight: 900;
-      color: var(--white); margin-bottom: 8px;
-    }
-    .dash-sub {
-      font-family: 'Lora', serif;
-      font-size: clamp(14px,1.8vw,16px); color: var(--mist);
-      margin-bottom: 28px;
-    }
-    .dash-bars { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-    .dash-bar-row { display: flex; align-items: center; gap: 12px; }
-    .dash-bar-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px; font-weight: 700; letter-spacing: .1em;
-      color: var(--mist); width: 100px; flex-shrink: 0; text-align: right;
-    }
-    .dash-bar-track {
-      flex: 1; height: 8px; background: rgba(255,255,255,.05);
-      border-radius: 4px; overflow: hidden;
-    }
-    .dash-bar-fill {
-      height: 100%; border-radius: 4px;
-      transition: width .4s ease;
-      background: var(--bar-color, var(--gold));
-    }
-    .dash-bar-score {
-      font-family: 'DM Mono', monospace;
-      font-size: 14px; color: var(--white); width: 20px;
-    }
-
-    .total-score-block {
-      text-align: center;
-      padding: 24px 0 0;
-      border-top: 1px solid var(--border);
-    }
-    .total-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--mist); margin-bottom: 8px;
-    }
-    .total-num {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(40px,6vw,60px); font-weight: 900;
-      line-height: 1; color: var(--gold);
-    }
-    .total-max { font-size: .45em; color: var(--mist); }
-    .total-desc {
-      font-family: 'Lora', serif;
-      font-size: clamp(15px,2vw,17px); color: var(--silver);
-      line-height: 1.7; max-width: 480px; margin: 16px auto 0;
-    }
-    .total-chapter-note {
-      font-family: 'Syne', sans-serif;
-      font-size: 12px; font-weight: 700; letter-spacing: .1em;
-      color: var(--gold); margin-top: 10px;
-    }
-
-    /* ── NAVIGATION LEGEND MAP ── */
-    .legend-table {
-      width: 100%; border-collapse: collapse; margin-top: 20px;
-    }
-    .legend-table th {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--mist); padding: 10px 14px; text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    .legend-table td {
-      font-family: 'Lora', serif;
-      font-size: clamp(13px,1.8vw,15px); color: var(--silver);
-      padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.03);
-      vertical-align: top;
-    }
-    .legend-table tr:last-child td { border-bottom: none; }
-    .legend-table td:first-child { white-space: nowrap; }
-    .legend-pattern-code {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px; color: var(--gold); letter-spacing: .1em;
-    }
-    .legend-chapters {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px; color: var(--teal); letter-spacing: .06em;
-    }
-    .legend-free { color: var(--gold); font-weight: 600; }
-
-    /* ── PATTERN BEHIND PATTERNS ── */
-    .cascade-block {
-      background: rgba(200,155,60,.04);
-      border: 1px solid rgba(200,155,60,.12);
-      border-radius: 12px;
-      padding: clamp(24px,4vw,40px);
-      margin: 48px 0;
-    }
-    .cascade-flow {
-      display: flex; align-items: center; flex-wrap: wrap;
-      gap: 6px; margin: 20px 0;
-    }
-    .cascade-item {
-      font-family: 'Syne', sans-serif;
-      font-size: 12px; font-weight: 700; letter-spacing: .06em;
-      color: var(--white);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px; padding: 6px 12px;
-    }
-    .cascade-arrow {
-      color: rgba(200,155,60,.5); font-size: 14px;
-    }
-
-    /* ── SOURCES ── */
-    .sources { padding: clamp(36px,5vw,56px) 0; }
-    .sources h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(18px,2.5vw,24px); font-weight: 700;
-      color: var(--white); margin-bottom: 24px;
-    }
-    .source-item {
-      padding: 14px 0; border-bottom: 1px solid var(--border);
-      font-family: 'Lora', serif;
-      font-size: clamp(13px,1.8vw,15px); color: var(--mist); line-height: 1.65;
-    }
-    .source-item:last-child { border-bottom: none; }
-    .source-item strong { color: var(--silver); font-weight: 600; }
-    .source-tag {
-      font-family: 'Syne', sans-serif;
-      font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
-      color: var(--gold); margin-right: 8px;
-    }
-
-    /* ── FOOTER ── */
-    .report-footer {
-      border-top: 1px solid var(--border);
-      padding: 36px 22px;
-      text-align: center;
-    }
-    .report-footer p {
-      font-family: 'Syne', sans-serif;
-      font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--mist); line-height: 1.8;
-    }
-    .report-footer strong { color: var(--gold); }
-    .footer-link {
-      color: var(--mist); text-decoration: none;
-      border-bottom: 1px solid rgba(120,120,160,.3);
-      transition: color .15s, border-color .15s;
-    }
-    .footer-link:hover { color: var(--gold); border-color: var(--gold); }
-
-    /* ── PRINT BUTTON ── */
-    .print-bar {
-      position: fixed; bottom: 24px; right: 24px; z-index: 100;
-    }
-    .print-btn {
-      background: var(--gold); color: var(--navy);
-      font-family: 'Syne', sans-serif;
-      font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-      padding: 12px 22px; border-radius: 8px; border: none;
-      cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,.4);
-      transition: background .18s, transform .12s;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .print-btn:hover { background: var(--gold-hi); transform: translateY(-2px); }
-    @media print { .print-bar { display: none; } }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      .score-row { flex-direction: column; align-items: flex-start; }
-      .legend-table th:nth-child(3), .legend-table td:nth-child(3) { display: none; }
-      .cascade-flow { gap: 4px; }
-      .dash-bar-label { width: 70px; font-size: 9px; }
-    }
-    @media (max-width: 400px) {
-      .stat-strip { gap: 16px; }
-    }
+    /* FOOTER */
+    .rfooter{border-top:1px solid var(--border);padding:34px 22px;text-align:center;}
+    .rfooter p{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);line-height:1.9;}
+    .rfooter strong{color:var(--gold);}
+    .print-bar{position:fixed;bottom:24px;right:24px;z-index:100;}
+    .print-btn{background:var(--gold);color:var(--navy);font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border-radius:8px;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.4);transition:background .18s,transform .12s;display:flex;align-items:center;gap:7px;}
+    .print-btn:hover{background:var(--gold-hi);transform:translateY(-2px);}
+    @media print{.print-bar{display:none;}}
+    @media(max-width:580px){.score-row{flex-direction:column;align-items:flex-start;}.ltable th:nth-child(3),.ltable td:nth-child(3){display:none;}.stat-strip{gap:14px;}.dlbl{width:66px;font-size:9px;}}
   </style>
 </head>
-
 <body>
 <div class="cosmos"></div>
-
 <div class="page">
 
-  <!-- ═══ HERO ═══ -->
-  <div class="hero">
-    <div class="wrap">
-      <div class="hero-badge">Field Research Report &nbsp;&middot;&nbsp; 2026</div>
-      <h1>The 7 Structural Patterns<br><em>That Collapse Regenerative Projects</em></h1>
-      <p class="hero-sub">And why the most visionary, heart-aligned communities fall first</p>
-      <p class="hero-byline">By <strong>Rick Broider</strong> &nbsp;&middot;&nbsp; <a href="https://stopthecollapse.com/" class="footer-link" style="font-size:inherit;">StopTheCollapse.com</a></p>
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-badge">Three-Axis Field Diagnostic &nbsp;&middot;&nbsp; 2026</div>
+    <h1 class="hero-h1">The 7 Structural Patterns<br><em>That Collapse Regenerative Projects</em></h1>
+    <p class="hero-sub">A field-validated diagnostic tool for founders in the fire. Three axes. One map. Straight to the chapters that address your specific situation.</p>
+    <p class="hero-byline">By <strong>Rick Broider</strong> &nbsp;&middot;&nbsp; <a href="https://stopthecollapse.com/" class="sl">StopTheCollapse.com</a></p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stat-strip wrap">
+  <div class="stat-item"><div class="stat-num">90%</div><div class="stat-label">Never reach<br>stability</div></div>
+  <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Collapse<br>patterns</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Diagnostic<br>axes</div></div>
+  <div class="stat-item"><div class="stat-num">33</div><div class="stat-label">Chapters of<br>repair</div></div>
+</div>
+
+<!-- INTRO -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">The map you needed at the beginning</div>
+    <h2 class="h2">You didn&rsquo;t set out to build<br><em>another cautionary tale.</em></h2>
+    <div class="prose">
+      <p>You came with a vision that kept you awake at 2am. Land, or a platform, or a tribe. Something nourishing, regenerative, radically different from the world that made you exhausted in the first place.</p>
+      <p>Somewhere between the founding moment and now, something shifted. People drifted. Tension built without resolution. The finances got complicated. The dream is still there, but it is sitting inside a structure that may not be strong enough to hold it.</p>
+      <p><strong>That is not a character flaw. That is the absence of a map.</strong></p>
+    </div>
+    <div class="pull-quote">&ldquo;Most aspiring ecovillages and community groups — probably 90 percent — never get off the ground. They can&rsquo;t find the right land, don&rsquo;t have enough money, or get mired in conflict. Often they simply don&rsquo;t understand how much time, money, and organizational skill they&rsquo;ll need.&rdquo;<cite>Diana Leafe Christian &nbsp;&middot;&nbsp; <em>Creating a Life Together</em></cite></div>
+    <div class="prose"><p>The communities that survive don&rsquo;t share a location, a philosophy, or a size. They share something structural: they identified the collapse patterns early and built deliberately against them. <strong>This report gives you three ways to find what you need — immediately.</strong></p></div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- HOW TO USE -->
+<section class="section">
+  <div class="wrap">
+    <div class="how-box">
+      <h3>How to use this report — three axes</h3>
+      <p style="font-size:clamp(14px,1.9vw,16px);color:var(--silver);line-height:1.75;margin-bottom:16px;">This report maps the same three diagnostic axes as the <em>Bridging Earth &amp; Kanaria</em> Navigation Legend. Use all three. They reveal different layers of the same problem.</p>
+      <ol>
+        <li><strong>Axis 1 — The Fire You&rsquo;re In:</strong> Score yourself 0/1/2 on each of the 7 collapse patterns. Your highest score is your structural entry point into the audiobook.</li>
+        <li><strong>Axis 2 — The Pillar Being Depleted:</strong> Identify which dimension of wellbeing feels most starved — in yourself first, then in your community. This tells you whether the structural problem is also a personal depletion crisis.</li>
+        <li><strong>Axis 3 — The Organ That&rsquo;s Failing:</strong> Locate which sector of your organization has stopped functioning. Communities collapse from the inside out. The weakest organ is usually the one nobody has named.</li>
+        <li><strong>Score Dashboard</strong> (after Axis 1): routes you directly to the most relevant chapters. Cross-reference with Axes 2 and 3 for full diagnostic clarity.</li>
+      </ol>
+      <div class="score-legend">
+        <div class="score-pip"><div class="pip pip-0">0</div> Not present</div>
+        <div class="score-pip"><div class="pip pip-1">1</div> Present, manageable</div>
+        <div class="score-pip"><div class="pip pip-2">2</div> Active, urgent</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- STAT STRIP -->
-  <div class="stat-strip wrap">
-    <div class="stat-item"><div class="stat-num">90%</div><div class="stat-label">Never reach<br>stability</div></div>
-    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Identifiable<br>patterns</div></div>
-    <div class="stat-item"><div class="stat-num">2–3</div><div class="stat-label">Active at once<br>in most projects</div></div>
-    <div class="stat-item"><div class="stat-num">33</div><div class="stat-label">Chapters of<br>repair architecture</div></div>
+<!-- ════════════════ AXIS 1 ════════════════ -->
+<section class="section" id="axis1">
+  <div class="wrap">
+    <div class="axis-hdr">
+      <div class="axis-code">Axis 1 &nbsp;&middot;&nbsp; The Collapse Pattern Codes</div>
+      <p class="axis-q">Which fire are you in right now?</p>
+      <p class="axis-desc">The seven structural failure modes that end regenerative communities. Not because the people didn&rsquo;t care — but because the patterns went unnamed until it was too late. Score each one. More than one can be live simultaneously. Start with the one causing the most acute pain.</p>
+    </div>
+
+    <!-- F1 -->
+    <div class="pattern-card" style="--ac:var(--c1);" id="p1">
+      <div class="pattern-meta"><span class="pcode">F1</span><span class="rbadge rc">Most Critical</span></div>
+      <h3 class="pname">Interpersonal Conflict &amp; Human Complexity</h3>
+      <p class="ptag">Where it all breaks. Not because people don&rsquo;t care. Because they don&rsquo;t have the architecture.</p>
+      <p class="pfeel">&ldquo;The same argument keeps coming back in different forms. People you trusted are now in opposing camps. Conversations that should be simple have become charged.&rdquo;</p>
+      <div class="pbody">
+        <p>Every study, every practitioner, every post-mortem of a failed community converges on this. Interpersonal conflict is not a symptom. It is the final expression of every other unaddressed pattern — and it determines whether a community has a future or a final chapter.</p>
+        <p>Conflict avoidance is the quiet killer. Unspoken hurt doesn&rsquo;t disappear. It festers in side conversations, in passive withdrawal, in the accumulating weight of things that should have been said. <strong>The communities that survive don&rsquo;t have fewer conflicts. They have better containers for them.</strong></p>
+      </div>
+      <div class="fbox"><div class="flabel">Field Evidence</div><p>Twin Oaks has formal conflict resolution protocols since its founding. Earthaven requires conflict resolution training as part of membership. Tamera integrates relational education as structural architecture, not an optional program.</p></div>
+      <ul class="wlist">
+        <li><span class="wi">&#9657;</span>Conflicts get buried rather than formally processed</li>
+        <li><span class="wi">&#9657;</span>Feedback tends to feel like personal attack</li>
+        <li><span class="wi">&#9657;</span>No written conflict resolution protocol exists</li>
+        <li><span class="wi">&#9657;</span>Key people have gone quiet or started withdrawing</li>
+        <li><span class="wi">&#9657;</span>The same arguments resurface in different forms</li>
+        <li><span class="wi">&#9657;</span>Hard conversations are delayed until they become crises</li>
+      </ul>
+      <div class="diag">
+        <div class="dlabel">Self-Diagnostic</div>
+        <p class="dq">What is the conversation your community most needs to have — and how long has it been waiting? What is the cost of it waiting another six months?</p>
+        <div class="score-row"><span class="srl">Score:</span><div class="sbtns"><button class="sbtn" onclick="setScore('p1',0,this)">0</button><button class="sbtn" onclick="setScore('p1',1,this)">1</button><button class="sbtn" onclick="setScore('p1',2,this)">2</button></div><span class="sm" id="p1-m">tap to score</span></div>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip-lbl">Audiobook chapters for F1 — Interpersonal Conflict:</span>
+          <span class="chip free">Ch 18 — Inviting Through Ethics</span>
+          <span class="chip">Ch 22 — Weaving Harmonic Governance</span>
+          <span class="chip">Ch 25 — Leading Through Harmonic Architecture</span>
+          <span class="chip">Ch 28 — Forming Kinship Constellations</span>
+          <span class="chip">Ch 31 — Restoring the Balance</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F2 -->
+    <div class="pattern-card" style="--ac:var(--c2);" id="p2">
+      <div class="pattern-meta"><span class="pcode">F2</span><span class="rbadge rc">Critical</span></div>
+      <h3 class="pname">No Shared Vision, No Shared Future</h3>
+      <p class="ptag">The gap between your version of the dream and mine is where communities go to die.</p>
+      <p class="pfeel">&ldquo;People are doing the work but pulling in different directions. The founding energy is still there, but the shared picture of where you&rsquo;re going has blurred beyond recognition.&rdquo;</p>
+      <div class="pbody">
+        <p>Vision misalignment is not just a communication problem. It is the root cause that feeds every other collapse pattern on this list. When people hold different internal versions of what the project is fundamentally for, every decision becomes a proxy conflict for a disagreement that has never been named.</p>
+        <p>In the beginning, shared excitement functions as a substitute for shared clarity. People project their own vision onto the group&rsquo;s energy and assume alignment. It is only when the first real decision arrives that the gap becomes visible. <strong>By then, trust has accumulated on top of a cracked foundation.</strong></p>
+      </div>
+      <div class="fbox"><div class="flabel">Field Evidence</div><p>Researchers consistently name vision clarity as foundational, not sequential — it is the substrate on which all other failures grow. Communities that lost their shared vision, even after years of success, often couldn&rsquo;t recover.</p></div>
+      <ul class="wlist">
+        <li><span class="wi">&#9657;</span>No written, consensed vision document exists</li>
+        <li><span class="wi">&#9657;</span>Different members give different answers about purpose</li>
+        <li><span class="wi">&#9657;</span>Vision has evolved but no one has formally updated it</li>
+        <li><span class="wi">&#9657;</span>Decisions feel slow or conflicted without obvious reason</li>
+      </ul>
+      <div class="diag">
+        <div class="dlabel">Self-Diagnostic</div>
+        <p class="dq">If I asked your three most committed members what this project is fundamentally FOR — would they give the same answer? Would any of them give yours?</p>
+        <div class="score-row"><span class="srl">Score:</span><div class="sbtns"><button class="sbtn" onclick="setScore('p2',0,this)">0</button><button class="sbtn" onclick="setScore('p2',1,this)">1</button><button class="sbtn" onclick="setScore('p2',2,this)">2</button></div><span class="sm" id="p2-m">tap to score</span></div>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip-lbl">Audiobook chapters for F2 — No Shared Vision:</span>
+          <span class="chip free">Ch 1 — Awakening Omja Brhad</span>
+          <span class="chip">Ch 6 — Designing Earth&rsquo;s Federation Blueprint</span>
+          <span class="chip">Ch 11 — Claiming Galactic Citizenship</span>
+          <span class="chip">Ch 19 — Reviving the Dream Seed of Memory</span>
+          <span class="chip">Ch 23 — Aligning with Planetary Citizenship</span>
+          <span class="chip">Ch 27 — Rewriting the Human Myth</span>
+          <span class="chip">Ch 33 — Kanaria Speaks</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F3 -->
+    <div class="pattern-card" style="--ac:var(--c3);" id="p3">
+      <div class="pattern-meta"><span class="pcode">F3</span><span class="rbadge rc">Critical</span></div>
+      <h3 class="pname">Poor Governance &amp; Power Shadows</h3>
+      <p class="ptag">Fake flatness is still hierarchy — just unaccountable.</p>
+      <p class="pfeel">&ldquo;Decisions are being made but no one knows by whom or how. Power has collected in a person or clique without anyone agreeing to it. Accountability lives nowhere.&rdquo;</p>
+      <div class="pbody">
+        <p>Power always exists. The only question is whether it is distorted or clean. Too many communities try to flatten leadership instead of transforming it. The result is &ldquo;fake flatness&rdquo; — the illusion of equality without the structure to support it. In practice, decisions get made by whoever speaks loudest or carries the founder&rsquo;s implicit approval.</p>
+        <p><strong>A governance vacuum does not just fail when there is conflict. It generates conflict by its absence.</strong> Every community in the long-survival cohort has written governance. This is not bureaucracy. It is the architecture of trust.</p>
+      </div>
+      <div class="fbox"><div class="flabel">Field Evidence</div><p>Twin Oaks uses consensus with formal training. Enspiral built Loomio specifically to solve distributed governance at scale. Damanhur operates as a federation governed by a constitution with a college of justice. These are structural choices that preceded stability.</p></div>
+      <ul class="wlist">
+        <li><span class="wi">&#9657;</span>No written decision-making process or governance document</li>
+        <li><span class="wi">&#9657;</span>Founder is primary decision-maker across all domains</li>
+        <li><span class="wi">&#9657;</span>Recurring conflicts that never fully resolve</li>
+        <li><span class="wi">&#9657;</span>No written process for handling members who don&rsquo;t comply</li>
+      </ul>
+      <div class="diag">
+        <div class="dlabel">Self-Diagnostic</div>
+        <p class="dq">When a disagreement happens in your project, is there a clear, trusted process for resolving it — or does it default to whoever has been around longest or speaks most confidently?</p>
+        <div class="score-row"><span class="srl">Score:</span><div class="sbtns"><button class="sbtn" onclick="setScore('p3',0,this)">0</button><button class="sbtn" onclick="setScore('p3',1,this)">1</button><button class="sbtn" onclick="setScore('p3',2,this)">2</button></div><span class="sm" id="p3-m">tap to score</span></div>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip-lbl">Audiobook chapters for F3 — Governance Shadows:</span>
+          <span class="chip free">Ch 4 — Crossing the Threshold of Contact</span>
+          <span class="chip">Ch 8 — Restoring Galactic Ethics</span>
+          <span class="chip">Ch 12 — Engineering the Starseed Blueprint</span>
+          <span class="chip">Ch 15 — Summoning the Galactic Council</span>
+          <span class="chip">Ch 21 — Returning to Organic Alliance</span>
+          <span class="chip">Ch 22 — Weaving Harmonic Governance</span>
+          <span class="chip">Ch 25 — Leading Through Harmonic Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F4 -->
+    <div class="pattern-card" style="--ac:var(--c4);" id="p4">
+      <div class="pattern-meta"><span class="pcode">F4</span><span class="rbadge rh">High Risk</span></div>
+      <h3 class="pname">Financial Fragility</h3>
+      <p class="ptag">Spirit doesn&rsquo;t pay the land lease.</p>
+      <p class="pfeel">&ldquo;The money conversation is always stressful. People are contributing unequally and it&rsquo;s creating resentment. Survival feels dependent on one or two people&rsquo;s financial endurance.&rdquo;</p>
+      <div class="pbody">
+        <p>Financial fragility is the most pragmatic collapse pattern and the most consistently underestimated. Founders who are purpose-driven treat money as secondary to vision — and communities pay for that sequencing with their lives. Land is bought before a budget is built. Roles are promised before resources are real.</p>
+        <p><strong>When a project becomes a source of financial anxiety for its members, it triggers scarcity patterns in the group field. Scarcity destroys trust. When trust is gone, every other collapse pattern accelerates.</strong></p>
+      </div>
+      <div class="fbox"><div class="flabel">Field Evidence</div><p>When Damanhur&rsquo;s founder was asked the secret to their 600-person community&rsquo;s success, his answer surprised researchers: &ldquo;Think like a business.&rdquo; Not a spiritual answer. A structural one. The communities that last treat regenerative finance as a pillar of the mission itself.</p></div>
+      <ul class="wlist">
+        <li><span class="wi">&#9657;</span>Single revenue stream or dependency on one funder</li>
+        <li><span class="wi">&#9657;</span>Financial anxiety affecting community decisions</li>
+        <li><span class="wi">&#9657;</span>No written budget, runway, or economic model</li>
+        <li><span class="wi">&#9657;</span>Income model requires constant founder energy to sustain</li>
+      </ul>
+      <div class="diag">
+        <div class="dlabel">Self-Diagnostic</div>
+        <p class="dq">What financial reality are you still avoiding looking at directly — and what would become possible in your community if you faced it this month?</p>
+        <div class="score-row"><span class="srl">Score:</span><div class="sbtns"><button class="sbtn" onclick="setScore('p4',0,this)">0</button><button class="sbtn" onclick="setScore('p4',1,this)">1</button><button class="sbtn" onclick="setScore('p4',2,this)">2</button></div><span class="sm" id="p4-m">tap to score</span></div>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip-lbl">Audiobook chapters for F4 — Financial Fragility:</span>
+          <span class="chip">Ch 12 — Engineering the Starseed Blueprint</span>
+          <span class="chip">Ch 25 — Leading Through Harmonic Architecture</span>
+          <span class="chip bonus">Appendix X — Regenerative Money That Actually Works</span>
+        </div>
+        <div class="gap-note"><strong>Honest note:</strong> The current manuscript addresses financial fragility through ethics and regenerative design principles but does not yet contain operational money mechanics. <strong>Appendix X</strong> — "Regenerative Money That Actually Works" — is being produced as a dedicated bonus episode and will be delivered to all Founding Listener Pass subscribers when released.</div>
+      </div>
+    </div>
+
+    <!-- F5 -->
+    <div class="pattern-card" style="--ac:var(--c5);" id="p5">
+      <div class="pattern-meta"><span class="pcode">F5</span><span class="rbadge rh">High Risk</span></div>
+      <h3 class="pname">Burnout &amp; Loss of Commitment</h3>
+      <p class="ptag">The most empathetic people leave first.</p>
+      <p class="pfeel">&ldquo;The people who care most are the most depleted. Enthusiasm has been replaced by obligation. People are showing up but not really present. The project is running on fumes.&rdquo;</p>
+      <div class="pbody">
+        <p>Burnout in regenerative projects has a specific target: the most committed, most empathetic, most responsible people carry the most load — and they are the last to ask for help. By the time they leave, or go quiet, or start missing meetings, the project has already lost its structural core.</p>
+        <p>A new community project will take 2–7 years to become established. As part of the core founding group, expect the workload to equal a part-time to full-time job — generally unpaid. Most communities don&rsquo;t account for this in their design. <strong>Showing up out of obligation after the aliveness has gone is often called commitment. It is a warning signal.</strong></p>
+      </div>
+      <div class="fbox"><div class="flabel">Field Evidence</div><p>Damanhur designed role-rotation structures specifically to prevent burnout concentrating on the most empathetic members. Tamera built emotional stewardship into its governance model. Both recognized early: if you don&rsquo;t design regeneration into the system, you will extract it from your best people.</p></div>
+      <ul class="wlist">
+        <li><span class="wi">&#9657;</span>1–3 people carrying the weight of 10</li>
+        <li><span class="wi">&#9657;</span>Rest is talked about but not structurally protected</li>
+        <li><span class="wi">&#9657;</span>Core members show signs of resentment or withdrawal</li>
+        <li><span class="wi">&#9657;</span>No formal load-balancing or role-rotation in place</li>
+      </ul>
+      <div class="diag">
+        <div class="dlabel">Self-Diagnostic</div>
+        <p class="dq">When have you overextended — or abandoned yourself — in service to this project? What were you afraid would happen if you said no?</p>
+        <div class="score-row"><span class="srl">Score:</span><div class="sbtns"><button class="sbtn" onclick="setScore('p5',0,this)">0</button><button class="sbtn" onclick="setScore('p5',1,this)">1</button><button class="sbtn" onclick="setScore('p5',2,this)">2</button></div><span class="sm" id="p5-m">tap to score</span></div>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip-lbl">Audiobook chapters for F5 — Burnout:</span>
+          <span class="chip">Ch 5 — Remembering the Kanarian Codes</span>
+          <span class="chip">Ch 10 — Constructing the Architecture of Harmony</span>
+          <span class="chip">Ch 13 — Resonating Earth-Kanaria Harmonics</span>
+          <span class="chip">Ch 20 — Activating Galactic Harmonics</span>
+          <span class="chip">Ch 32 — Spiraling Beyond Continuity</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F6 -->
+    <div class="pattern-card" style="--ac:var(--c6);" id="p6">
+      <div class="pattern-meta"><span class="pcode">F6</span><span class="rbadge re">Elevated</span></div>
+      <h3 class="pname">The Wrong People Problem</h3>
+      <p class="ptag">Open doors become open wounds.</p>
+      <p class="pfeel">&ldquo;Someone is in who shouldn&rsquo;t be, and now everything is more complicated. Or: there is no clear sense of who this project is not for, and that ambiguity is allowing misalignment to accumulate.&rdquo;</p>
+      <div class="pbody">
+        <p>This is the most ethically uncomfortable collapse pattern — because the impulse behind it is beautiful. Of course you want to be inclusive. But open admission is not the same as intentional community. It is the fastest way to dilute a culture before it has had time to crystallize.</p>
+        <p>Screening members — having explicit admission criteria, a genuine alignment process, and the willingness to say no — is among the top structural predictors of community survival. <strong>Having clarity about who this project is not for is not exclusion. It is the condition of coherence.</strong></p>
+      </div>
+      <div class="fbox"><div class="flabel">Field Evidence</div><p>Damanhur has a citizenship trial period. Twin Oaks has a formal visitor process. Tamera has community alignment sessions before membership is offered. Every community in the long-survival cohort treats member selection as infrastructure, not gatekeeping.</p></div>
+      <ul class="wlist">
+        <li><span class="wi">&#9657;</span>No written membership criteria or alignment process</li>
+        <li><span class="wi">&#9657;</span>At least one member causing recurring relational disruption</li>
+        <li><span class="wi">&#9657;</span>Original culture feels diluted or unrecognizable to founders</li>
+        <li><span class="wi">&#9657;</span>The word &ldquo;no&rdquo; has never been said to a potential member</li>
+      </ul>
+      <div class="diag">
+        <div class="dlabel">Self-Diagnostic</div>
+        <p class="dq">What would someone need to believe, demonstrate, and commit to before you would trust them inside your most sensitive community decisions — and is that written down anywhere?</p>
+        <div class="score-row"><span class="srl">Score:</span><div class="sbtns"><button class="sbtn" onclick="setScore('p6',0,this)">0</button><button class="sbtn" onclick="setScore('p6',1,this)">1</button><button class="sbtn" onclick="setScore('p6',2,this)">2</button></div><span class="sm" id="p6-m">tap to score</span></div>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip-lbl">Audiobook chapters for F6 — Wrong People:</span>
+          <span class="chip free">Ch 18 — Inviting Through Ethics</span>
+          <span class="chip">Ch 12 — Engineering the Starseed Blueprint</span>
+          <span class="chip">Ch 25 — Leading Through Harmonic Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- F7 -->
+    <div class="pattern-card" style="--ac:var(--c7);border-radius:0 0 12px 12px;" id="p7">
+      <div class="pattern-meta"><span class="pcode">F7</span><span class="rbadge re">Elevated</span></div>
+      <h3 class="pname">The Scale Trap</h3>
+      <p class="ptag">Growing too fast or staying too small — both kill.</p>
+      <p class="pfeel">&ldquo;Something worked beautifully at a small size and broke when it grew. Or: it&rsquo;s stayed deliberately small and is now suffocating. The 8&rarr;25&rarr;60 thresholds each require a different organizational architecture.&rdquo;</p>
+      <div class="pbody">
+        <p>Size is infrastructure. Most founders intuitively understand that a project needs to grow — but almost no one has a deliberate theory of scale. The result is either premature expansion that dilutes culture before it sets, or permanent smallness that can&rsquo;t generate enough energy, resources, or redundancy to be sustainable.</p>
+        <p>Research from long-surviving communities points to a critical threshold: there is a collapse zone above roughly 25 people and below roughly 8. <strong>The communities that survived built a theory of scale before they needed it.</strong> Damanhur scaled to 600+ by federating into sub-communities. Findhorn created distinct focus groups. Enspiral built nodes. All by design.</p>
+      </div>
+      <div class="fbox"><div class="flabel">Field Evidence</div><p>Damanhur&rsquo;s founder: &ldquo;Think like a business.&rdquo; Their structure — a federation of smaller cells with a governing constitution — solved the scale problem before it became fatal. Most communities never build this theory before they need it.</p></div>
+      <ul class="wlist">
+        <li><span class="wi">&#9657;</span>Core team smaller than 8 — any departure is destabilizing</li>
+        <li><span class="wi">&#9657;</span>Over 25 members with no sub-group or circle structure</li>
+        <li><span class="wi">&#9657;</span>No explicit theory of how the project scales culturally</li>
+        <li><span class="wi">&#9657;</span>Rapid growth feels exciting but the culture hasn&rsquo;t solidified</li>
+      </ul>
+      <div class="diag">
+        <div class="dlabel">Self-Diagnostic</div>
+        <p class="dq">If your project doubled in size in the next 90 days, what exactly would break — and do you have a plan for that before it happens?</p>
+        <div class="score-row"><span class="srl">Score:</span><div class="sbtns"><button class="sbtn" onclick="setScore('p7',0,this)">0</button><button class="sbtn" onclick="setScore('p7',1,this)">1</button><button class="sbtn" onclick="setScore('p7',2,this)">2</button></div><span class="sm" id="p7-m">tap to score</span></div>
+        <div class="chips" style="margin-top:12px;">
+          <span class="chip-lbl">Audiobook chapters for F7 — Scale Trap:</span>
+          <span class="chip">Ch 7 — Forging Embodied Starseed Systems</span>
+          <span class="chip">Ch 12 — Engineering the Starseed Blueprint</span>
+          <span class="chip">Ch 25 — Leading Through Harmonic Architecture</span>
+          <span class="chip">Ch 26 — Cohering Across Civilizations</span>
+          <span class="chip bonus">Appendix Y — Scale Trap Playbook</span>
+        </div>
+        <div class="gap-note"><strong>Honest note:</strong> The book addresses scale through design principles and fractal community models. The specific 8&rarr;25&rarr;60 operational threshold architecture is being completed as <strong>Appendix Y</strong> — available as a bonus episode in the Founding Listener Pass feed when released.</div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <!-- ═══ INTRO ═══ -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-eyebrow">The brutal reality</div>
-      <h2 class="section-h2">You didn&rsquo;t set out to build<br><em>another cautionary tale.</em></h2>
-      <div class="lead-prose">
-        <p>You came with a vision that kept you awake at 2am. Land, or a platform, or a tribe. Something nourishing, regenerative, radically different from the world that made you exhausted in the first place.</p>
-        <p>And yet, somewhere between the founding moment and now, something shifted. People drifted. Tension built without resolution. The finances got complicated. The dream is still there, but it is sitting inside a structure that may not be strong enough to hold it.</p>
-        <p><strong>That is not a character flaw. That is the absence of a map.</strong></p>
+<!-- SCORE DASHBOARD -->
+<section class="section" id="dashboard">
+  <div class="wrap">
+    <div class="dash">
+      <div class="eyebrow">Your Collapse Risk Map</div>
+      <h2 class="h2" style="margin-bottom:6px;">Axis 1 Score Dashboard</h2>
+      <p style="font-size:clamp(13px,1.8vw,15px);color:var(--mist);">Score all 7 patterns above. Your risk tier and chapter routing appear here automatically.</p>
+      <div class="dbars" id="dashBars">
+        <div class="drow"><div class="dlbl">F1 Conflict</div><div class="dtrack"><div class="dfill" id="bar-p1" style="width:0%;--bc:#E87830"></div></div><div class="dscore" id="bs-p1">–</div></div>
+        <div class="drow"><div class="dlbl">F2 Vision</div><div class="dtrack"><div class="dfill" id="bar-p2" style="width:0%;--bc:#C89B3C"></div></div><div class="dscore" id="bs-p2">–</div></div>
+        <div class="drow"><div class="dlbl">F3 Governance</div><div class="dtrack"><div class="dfill" id="bar-p3" style="width:0%;--bc:#9B6BCC"></div></div><div class="dscore" id="bs-p3">–</div></div>
+        <div class="drow"><div class="dlbl">F4 Finance</div><div class="dtrack"><div class="dfill" id="bar-p4" style="width:0%;--bc:#4A9E7A"></div></div><div class="dscore" id="bs-p4">–</div></div>
+        <div class="drow"><div class="dlbl">F5 Burnout</div><div class="dtrack"><div class="dfill" id="bar-p5" style="width:0%;--bc:#E05555"></div></div><div class="dscore" id="bs-p5">–</div></div>
+        <div class="drow"><div class="dlbl">F6 People</div><div class="dtrack"><div class="dfill" id="bar-p6" style="width:0%;--bc:#5B9BD5"></div></div><div class="dscore" id="bs-p6">–</div></div>
+        <div class="drow"><div class="dlbl">F7 Scale</div><div class="dtrack"><div class="dfill" id="bar-p7" style="width:0%;--bc:#0E8A7A"></div></div><div class="dscore" id="bs-p7">–</div></div>
       </div>
-
-      <div class="stat-pull">
-        &ldquo;Most aspiring ecovillages and community groups — probably 90 percent — never get off the ground. They can&rsquo;t find the right land, don&rsquo;t have enough money, or get mired in conflict. Often they simply don&rsquo;t understand how much time, money, and organizational skill they&rsquo;ll need.&rdquo;
-        <cite>Diana Leafe Christian &nbsp;&middot;&nbsp; <em>Creating a Life Together</em> (the definitive field study)</cite>
-      </div>
-
-      <div class="lead-prose">
-        <p>The communities that survive don&rsquo;t share a location, a philosophy, or a size. They share something structural: they identified the collapse patterns early and built deliberately against them.</p>
-        <p>This report names all seven. With field research, real case evidence, and a self-diagnostic question inside each one. <strong>Read it with your project in mind. Be honest. Every pattern you recognize is a structural repair you still have time to make.</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ═══ HOW TO USE ═══ -->
-  <section class="section">
-    <div class="wrap">
-      <div class="how-to-use">
-        <h3>How to use this report</h3>
-        <ol>
-          <li><strong>Read each pattern</strong> with your project in mind.</li>
-          <li><strong>Score yourself 0, 1, or 2</strong> on each one using the diagnostic buttons.</li>
-          <li><strong>Check your total</strong> in the Score Dashboard at the bottom — it tells you your collapse risk tier and which audiobook chapter to start with.</li>
-          <li><strong>Use the Navigation Legend</strong> at the end to route directly to the chapters that address your highest-scoring patterns.</li>
-        </ol>
-        <div class="score-legend">
-          <div class="score-pip"><div class="pip pip-0">0</div> Not present / resolved</div>
-          <div class="score-pip"><div class="pip pip-1">1</div> Present, manageable</div>
-          <div class="score-pip"><div class="pip pip-2">2</div> Active, urgent</div>
-        </div>
+      <div class="total-block">
+        <div class="total-lbl">Total Collapse Risk Score</div>
+        <div class="total-num" id="totalNum">–<span class="total-max"> / 14</span></div>
+        <p class="total-desc" id="totalDesc">Score all 7 patterns above to see your risk tier and chapter routing.</p>
+        <p class="total-next" id="totalNext"></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<div class="divider"></div>
 
-  <!-- ═══ PATTERNS ═══ -->
-  <section class="section" id="patterns">
-    <div class="wrap">
-      <div class="section-eyebrow">Ranked most-to-least common</div>
-      <h2 class="section-h2">The 7 Collapse Patterns</h2>
-      <p style="font-family:'Lora',serif;font-size:clamp(15px,2vw,17px);color:var(--silver);margin-bottom:36px;line-height:1.75;">All of them are real. Most are active in your project right now. Each includes warning signs and a self-diagnostic question. Score each one before moving to the next.</p>
-
-      <!-- F1 -->
-      <div class="pattern-card" style="--ac: var(--c1);" id="p1">
-        <div class="pattern-meta">
-          <span class="pattern-num">Pattern 1</span>
-          <span class="pattern-risk risk-critical">Most Critical</span>
-        </div>
-        <h3 class="pattern-name">Interpersonal Conflict &amp; Human Complexity</h3>
-        <p class="pattern-tagline">Where it all breaks. Not because people don&rsquo;t care. Because they don&rsquo;t have the architecture.</p>
-        <p class="pattern-feel">&ldquo;The same argument keeps happening. Different costume every time.&rdquo;</p>
-        <div class="pattern-body">
-          <p>Every study, every practitioner, every post-mortem of a failed community converges on this. Interpersonal conflict is not a symptom. It is the final expression of every other unaddressed pattern — and it is the pattern that determines whether a community has a future or a final chapter.</p>
-          <p>Conflict avoidance is the quiet killer. Unspoken hurt doesn&rsquo;t disappear. It festers in side conversations, in passive withdrawal, in the accumulating weight of things that should have been said. A community that cannot name conflict cannot survive it. And most communities — even heart-aligned ones with beautiful intentions — have never built conflict transformation into their architecture. They rely on goodwill instead of process. Goodwill runs out.</p>
-          <p>The communities that survive don&rsquo;t have fewer conflicts. <strong>They have better containers for them.</strong> Conflict transformation culture is not a luxury feature. It is load-bearing infrastructure. It must be built before it is needed.</p>
-        </div>
-        <div class="field-box">
-          <div class="field-box-label">Field Evidence</div>
-          <p>Twin Oaks has formal conflict resolution protocols since its founding. Earthaven requires conflict resolution training as part of membership. Tamera integrates relational education as structural architecture, not an optional program. These are not coincidences. They are the design of survival.</p>
-        </div>
-        <ul class="warning-list">
-          <li><span class="warn-icon">&#9657;</span>Conflicts get buried rather than formally processed</li>
-          <li><span class="warn-icon">&#9657;</span>Feedback tends to feel like personal attack</li>
-          <li><span class="warn-icon">&#9657;</span>No written conflict resolution protocol exists</li>
-          <li><span class="warn-icon">&#9657;</span>Key people have gone quiet or started withdrawing</li>
-          <li><span class="warn-icon">&#9657;</span>The same arguments resurface in different forms</li>
-          <li><span class="warn-icon">&#9657;</span>Hard conversations are delayed until they become crises</li>
-        </ul>
-        <div class="diagnostic">
-          <div class="diagnostic-label">Self-Diagnostic</div>
-          <p class="diagnostic-q">What is the conversation your community most needs to have — and how long has it been waiting? What is the cost of it waiting another six months?</p>
-          <div class="score-row">
-            <span class="score-label">Your score:</span>
-            <div class="score-btns">
-              <button class="score-btn" onclick="setScore('p1',0,this)" data-val="0">0</button>
-              <button class="score-btn" onclick="setScore('p1',1,this)" data-val="1">1</button>
-              <button class="score-btn" onclick="setScore('p1',2,this)" data-val="2">2</button>
-            </div>
-            <span class="score-meaning" id="p1-meaning">tap to score</span>
-          </div>
-          <div class="chapter-chip">Audiobook: Chapters 4, 5, 6 — Conflict Architecture</div>
-        </div>
-      </div>
-
-      <!-- F2 -->
-      <div class="pattern-card" style="--ac: var(--c2);" id="p2">
-        <div class="pattern-meta">
-          <span class="pattern-num">Pattern 2</span>
-          <span class="pattern-risk risk-critical">Critical</span>
-        </div>
-        <h3 class="pattern-name">No Shared Vision, No Shared Future</h3>
-        <p class="pattern-tagline">The gap between your version of the dream and mine is where communities go to die.</p>
-        <p class="pattern-feel">&ldquo;We all used to know what we were building. I&rsquo;m not sure anymore.&rdquo;</p>
-        <div class="pattern-body">
-          <p>Vision misalignment is not just a communication problem. It is the root cause that feeds every other collapse pattern on this list. When people hold different internal versions of what the project is fundamentally for, every decision becomes a proxy conflict for a deeper disagreement that has never been named.</p>
-          <p>This pattern has an insidious quality: it often doesn&rsquo;t show up during the inspiration phase. In the beginning, shared excitement functions as a substitute for shared clarity. People project their own vision onto the group&rsquo;s energy and assume alignment. It&rsquo;s only when the first real decision with real stakes arrives — about land, membership, money, direction — that the gap becomes visible. By then, trust has accumulated on top of a cracked foundation.</p>
-          <p><strong>The research is unambiguous:</strong> founding communities must discuss, agree on, and write down their non-negotiables before they feel like they need to. Written vision documents are the community&rsquo;s operating system. Without one, every subsequent decision is an argument about first principles in disguise.</p>
-        </div>
-        <div class="field-box">
-          <div class="field-box-label">Field Evidence</div>
-          <p>Researchers consistently name vision clarity as foundational, not sequential — it is the substrate on which all other failures grow. Communities that lost their shared vision, even after years of success, often couldn&rsquo;t recover, because the trust that had been built was on borrowed clarity that eventually ran out.</p>
-        </div>
-        <ul class="warning-list">
-          <li><span class="warn-icon">&#9657;</span>No written, consensed vision document exists</li>
-          <li><span class="warn-icon">&#9657;</span>Different members give different answers about purpose</li>
-          <li><span class="warn-icon">&#9657;</span>Vision has evolved but no one has formally updated it</li>
-          <li><span class="warn-icon">&#9657;</span>Decisions feel slow or conflicted without obvious reason</li>
-        </ul>
-        <div class="diagnostic">
-          <div class="diagnostic-label">Self-Diagnostic</div>
-          <p class="diagnostic-q">If I asked your three most committed members what this project is fundamentally FOR — would they give the same answer? Would any of them give yours?</p>
-          <div class="score-row">
-            <span class="score-label">Your score:</span>
-            <div class="score-btns">
-              <button class="score-btn" onclick="setScore('p2',0,this)" data-val="0">0</button>
-              <button class="score-btn" onclick="setScore('p2',1,this)" data-val="1">1</button>
-              <button class="score-btn" onclick="setScore('p2',2,this)" data-val="2">2</button>
-            </div>
-            <span class="score-meaning" id="p2-meaning">tap to score</span>
-          </div>
-          <div class="chapter-chip">Audiobook: Chapters 1, 2, 3 — Vision Architecture</div>
-        </div>
-      </div>
-
-      <!-- F3 -->
-      <div class="pattern-card" style="--ac: var(--c3);" id="p3">
-        <div class="pattern-meta">
-          <span class="pattern-num">Pattern 3</span>
-          <span class="pattern-risk risk-critical">Critical</span>
-        </div>
-        <h3 class="pattern-name">Poor Governance &amp; Power Shadows</h3>
-        <p class="pattern-tagline">Fake flatness is still hierarchy — just unaccountable.</p>
-        <p class="pattern-feel">&ldquo;Everyone has a voice. One person still ends every conversation.&rdquo;</p>
-        <div class="pattern-body">
-          <p>Power always exists. The only question is whether it is distorted or clean. Too many communities try to flatten leadership instead of transforming it. The result is what researchers call &ldquo;fake flatness&rdquo; — the illusion of equality without the structure to support it. In practice, fake flatness means decisions get made by whoever speaks loudest, has been around longest, or carries the founder&rsquo;s implicit approval. That is still hierarchy — just unaccountable and psychologically unsafe.</p>
-          <p>The founder bottleneck is the most common governance failure in the early years. When one person&rsquo;s identity fuses with the mission, there is no room for collective emergence. And when founders are unable to evolve into stewardship — unable to hand off, distribute, or share real authority — they become the ceiling of what the community can become.</p>
-          <p><strong>A governance vacuum doesn&rsquo;t just fail when there&rsquo;s conflict. It generates conflict by its absence.</strong></p>
-        </div>
-        <div class="field-box">
-          <div class="field-box-label">Field Evidence</div>
-          <p>Every community in the long-survival cohort has written governance. Twin Oaks uses consensus with formal training. Enspiral built Loomio specifically to solve distributed governance at scale. Damanhur operates as a federation governed by a constitution with a college of justice. Not one of these is a spiritual coincidence. They are structural choices that preceded stability.</p>
-        </div>
-        <ul class="warning-list">
-          <li><span class="warn-icon">&#9657;</span>No written decision-making process or governance document</li>
-          <li><span class="warn-icon">&#9657;</span>Founder is primary decision-maker across all domains</li>
-          <li><span class="warn-icon">&#9657;</span>Recurring conflicts that never fully resolve</li>
-          <li><span class="warn-icon">&#9657;</span>No written process for handling members who don&rsquo;t comply</li>
-        </ul>
-        <div class="diagnostic">
-          <div class="diagnostic-label">Self-Diagnostic</div>
-          <p class="diagnostic-q">When a disagreement happens in your project, is there a clear, trusted process for resolving it — or does it default to whoever has been around longest or speaks most confidently?</p>
-          <div class="score-row">
-            <span class="score-label">Your score:</span>
-            <div class="score-btns">
-              <button class="score-btn" onclick="setScore('p3',0,this)" data-val="0">0</button>
-              <button class="score-btn" onclick="setScore('p3',1,this)" data-val="1">1</button>
-              <button class="score-btn" onclick="setScore('p3',2,this)" data-val="2">2</button>
-            </div>
-            <span class="score-meaning" id="p3-meaning">tap to score</span>
-          </div>
-          <div class="chapter-chip">Audiobook: Chapters 10, 11, 12 — Governance Design</div>
-        </div>
-      </div>
-
-      <!-- F4 -->
-      <div class="pattern-card" style="--ac: var(--c4);" id="p4">
-        <div class="pattern-meta">
-          <span class="pattern-num">Pattern 4</span>
-          <span class="pattern-risk risk-high">High Risk</span>
-        </div>
-        <h3 class="pattern-name">Financial Fragility</h3>
-        <p class="pattern-tagline">Spirit doesn&rsquo;t pay the land lease.</p>
-        <p class="pattern-feel">&ldquo;The money conversation creates a dread nobody will name out loud.&rdquo;</p>
-        <div class="pattern-body">
-          <p>Financial fragility is the most pragmatic collapse pattern and the most consistently underestimated. Founders who are purpose-driven tend to treat money as secondary to vision — and communities pay for that sequencing with their lives. Land is bought before a budget is built. Roles are promised before resources are real.</p>
-          <p>The pattern has two forms. The first is launch fragility — not enough capital, too many promises, costs higher than anticipated. The second is structural fragility — a single revenue dependency or a model that requires constant founder hustle to sustain.</p>
-          <p><strong>When a project becomes a source of financial anxiety for its members, it triggers scarcity patterns in the group field. Scarcity patterns destroy trust. And when trust is gone, every other collapse pattern accelerates.</strong></p>
-        </div>
-        <div class="field-box">
-          <div class="field-box-label">Field Evidence</div>
-          <p>When Damanhur&rsquo;s founder was asked the secret to their 600-person community&rsquo;s success, his answer surprised researchers: &ldquo;Think like a business.&rdquo; Not a spiritual answer — a structural one. The communities that last treat regenerative finance as a pillar of the mission itself, not a necessary evil.</p>
-        </div>
-        <ul class="warning-list">
-          <li><span class="warn-icon">&#9657;</span>Single revenue stream or dependency on one funder</li>
-          <li><span class="warn-icon">&#9657;</span>Financial anxiety affecting community decisions</li>
-          <li><span class="warn-icon">&#9657;</span>No written budget, runway, or economic model</li>
-          <li><span class="warn-icon">&#9657;</span>Income model requires constant founder energy to sustain</li>
-        </ul>
-        <div class="diagnostic">
-          <div class="diagnostic-label">Self-Diagnostic</div>
-          <p class="diagnostic-q">What financial reality are you still avoiding looking at directly — and what would become possible in your community if you faced it this month?</p>
-          <div class="score-row">
-            <span class="score-label">Your score:</span>
-            <div class="score-btns">
-              <button class="score-btn" onclick="setScore('p4',0,this)" data-val="0">0</button>
-              <button class="score-btn" onclick="setScore('p4',1,this)" data-val="1">1</button>
-              <button class="score-btn" onclick="setScore('p4',2,this)" data-val="2">2</button>
-            </div>
-            <span class="score-meaning" id="p4-meaning">tap to score</span>
-          </div>
-          <div class="chapter-chip">Audiobook: Chapters 16, 17, 18 — Financial Architecture</div>
-        </div>
-      </div>
-
-      <!-- F5 -->
-      <div class="pattern-card" style="--ac: var(--c5);" id="p5">
-        <div class="pattern-meta">
-          <span class="pattern-num">Pattern 5</span>
-          <span class="pattern-risk risk-high">High Risk</span>
-        </div>
-        <h3 class="pattern-name">Burnout &amp; Loss of Commitment</h3>
-        <p class="pattern-tagline">The most empathetic people leave first.</p>
-        <p class="pattern-feel">&ldquo;I&rsquo;m running on obligation now. The aliveness left a while ago.&rdquo;</p>
-        <div class="pattern-body">
-          <p>Burnout in regenerative projects is not random. It has a specific target: the most committed, most empathetic, most responsible people carry the most load — and they are the last ones to ask for help. By the time they leave, or go quiet, or start missing meetings, the project has already lost its structural core.</p>
-          <p>On average, a new community project will take 2–7 years to become established if working with raw land. As part of the core founding group, you can expect the workload to be the equivalent of a part-time to full-time job — generally unpaid. Most communities don&rsquo;t account for this in their design.</p>
-          <p><strong>Showing up out of obligation after the aliveness has gone is often called commitment. It is a warning signal.</strong> The project is surviving on borrowed energy from people who have already paid more than was asked.</p>
-        </div>
-        <div class="field-box">
-          <div class="field-box-label">Field Evidence</div>
-          <p>Damanhur designed role-rotation structures specifically to prevent burnout concentrating on the most empathetic members. Tamera built emotional stewardship into its governance model. Both recognized early: if you don&rsquo;t design regeneration into the system, you will extract it from your best people.</p>
-        </div>
-        <ul class="warning-list">
-          <li><span class="warn-icon">&#9657;</span>1–3 people carrying the weight of 10</li>
-          <li><span class="warn-icon">&#9657;</span>Rest is talked about but not structurally protected</li>
-          <li><span class="warn-icon">&#9657;</span>Core members show signs of resentment or withdrawal</li>
-          <li><span class="warn-icon">&#9657;</span>No formal load-balancing or role-rotation in place</li>
-        </ul>
-        <div class="diagnostic">
-          <div class="diagnostic-label">Self-Diagnostic</div>
-          <p class="diagnostic-q">When have you overextended — or abandoned yourself — in service to this project? What were you afraid would happen if you said no?</p>
-          <div class="score-row">
-            <span class="score-label">Your score:</span>
-            <div class="score-btns">
-              <button class="score-btn" onclick="setScore('p5',0,this)" data-val="0">0</button>
-              <button class="score-btn" onclick="setScore('p5',1,this)" data-val="1">1</button>
-              <button class="score-btn" onclick="setScore('p5',2,this)" data-val="2">2</button>
-            </div>
-            <span class="score-meaning" id="p5-meaning">tap to score</span>
-          </div>
-          <div class="chapter-chip">Audiobook: Chapters 22, 23 — Sustainability Architecture</div>
-        </div>
-      </div>
-
-      <!-- F6 -->
-      <div class="pattern-card" style="--ac: var(--c6);" id="p6">
-        <div class="pattern-meta">
-          <span class="pattern-num">Pattern 6</span>
-          <span class="pattern-risk risk-elevated">Elevated</span>
-        </div>
-        <h3 class="pattern-name">The Wrong People Problem</h3>
-        <p class="pattern-tagline">Open doors become open wounds.</p>
-        <p class="pattern-feel">&ldquo;We want to be inclusive. So we said yes to everyone — and now the culture we tried to build is unrecognizable.&rdquo;</p>
-        <div class="pattern-body">
-          <p>This is the most ethically uncomfortable collapse pattern — because the impulse behind it is beautiful. Of course you want to be inclusive. Of course you believe in belonging. But open admission is not the same as intentional community. It is the fastest way to dilute a culture before it has had time to crystallize.</p>
-          <p>The research is unambiguous. Screening members — having explicit admission criteria, a genuine alignment process, and the willingness to say no — is among the top structural predictors of community survival. Every community in the long-survival cohort treats member selection as infrastructure, not gatekeeping.</p>
-          <p><strong>Having clarity about who this project is not for is not exclusion. It is the condition of coherence.</strong></p>
-        </div>
-        <div class="field-box">
-          <div class="field-box-label">Field Evidence</div>
-          <p>Damanhur has a citizenship trial period. Twin Oaks has a formal visitor process. Tamera has community alignment sessions before membership is offered. A new community simply cannot handle emotionally dysfunctional people without a mechanism to address it. Culture requires coherence to hold.</p>
-        </div>
-        <ul class="warning-list">
-          <li><span class="warn-icon">&#9657;</span>No written membership criteria or alignment process</li>
-          <li><span class="warn-icon">&#9657;</span>At least one member causing recurring relational disruption</li>
-          <li><span class="warn-icon">&#9657;</span>Original culture feels diluted or unrecognizable to founders</li>
-          <li><span class="warn-icon">&#9657;</span>The word &ldquo;no&rdquo; has never been said to a potential member</li>
-        </ul>
-        <div class="diagnostic">
-          <div class="diagnostic-label">Self-Diagnostic</div>
-          <p class="diagnostic-q">What would someone need to believe, demonstrate, and commit to before you would trust them inside your most sensitive community decisions — and is that written down anywhere?</p>
-          <div class="score-row">
-            <span class="score-label">Your score:</span>
-            <div class="score-btns">
-              <button class="score-btn" onclick="setScore('p6',0,this)" data-val="0">0</button>
-              <button class="score-btn" onclick="setScore('p6',1,this)" data-val="1">1</button>
-              <button class="score-btn" onclick="setScore('p6',2,this)" data-val="2">2</button>
-            </div>
-            <span class="score-meaning" id="p6-meaning">tap to score</span>
-          </div>
-          <div class="chapter-chip">Audiobook: Chapters 26, 27 — Membership Architecture</div>
-        </div>
-      </div>
-
-      <!-- F7 -->
-      <div class="pattern-card" style="--ac: var(--c7);" id="p7">
-        <div class="pattern-meta">
-          <span class="pattern-num">Pattern 7</span>
-          <span class="pattern-risk risk-elevated">Elevated</span>
-        </div>
-        <h3 class="pattern-name">The Scale Trap</h3>
-        <p class="pattern-tagline">Growing too fast or staying too small — both kill.</p>
-        <p class="pattern-feel">&ldquo;We have 4 committed people and 400 interested ones. We&rsquo;re not sure which direction to grow into.&rdquo;</p>
-        <div class="pattern-body">
-          <p>Size is infrastructure. Most founders intuitively understand that a project needs to grow — but almost no one has a deliberate theory of scale. The result is either premature expansion that dilutes culture before it has a chance to set, or permanent smallness that can&rsquo;t generate enough energy, resources, or redundancy to be sustainable.</p>
-          <p>Research from long-surviving communities points to a critical threshold: there is a collapse zone above roughly 25 people and below roughly 8. Below 8, any single departure is destabilizing. Above 25, the intimacy that held the culture together starts fragmenting — subgroups form, communication breaks down, and the original relational tissue tears under scale pressure it was never designed to handle.</p>
-          <p><strong>The communities that survived built a theory of scale before they needed it.</strong> Damanhur scaled to 600+ by federating into sub-communities. Findhorn created distinct focus groups. Enspiral built nodes. All by design.</p>
-        </div>
-        <div class="field-box">
-          <div class="field-box-label">Field Evidence</div>
-          <p>Damanhur&rsquo;s founder, when asked the secret to their 600-person success: &ldquo;Think like a business.&rdquo; Their structure — a federation of smaller cells with a governing constitution — solved the scale problem before it became fatal. Most communities never build this.</p>
-        </div>
-        <ul class="warning-list">
-          <li><span class="warn-icon">&#9657;</span>Core team smaller than 8 — any departure is destabilizing</li>
-          <li><span class="warn-icon">&#9657;</span>Over 25 members with no sub-group or circle structure</li>
-          <li><span class="warn-icon">&#9657;</span>No explicit theory of how the project scales culturally</li>
-          <li><span class="warn-icon">&#9657;</span>Rapid growth feels exciting but the culture hasn&rsquo;t solidified</li>
-        </ul>
-        <div class="diagnostic">
-          <div class="diagnostic-label">Self-Diagnostic</div>
-          <p class="diagnostic-q">If your project doubled in size in the next 90 days, what exactly would break — and do you have a plan for that before it happens?</p>
-          <div class="score-row">
-            <span class="score-label">Your score:</span>
-            <div class="score-btns">
-              <button class="score-btn" onclick="setScore('p7',0,this)" data-val="0">0</button>
-              <button class="score-btn" onclick="setScore('p7',1,this)" data-val="1">1</button>
-              <button class="score-btn" onclick="setScore('p7',2,this)" data-val="2">2</button>
-            </div>
-            <span class="score-meaning" id="p7-meaning">tap to score</span>
-          </div>
-          <div class="chapter-chip">Audiobook: Chapters 30, 31, 32 — Scale Architecture</div>
-        </div>
-      </div>
-
+<!-- ════════════════ AXIS 2 ════════════════ -->
+<section class="section" id="axis2">
+  <div class="wrap">
+    <div class="axis-hdr">
+      <div class="axis-code">Axis 2 &nbsp;&middot;&nbsp; The Six Pillars of Holistic Wellness</div>
+      <p class="axis-q">Which part of you is being depleted?</p>
+      <p class="axis-desc">Communities don&rsquo;t collapse because of structural failures alone. They collapse because the people inside them are running on empty. The Six Pillars map the dimensions of individual and collective wellbeing that must be nourished for any project to be sustainable. Notice which pillar feels most starved right now — in yourself first, then in your community.</p>
     </div>
-  </section>
-
-  <!-- ═══ SCORE DASHBOARD ═══ -->
-  <section class="section" id="dashboard">
-    <div class="wrap">
-      <div class="score-dashboard">
-        <div class="section-eyebrow">Your Collapse Risk Map</div>
-        <h2 class="dash-title">Score Dashboard</h2>
-        <p class="dash-sub">Score each pattern above first. Your totals appear here automatically.</p>
-
-        <div class="dash-bars" id="dashBars">
-          <div class="dash-bar-row"><div class="dash-bar-label">P1 Conflict</div><div class="dash-bar-track"><div class="dash-bar-fill" id="bar-p1" style="width:0%;--bar-color:#E87830"></div></div><div class="dash-bar-score" id="bscore-p1">–</div></div>
-          <div class="dash-bar-row"><div class="dash-bar-label">P2 Vision</div><div class="dash-bar-track"><div class="dash-bar-fill" id="bar-p2" style="width:0%;--bar-color:#C89B3C"></div></div><div class="dash-bar-score" id="bscore-p2">–</div></div>
-          <div class="dash-bar-row"><div class="dash-bar-label">P3 Governance</div><div class="dash-bar-track"><div class="dash-bar-fill" id="bar-p3" style="width:0%;--bar-color:#9B6BCC"></div></div><div class="dash-bar-score" id="bscore-p3">–</div></div>
-          <div class="dash-bar-row"><div class="dash-bar-label">P4 Finance</div><div class="dash-bar-track"><div class="dash-bar-fill" id="bar-p4" style="width:0%;--bar-color:#4A9E7A"></div></div><div class="dash-bar-score" id="bscore-p4">–</div></div>
-          <div class="dash-bar-row"><div class="dash-bar-label">P5 Burnout</div><div class="dash-bar-track"><div class="dash-bar-fill" id="bar-p5" style="width:0%;--bar-color:#E05555"></div></div><div class="dash-bar-score" id="bscore-p5">–</div></div>
-          <div class="dash-bar-row"><div class="dash-bar-label">P6 People</div><div class="dash-bar-track"><div class="dash-bar-fill" id="bar-p6" style="width:0%;--bar-color:#5B9BD5"></div></div><div class="dash-bar-score" id="bscore-p6">–</div></div>
-          <div class="dash-bar-row"><div class="dash-bar-label">P7 Scale</div><div class="dash-bar-track"><div class="dash-bar-fill" id="bar-p7" style="width:0%;--bar-color:#0E8A7A"></div></div><div class="dash-bar-score" id="bscore-p7">–</div></div>
-        </div>
-
-        <div class="total-score-block">
-          <div class="total-label">Total Collapse Risk Score</div>
-          <div class="total-num" id="totalNum">–<span class="total-max"> / 14</span></div>
-          <p class="total-desc" id="totalDesc">Score all 7 patterns above to see your risk tier and chapter routing.</p>
-          <p class="total-chapter-note" id="totalChapter"></p>
-        </div>
+    <div style="margin-top:4px;">
+      <div class="pillar-card" style="--pc:#4A9E7A;">
+        <div class="ptop"><span class="pil-code">PH</span><span class="pil-name">Physical</span></div>
+        <p class="pil-gov">Movement, nutrition, vitality, rest, and the body as the foundation of all other function. The most quietly neglected pillar in communities that prioritize vision over embodiment.</p>
+        <p class="pil-dep">Chronic fatigue that won&rsquo;t resolve. Illness appearing as a project deadline looms. The sense that everyone is living in their heads, far from their bodies.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 10</span><span class="chip">Ch 13</span><span class="chip">Ch 17</span><span class="chip">Ch 20</span></div>
+      </div>
+      <div class="pillar-card" style="--pc:#E87830;">
+        <div class="ptop"><span class="pil-code">EM</span><span class="pil-name">Emotional</span></div>
+        <p class="pil-gov">Self-regulation, resilience, grief processing, trauma integration, and the capacity to stay present under pressure without collapsing or armoring.</p>
+        <p class="pil-dep">Reactivity that seems disproportionate. Old wounds surfacing in new conflicts. Key people withdrawing. The emotional register of the community has shifted from open to defended.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 1</span><span class="chip">Ch 5</span><span class="chip">Ch 9</span><span class="chip">Ch 12</span><span class="chip">Ch 13</span><span class="chip">Ch 22</span><span class="chip">Ch 24</span><span class="chip">Ch 28</span><span class="chip">Ch 31</span><span class="chip">Ch 32</span></div>
+      </div>
+      <div class="pillar-card" style="--pc:#5B9BD5;">
+        <div class="ptop"><span class="pil-code">SO</span><span class="pil-name">Social</span></div>
+        <p class="pil-gov">Healthy relationships, clear boundaries, community belonging, quality of the relational field between members, and the sense of being genuinely known within the group.</p>
+        <p class="pil-dep">Surface-level connection masquerading as community. Cliques forming. Important things being said in private that never reach the circle. People feeling lonely inside a full room.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 2</span><span class="chip">Ch 4</span><span class="chip">Ch 11</span><span class="chip">Ch 15</span><span class="chip">Ch 18</span><span class="chip">Ch 21</span><span class="chip">Ch 22</span><span class="chip">Ch 23</span><span class="chip">Ch 25</span><span class="chip">Ch 26</span><span class="chip">Ch 28</span><span class="chip">Ch 29</span></div>
+      </div>
+      <div class="pillar-card" style="--pc:#9B6BCC;">
+        <div class="ptop"><span class="pil-code">SX</span><span class="pil-name">Sexual</span></div>
+        <p class="pil-gov">Sovereignty, intimacy, life-force expression, consent culture in community, and the ethics of eros — the creative and generative energy that moves through all living systems.</p>
+        <p class="pil-dep">Boundary violations that destabilize the whole organism. Power dynamics playing out through intimacy. A flatness or rigidity in the community&rsquo;s creative and relational energy.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 2</span><span class="chip">Ch 18</span><span class="chip">Ch 31</span></div>
+      </div>
+      <div class="pillar-card" style="--pc:#C89B3C;">
+        <div class="ptop"><span class="pil-code">CR</span><span class="pil-name">Creative</span></div>
+        <p class="pil-gov">Expression of imagination, play, purpose-driven design, generative capacity, and the aliveness that comes from building something that has never existed before.</p>
+        <p class="pil-dep">Meetings that feel like maintenance rather than creation. Ideas that used to flow now feel forced. People are executing but not inventing. The project has become a job.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 6</span><span class="chip">Ch 7</span><span class="chip">Ch 10</span><span class="chip">Ch 14</span><span class="chip">Ch 16</span><span class="chip">Ch 17</span><span class="chip">Ch 19</span><span class="chip">Ch 26</span><span class="chip">Ch 27</span><span class="chip">Ch 29</span></div>
+      </div>
+      <div class="pillar-card" style="--pc:#0E8A7A;">
+        <div class="ptop"><span class="pil-code">SP</span><span class="pil-name">Spiritual</span></div>
+        <p class="pil-gov">Practices and connections that anchor meaning, reverence, cosmological context, and the why beneath all the structural work — the dimension that makes the project worth surviving.</p>
+        <p class="pil-dep">Cynicism has entered the culture. The founding rituals have quietly stopped. People are doing the work but the sense of sacred purpose has evaporated. It feels mechanical.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 1</span><span class="chip">Ch 3</span><span class="chip">Ch 5</span><span class="chip">Ch 6</span><span class="chip">Ch 8</span><span class="chip">Ch 9</span><span class="chip">Ch 11</span><span class="chip">Ch 14</span><span class="chip">Ch 15</span><span class="chip">Ch 16</span><span class="chip">Ch 19</span><span class="chip">Ch 20</span><span class="chip">Ch 21</span><span class="chip">Ch 23</span><span class="chip">Ch 24</span><span class="chip">Ch 27</span><span class="chip">Ch 30</span><span class="chip">Ch 32</span><span class="chip">Ch 33</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<div class="divider"></div>
 
-  <div class="divider"></div>
-
-  <!-- ═══ NAVIGATION LEGEND ═══ -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-eyebrow">Navigation Legend</div>
-      <h2 class="section-h2">Route to Your Repair<br><em>in the Audiobook</em></h2>
-      <p style="font-family:'Lora',serif;font-size:clamp(15px,2vw,17px);color:var(--silver);margin-bottom:8px;line-height:1.75;">You don&rsquo;t start at Chapter 1. You start at your highest-scoring pattern. The Navigation Legend maps each pattern to the exact chapters that address it — structurally, not philosophically.</p>
-      <p style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin-bottom:24px;">Chapters marked FREE are included with your Substack subscription.</p>
-
-      <table class="legend-table">
-        <thead>
-          <tr>
-            <th>Pattern</th>
-            <th>Name</th>
-            <th>Core Chapters</th>
-            <th>Entry Chapter</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="legend-pattern-code">P1</span></td>
-            <td>Interpersonal Conflict</td>
-            <td><span class="legend-chapters">Ch 4, 5, 6</span></td>
-            <td><span class="legend-free">Ch 4 — FREE</span></td>
-          </tr>
-          <tr>
-            <td><span class="legend-pattern-code">P2</span></td>
-            <td>No Shared Vision</td>
-            <td><span class="legend-chapters">Ch 1, 2, 3</span></td>
-            <td><span class="legend-free">Ch 1 — FREE</span></td>
-          </tr>
-          <tr>
-            <td><span class="legend-pattern-code">P3</span></td>
-            <td>Governance Shadows</td>
-            <td><span class="legend-chapters">Ch 10, 11, 12</span></td>
-            <td><span class="legend-free">Ch 10 — FREE</span></td>
-          </tr>
-          <tr>
-            <td><span class="legend-pattern-code">P4</span></td>
-            <td>Financial Fragility</td>
-            <td><span class="legend-chapters">Ch 16, 17, 18</span></td>
-            <td>Builder Pass</td>
-          </tr>
-          <tr>
-            <td><span class="legend-pattern-code">P5</span></td>
-            <td>Burnout</td>
-            <td><span class="legend-chapters">Ch 22, 23</span></td>
-            <td>Builder Pass</td>
-          </tr>
-          <tr>
-            <td><span class="legend-pattern-code">P6</span></td>
-            <td>Wrong People</td>
-            <td><span class="legend-chapters">Ch 26, 27</span></td>
-            <td>Builder Pass</td>
-          </tr>
-          <tr>
-            <td><span class="legend-pattern-code">P7</span></td>
-            <td>The Scale Trap</td>
-            <td><span class="legend-chapters">Ch 30, 31, 32</span></td>
-            <td>Builder Pass</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div style="margin-top:28px;padding:20px 24px;background:var(--gold-dim);border:1px solid rgba(200,155,60,.2);border-radius:10px;">
-        <p style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,155,60,.7);margin-bottom:8px;">Builder Pass — $7/mo or $70/yr</p>
-        <p style="font-family:'Lora',serif;font-size:clamp(14px,1.8vw,16px);color:var(--silver);line-height:1.7;">Unlocks all 33 chapters via private podcast RSS. Plays in any podcast app. Cancel any time. The full repair architecture — one chapter for every structural problem named in this report.</p>
-        <a href="https://rickbroider.substack.com/subscribe" style="display:inline-block;margin-top:14px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:10px 22px;border-radius:6px;text-decoration:none;">Get Builder Pass &rarr;</a>
+<!-- ════════════════ AXIS 3 ════════════════ -->
+<section class="section" id="axis3">
+  <div class="wrap">
+    <div class="axis-hdr">
+      <div class="axis-code">Axis 3 &nbsp;&middot;&nbsp; The CCOS 7 Sectors of Regeneration</div>
+      <p class="axis-q">Which organ of your organization is failing?</p>
+      <p class="axis-desc">The Conscious Collective Operating System maps a community as a living body. Each sector is a vital organ. When one fails, the whole organism compensates — until it can&rsquo;t. The question is not whether your project has all seven sectors. It is which one is currently the weakest link. Locate the sector that feels most fragile or absent in your project right now.</p>
+    </div>
+    <div style="margin-top:4px;">
+      <div class="sector-card" style="--sc:#4A9E7A;">
+        <div class="stop"><span class="sc-code">S1</span><span class="sc-organ">Immune System</span></div>
+        <div class="sc-name">Health &amp; Holistic Wellness</div>
+        <p class="sc-gov">Individual and collective wellbeing across all Six Pillars. If people aren&rsquo;t resourced and whole, nothing else in the organism can sustain. This is the foundation before all other sectors.</p>
+        <p class="sc-fail">Burnout, dysregulation, illness cycles, relational fragility at the individual level.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 5</span><span class="chip">Ch 13</span><span class="chip">Ch 18</span><span class="chip">Ch 20</span><span class="chip">Ch 28</span><span class="chip">Ch 31</span><span class="chip">Ch 32</span></div>
+      </div>
+      <div class="sector-card" style="--sc:#9B6BCC;">
+        <div class="stop"><span class="sc-code">S2</span><span class="sc-organ">Brain + Nerves</span></div>
+        <div class="sc-name">Governance &amp; Justice</div>
+        <p class="sc-gov">Decision-making, accountability, consent architecture, conflict resolution, power distribution, and the living agreements that keep the organism aligned with its values.</p>
+        <p class="sc-fail">Power concentration, invisible hierarchy, unresolved conflict, governance paralysis.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 2</span><span class="chip">Ch 4</span><span class="chip">Ch 6</span><span class="chip">Ch 8</span><span class="chip">Ch 12</span><span class="chip">Ch 15</span><span class="chip">Ch 18</span><span class="chip">Ch 21</span><span class="chip">Ch 22</span><span class="chip">Ch 24</span><span class="chip">Ch 25</span></div>
+      </div>
+      <div class="sector-card" style="--sc:#C89B3C;">
+        <div class="stop"><span class="sc-code">S3</span><span class="sc-organ">Heart + Memory</span></div>
+        <div class="sc-name">Culture &amp; Spirit</div>
+        <p class="sc-gov">Shared mythos, identity, ritual, meaning-making, belonging, and the story the community tells about itself. Without this sector, governance becomes sterile and wellness lacks purpose.</p>
+        <p class="sc-fail">Vision collapse, belonging loss, ritual death, founding story corruption, cynicism.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 1</span><span class="chip">Ch 3</span><span class="chip">Ch 6</span><span class="chip">Ch 9</span><span class="chip">Ch 11</span><span class="chip">Ch 14</span><span class="chip">Ch 19</span><span class="chip">Ch 23</span><span class="chip">Ch 24</span><span class="chip">Ch 27</span><span class="chip">Ch 30</span><span class="chip">Ch 33</span></div>
+      </div>
+      <div class="sector-card" style="--sc:#5B9BD5;">
+        <div class="stop"><span class="sc-code">S4</span><span class="sc-organ">Mind + Imagination</span></div>
+        <div class="sc-name">Learning &amp; Innovation</div>
+        <p class="sc-gov">Education, skill development, knowledge transfer, design capacity, and the organization&rsquo;s ability to learn from itself and adapt as it grows.</p>
+        <p class="sc-fail">Scaling without developing, knowledge silos, repeated mistakes, loss of design capacity.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 7</span><span class="chip">Ch 17</span><span class="chip">Ch 26</span><span class="chip">Ch 29</span></div>
+      </div>
+      <div class="sector-card" style="--sc:#0E8A7A;">
+        <div class="stop"><span class="sc-code">S5</span><span class="sc-organ">Body + Bones</span></div>
+        <div class="sc-name">Ecology &amp; Infrastructure</div>
+        <p class="sc-gov">Land stewardship, food, water, shelter, energy, physical systems design, and the regenerative relationship with the material world that makes all other sectors possible.</p>
+        <p class="sc-fail">Land disconnection, infrastructure failure, extractive material patterns, physical environment misaligned with values.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 10</span><span class="chip">Ch 30</span></div>
+        <div class="gap-note" style="margin-top:8px;">S5 has the fewest dedicated chapters in the current manuscript. The book establishes ecological design principles but operational infrastructure architecture is light here.</div>
+      </div>
+      <div class="sector-card" style="--sc:#E87830;">
+        <div class="stop"><span class="sc-code">S6</span><span class="sc-organ">Circulation</span></div>
+        <div class="sc-name">Economics &amp; Value Flow</div>
+        <p class="sc-gov">Resource distribution, regenerative finance, contribution models, treasury design, equitable value exchange, and financial sovereignty. When circulation stops, the whole organism suffocates.</p>
+        <p class="sc-fail">Financial fragility, money conflict, inequitable distribution, economic opacity, survival mode.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 12</span><span class="chip">Ch 25</span><span class="chip bonus">Appendix X — Regenerative Money (bonus episode)</span></div>
+        <div class="gap-note" style="margin-top:8px;">S6 is addressed through ethics and reciprocity in the manuscript but not yet through practical economic models. Appendix X completes this sector and will be delivered to Founding Listener Pass subscribers when released.</div>
+      </div>
+      <div class="sector-card" style="--sc:#E05555;">
+        <div class="stop"><span class="sc-code">S7</span><span class="sc-organ">Senses + Voice</span></div>
+        <div class="sc-name">Media, Tech &amp; Communications</div>
+        <p class="sc-gov">Storytelling, technology alignment, inter-community networking, information flow, and the community&rsquo;s capacity to be seen, heard, and understood both internally and in the wider world.</p>
+        <p class="sc-fail">Tech misalignment, story loss, communications breakdown, network isolation.</p>
+        <div class="chips"><span class="chip-lbl">Key chapters:</span><span class="chip">Ch 16</span><span class="chip">Ch 26</span><span class="chip">Ch 29</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<div class="divider"></div>
 
-  <!-- ═══ PATTERN BEHIND PATTERNS ═══ -->
-  <section class="section">
-    <div class="wrap">
-      <div class="cascade-block">
-        <div class="section-eyebrow">The pattern behind the patterns</div>
-        <h2 class="section-h2">These aren&rsquo;t random failures.<br><em>They&rsquo;re a predictable sequence.</em></h2>
-        <p style="font-family:'Lora',serif;font-size:clamp(15px,2vw,17px);color:var(--silver);line-height:1.8;margin-bottom:20px;">The 7 collapse patterns don&rsquo;t operate independently. They cascade. A vision gap creates governance ambiguity. Governance ambiguity generates unresolved conflict. Unresolved conflict produces burnout. Burnout opens the door to the wrong people. And wrong people at scale produce the fractures that end projects.</p>
-        <div class="cascade-flow">
-          <span class="cascade-item">Vision Gap (P2)</span>
-          <span class="cascade-arrow">&#8594;</span>
-          <span class="cascade-item">Governance Void (P3)</span>
-          <span class="cascade-arrow">&#8594;</span>
-          <span class="cascade-item">Unresolved Conflict (P1)</span>
-          <span class="cascade-arrow">&#8594;</span>
-          <span class="cascade-item">Burnout (P5)</span>
-          <span class="cascade-arrow">&#8594;</span>
-          <span class="cascade-item">Wrong People (P6)</span>
-          <span class="cascade-arrow">&#8594;</span>
-          <span class="cascade-item">Scale Fracture (P7)</span>
-          <span class="cascade-arrow">&#8594;</span>
-          <span class="cascade-item">Financial Collapse (P4)</span>
-        </div>
-        <p style="font-family:'Lora',serif;font-size:clamp(15px,2vw,17px);color:var(--silver);line-height:1.8;margin-top:20px;">The communities that survive don&rsquo;t just avoid these patterns. <strong style="color:var(--white);">They build deliberate structural responses to each one — before the pattern fully activates.</strong> That is what the 33-chapter audiobook was built to deliver.</p>
+<!-- CASCADE -->
+<section class="section">
+  <div class="wrap">
+    <div class="cascade-block">
+      <div class="eyebrow">The pattern behind the patterns</div>
+      <h2 class="h2">These aren&rsquo;t random failures.<br><em>They&rsquo;re a predictable sequence.</em></h2>
+      <div class="prose" style="margin-bottom:16px;"><p>The 7 collapse patterns don&rsquo;t operate independently. They cascade. A vision gap creates governance ambiguity. Governance ambiguity generates unresolved conflict. Unresolved conflict produces burnout. Burnout opens the door to the wrong people. And wrong people at scale produce the fractures that end projects. <strong>The communities that survive build deliberate structural responses to each one — before the pattern fully activates.</strong></p></div>
+      <div class="cascade-flow">
+        <span class="ci">F2 Vision Gap</span><span class="ca">&#8594;</span>
+        <span class="ci">F3 Governance Void</span><span class="ca">&#8594;</span>
+        <span class="ci">F1 Conflict</span><span class="ca">&#8594;</span>
+        <span class="ci">F5 Burnout</span><span class="ca">&#8594;</span>
+        <span class="ci">F6 Wrong People</span><span class="ca">&#8594;</span>
+        <span class="ci">F7 Scale Fracture</span><span class="ca">&#8594;</span>
+        <span class="ci">F4 Financial Collapse</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<div class="divider"></div>
 
-  <!-- ═══ SOURCES ═══ -->
-  <section class="sources">
-    <div class="wrap">
-      <h2>Research Foundation</h2>
-      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.8vw,16px);color:var(--mist);line-height:1.7;margin-bottom:24px;">Every claim in this report is grounded in field research, practitioner literature, or direct case study evidence from long-surviving intentional communities.</p>
-
-      <div class="source-item"><span class="source-tag">Canonical</span><strong>Creating a Life Together</strong> — Diana Leafe Christian &middot; New Society Publishers, 2003. The definitive field study. Origin of the 90% failure statistic.</div>
-      <div class="source-item"><span class="source-tag">Academic</span><strong>Like start-ups, most intentional communities fail — why?</strong> — Alexa Clay &middot; Aeon Magazine. Cross-disciplinary analysis naming burnout and interpersonal dynamics as primary collapse drivers.</div>
-      <div class="source-item"><span class="source-tag">Practitioner</span><strong>3 Reasons Why Intentional Communities Fail</strong> — Cynthia Tina &middot; CommunityFinders.com, 2024. Pioneer vs. settler framework and founder replacement statistics.</div>
-      <div class="source-item"><span class="source-tag">Practitioner</span><strong>5 Reasons Why Communities Fail</strong> — Naima Staite &middot; Conscious Coliving. Field research across 10+ countries.</div>
-      <div class="source-item"><span class="source-tag">Case Study</span><strong>Damanhur Federation</strong> — 600+ members, est. 1975 &middot; Federation governance, citizenship trial period, economic sovereignty.</div>
-      <div class="source-item"><span class="source-tag">Case Study</span><strong>Twin Oaks Community</strong> — est. 1967 &middot; Consensus governance, formal visitor process, conflict resolution protocols.</div>
-      <div class="source-item"><span class="source-tag">Case Study</span><strong>Tamera Healing Biotope</strong> — est. 1995 &middot; Emotional stewardship systems, relational education as structural architecture.</div>
-      <div class="source-item"><span class="source-tag">Case Study</span><strong>Enspiral Network</strong> — est. 2010 &middot; Built Loomio to solve distributed governance. Node-based structure for scale.</div>
-      <div class="source-item"><span class="source-tag">Directory</span><strong>Communities Directory</strong> — Fellowship for Intentional Community &middot; ic.org. Primary source for survival rate data across 1,000+ communities.</div>
-    </div>
-  </section>
-
-  <!-- ═══ FOOTER ═══ -->
-  <footer class="report-footer">
-    <p>
-      <strong>Stopping the Collapse</strong> &nbsp;&middot;&nbsp;
-      Rick Broider &nbsp;&middot;&nbsp;
-      <a href="https://stopthecollapse.com/" class="footer-link">StopTheCollapse.com</a>
-      &nbsp;&middot;&nbsp;
-      <a href="https://rickbroider.substack.com" class="footer-link">Substack</a>
+<!-- NAV LEGEND MASTER TABLE -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Navigation Legend</div>
+    <h2 class="h2">Route Directly to<br><em>Your Repair</em></h2>
+    <p class="prose" style="margin-bottom:8px;">You don&rsquo;t start at Chapter 1. You start at your highest-scoring pattern. Cross-reference with your depleted pillar (Axis 2) and failing sector (Axis 3) to find the chapters where all three converge — that intersection is your most leveraged starting point.</p>
+    <p style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--gold);margin:10px 0 16px;">
+      <span style="background:var(--gold-dim);border:1px solid rgba(200,155,60,.25);border-radius:4px;padding:2px 8px;margin-right:8px;">FREE</span>included with Substack subscription &nbsp;&nbsp;
+      <span style="background:var(--violet-dim);border:1px solid rgba(123,94,167,.25);border-radius:4px;padding:2px 8px;color:var(--violet);margin-right:8px;">BONUS</span>Founding Listener Pass bonus episode (forthcoming)
     </p>
-    <p style="margin-top:8px;">
-      Field research report &nbsp;&middot;&nbsp; From the 33-chapter audiobook <em>Bridging Earth &amp; Kanaria: Stopping the Collapse</em>
-    </p>
-    <p style="margin-top:6px;font-size:11px;">
-      &copy; 2026 Rick Broider &middot; All rights reserved &middot; Built for founders who are done starting over.
-    </p>
-  </footer>
+    <table class="ltable">
+      <thead><tr><th>Code</th><th>Pattern</th><th>Core Chapters</th><th>Start Here</th></tr></thead>
+      <tbody>
+        <tr><td><span class="lc">F1</span></td><td>Interpersonal Conflict</td><td><span class="lch">18, 22, 25, 28, 31</span></td><td><span class="lfree">Ch 18 — FREE</span></td></tr>
+        <tr><td><span class="lc">F2</span></td><td>No Shared Vision</td><td><span class="lch">1, 6, 11, 19, 23, 27, 33</span></td><td><span class="lfree">Ch 1 — FREE</span></td></tr>
+        <tr><td><span class="lc">F3</span></td><td>Governance Shadows</td><td><span class="lch">4, 8, 12, 15, 21, 22, 25</span></td><td><span class="lfree">Ch 4 — FREE</span></td></tr>
+        <tr><td><span class="lc">F4</span></td><td>Financial Fragility</td><td><span class="lch">12, 25 + App.X</span></td><td><span class="lbonus">App X — BONUS</span></td></tr>
+        <tr><td><span class="lc">F5</span></td><td>Burnout</td><td><span class="lch">5, 10, 13, 20, 32</span></td><td>Builder Pass</td></tr>
+        <tr><td><span class="lc">F6</span></td><td>Wrong People</td><td><span class="lch">12, 18, 25</span></td><td><span class="lfree">Ch 18 — FREE</span></td></tr>
+        <tr><td><span class="lc">F7</span></td><td>The Scale Trap</td><td><span class="lch">7, 12, 25, 26 + App.Y</span></td><td><span class="lbonus">App Y — BONUS</span></td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:24px;padding:20px 22px;background:var(--gold-dim);border:1px solid rgba(200,155,60,.2);border-radius:10px;">
+      <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,155,60,.65);margin-bottom:8px;">Builder Pass — $7/mo or $70/yr</p>
+      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.8vw,15px);color:var(--silver);line-height:1.72;">Unlocks all 33 chapters via private podcast RSS. Plays in any podcast app. Bonus episodes (Appendix X and Y) delivered to the same feed when released. Cancel any time.</p>
+      <a href="https://rickbroider.substack.com/subscribe" style="display:inline-block;margin-top:12px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);background:var(--gold);padding:10px 20px;border-radius:6px;text-decoration:none;">Get Builder Pass &rarr;</a>
+    </div>
+  </div>
+</section>
 
-</div><!-- .page -->
+<!-- SOURCES -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Research Foundation</div>
+    <h2 class="h2" style="margin-bottom:14px;">Source Index</h2>
+    <p class="prose" style="font-size:clamp(13px,1.7vw,15px);margin-bottom:18px;">Every structural claim in this report is grounded in field research, practitioner literature, or direct case study evidence from long-surviving intentional communities.</p>
+    <div class="src"><span class="stag">Canonical</span><strong>Creating a Life Together</strong> — Diana Leafe Christian &middot; New Society Publishers, 2003. The definitive field study. Origin of the 90% failure statistic.</div>
+    <div class="src"><span class="stag">Academic</span><strong>Like start-ups, most intentional communities fail — why?</strong> — Alexa Clay &middot; Aeon Magazine. Cross-disciplinary analysis naming burnout and interpersonal dynamics as primary collapse drivers.</div>
+    <div class="src"><span class="stag">Practitioner</span><strong>3 Reasons Why Intentional Communities Fail</strong> — Cynthia Tina &middot; CommunityFinders.com, 2024. Pioneer vs. settler framework and founder replacement statistics.</div>
+    <div class="src"><span class="stag">Practitioner</span><strong>5 Reasons Why Communities Fail</strong> — Naima Staite &middot; Conscious Coliving. Field research across 10+ countries.</div>
+    <div class="src"><span class="stag">Case Study</span><strong>Damanhur Federation</strong> — 600+ members, est. 1975 &middot; damanhur.org. Federation governance, citizenship trial period, economic sovereignty.</div>
+    <div class="src"><span class="stag">Case Study</span><strong>Twin Oaks Community</strong> — est. 1967 &middot; twinoaks.org. Consensus governance, formal visitor process, conflict resolution protocols as longevity foundations.</div>
+    <div class="src"><span class="stag">Case Study</span><strong>Tamera Healing Biotope</strong> — est. 1995 &middot; tamera.org. Emotional stewardship, relational education as structural architecture.</div>
+    <div class="src"><span class="stag">Case Study</span><strong>Enspiral Network</strong> — est. 2010 &middot; enspiral.com. Built Loomio to solve distributed governance. Node-based structure for scale.</div>
+    <div class="src"><span class="stag">Directory</span><strong>Communities Directory</strong> — Fellowship for Intentional Community &middot; ic.org. Primary source for survival rate data across 1,000+ communities.</div>
+  </div>
+</section>
 
-<!-- PRINT BUTTON -->
+<!-- FOOTER -->
+<footer class="rfooter">
+  <p><strong>Stopping the Collapse</strong> &nbsp;&middot;&nbsp; Rick Broider &nbsp;&middot;&nbsp; <a href="https://stopthecollapse.com/" class="sl">StopTheCollapse.com</a> &nbsp;&middot;&nbsp; <a href="https://rickbroider.substack.com" class="sl">Substack</a></p>
+  <p style="margin-top:6px;">From the 33-chapter audiobook <em>Bridging Earth &amp; Kanaria: Stopping the Collapse</em> by Omja Brhad (Rick Broider on Earth)</p>
+  <p style="margin-top:6px;font-size:10px;">&copy; 2026 Rick Broider &middot; All rights reserved &middot; Built for founders who are done starting over.</p>
+</footer>
+</div>
+
 <div class="print-bar no-print">
-  <button class="print-btn" onclick="window.print()">
-    <span>&#8595;</span> Save as PDF
-  </button>
+  <button class="print-btn" onclick="window.print()">&#8595; Save as PDF</button>
 </div>
 
 <script>
-  const scores = {};
-  const meanings = {
-    0: 'not present / resolved',
-    1: 'present, manageable',
-    2: 'active, urgent'
-  };
-  const riskTiers = [
-    { max: 3,  label: 'Low structural risk',         chapters: 'Start with Chapter 1 — Vision Architecture. Use it to stress-test what you have.' },
-    { max: 6,  label: 'Moderate risk — act soon',    chapters: 'Your highest-scoring pattern is your entry point. Start there, not at Chapter 1.' },
-    { max: 10, label: 'High risk — act now',         chapters: 'Score 2 patterns: address the highest first, then the second. The cascade is already moving.' },
-    { max: 14, label: 'Critical — structural failure is close', chapters: 'You need the full audiobook. Start with your Pattern 1 or Pattern 2 chapter this week.' }
+  const scores={};
+  const meanings={0:'not present',1:'present, manageable',2:'active, urgent'};
+  const tiers=[
+    {max:3,label:'Low structural risk.',next:"Start with the chapter for your single highest-scoring pattern and use it to stress-test what you already have built."},
+    {max:6,label:'Moderate risk — act soon.',next:"Your highest-scoring pattern is your entry point. Don't start at Chapter 1. Start at your fire."},
+    {max:10,label:'High risk — act now.',next:"You have at least two active patterns. Address the highest-scoring one first. The cascade is already in motion."},
+    {max:14,label:'Critical — structural failure is close.',next:"You need the full audiobook. Start with your highest-scoring pattern this week, not next month."}
   ];
+  const hnames={p1:'F1 Conflict',p2:'F2 Vision',p3:'F3 Governance',p4:'F4 Finance',p5:'F5 Burnout',p6:'F6 People',p7:'F7 Scale'};
 
-  function setScore(id, val, btn) {
-    scores[id] = val;
-    const btns = btn.parentElement.querySelectorAll('.score-btn');
-    btns.forEach(b => { b.className = 'score-btn'; });
-    btn.classList.add('active-' + val);
-    document.getElementById(id + '-meaning').textContent = meanings[val];
-    updateDashboard();
+  function setScore(id,val,btn){
+    scores[id]=val;
+    btn.parentElement.querySelectorAll('.sbtn').forEach(b=>b.className='sbtn');
+    btn.classList.add('s'+val);
+    document.getElementById(id+'-m').textContent=meanings[val];
+    updateDash();
   }
 
-  function updateDashboard() {
-    const ids = ['p1','p2','p3','p4','p5','p6','p7'];
-    let total = 0;
-    let allScored = true;
-
-    ids.forEach(id => {
-      const s = scores[id];
-      if (s === undefined) { allScored = false; return; }
-      total += s;
-      const pct = (s / 2) * 100;
-      const bar = document.getElementById('bar-' + id);
-      const bscore = document.getElementById('bscore-' + id);
-      if (bar) bar.style.width = pct + '%';
-      if (bscore) bscore.textContent = s;
+  function updateDash(){
+    const ids=['p1','p2','p3','p4','p5','p6','p7'];
+    let allDone=true;
+    ids.forEach(id=>{
+      const s=scores[id];
+      if(s===undefined){allDone=false;return;}
+      document.getElementById('bar-'+id).style.width=((s/2)*100)+'%';
+      document.getElementById('bs-'+id).textContent=s;
     });
-
-    const totalEl = document.getElementById('totalNum');
-    const descEl  = document.getElementById('totalDesc');
-    const chapEl  = document.getElementById('totalChapter');
-
-    // Show partial progress
-    const scored = ids.filter(id => scores[id] !== undefined).length;
-    if (scored > 0) {
-      const partial = ids.reduce((acc, id) => acc + (scores[id] || 0), 0);
-      totalEl.innerHTML = partial + '<span class="total-max"> / 14</span>';
+    const partial=ids.reduce((a,id)=>a+(scores[id]||0),0);
+    if(Object.keys(scores).length>0){
+      document.getElementById('totalNum').innerHTML=partial+'<span class="total-max"> / 14</span>';
     }
-
-    if (allScored) {
-      const tier = riskTiers.find(t => total <= t.max) || riskTiers[riskTiers.length - 1];
-      totalEl.innerHTML = total + '<span class="total-max"> / 14</span>';
-      descEl.textContent = tier.label;
-      chapEl.textContent = tier.chapters;
-
-      // Highlight highest pattern
-      const highest = ids.reduce((a, b) => (scores[a] || 0) >= (scores[b] || 0) ? a : b);
-      descEl.textContent += '. Your highest-risk pattern: ' + highest.toUpperCase() + ' (score: ' + scores[highest] + ')';
+    if(allDone){
+      const tier=tiers.find(t=>partial<=t.max)||tiers[tiers.length-1];
+      const highest=ids.reduce((a,b)=>(scores[a]||0)>=(scores[b]||0)?a:b);
+      document.getElementById('totalDesc').textContent=tier.label+' Highest pattern: '+hnames[highest]+' (score: '+scores[highest]+').';
+      document.getElementById('totalNext').textContent=tier.next;
     }
   }
 
-  // Scroll reveal
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; obs.unobserve(e.target); } });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('.pattern-card').forEach(el => {
-    el.style.opacity = '0'; el.style.transform = 'translateY(18px)';
-    el.style.transition = 'opacity .6s ease, transform .6s ease';
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='none';obs.unobserve(e.target);}});
+  },{threshold:0.04});
+  document.querySelectorAll('.pattern-card,.pillar-card,.sector-card').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(12px)';
+    el.style.transition='opacity .5s ease,transform .5s ease';
     obs.observe(el);
   });
 </script>
-
 </body>
 </html>
