@@ -569,6 +569,22 @@ body::after {
 }
 .form-micro strong { color:var(--silver); font-weight:600; }
 
+/* Mobile fallback CTA: shown when Substack iframe doesn't render on mobile */
+.mobile-cta-btn {
+  display:none;
+}
+@media (max-width:899px) {
+  .mobile-cta-btn {
+    display:block;
+    width:100%; text-align:center;
+    background:var(--gold); color:#0d0f1a;
+    font-family:'Syne',sans-serif; font-size:16px; font-weight:800;
+    letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+    padding:16px 24px; border-radius:10px;
+    margin:12px 0 4px;
+  }
+}
+
 /* SCROLL NUDGE */
 .scroll-nudge {
   display:flex; align-items:center; gap:12px;
@@ -683,9 +699,9 @@ body::after {
 .fire-row {
   display:grid; grid-template-columns:1fr 20px;
   align-items:center; gap:12px;
-  border:1px solid rgba(255,255,255,.07); border-radius:11px;
+  border:1px solid rgba(255,255,255,.10); border-radius:11px;
   padding:18px 16px 18px 20px;
-  cursor:pointer; background:rgba(255,255,255,.018);
+  cursor:pointer; background:rgba(255,255,255,.045);
   transition:background .18s, border-color .18s, transform .18s;
   position:relative; overflow:hidden;
   touch-action:manipulation;
@@ -694,12 +710,12 @@ body::after {
 }
 .fire-row::before {
   content:''; position:absolute; left:0; top:0; bottom:0;
-  width:3px; border-radius:11px 0 0 11px;
+  width:4px; border-radius:11px 0 0 11px;
 }
 .fire-row:hover,
 .fire-row:active {
-  border-color:rgba(255,255,255,.14);
-  background:rgba(255,255,255,.03);
+  border-color:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.07);
   transform:translateX(4px);
 }
 .fire-row:active { transform:scale(.99) translateX(2px); }
@@ -717,8 +733,8 @@ body::after {
 }
 .fire-pain {
   font-family:'Playfair Display',serif;
-  font-size:clamp(18px,3.2vw,21px); font-weight:600;
-  color:var(--pearl); line-height:1.5; margin-bottom:0;
+  font-size:clamp(17px,2.8vw,21px); font-weight:600;
+  color:var(--white); line-height:1.5; margin-bottom:0;
 }
 .fire-arr { font-size:14px; color:rgba(200,155,60,.3); transition:color .18s, transform .18s; }
 .fire-row:hover .fire-arr { color:var(--gold); transform:translateX(3px); }
@@ -1019,12 +1035,14 @@ footer {
   font-size:clamp(15px,2.2vw,18px); font-weight:800;
   color:var(--gold); letter-spacing:.02em;
   line-height:1.4;
-  padding:24px 40px 24px 0;
+  padding:22px 48px 22px 0;
   cursor:pointer;
   list-style:none;
   position:relative;
   user-select:none;
   -webkit-tap-highlight-color:transparent;
+  display:block;
+  min-height:44px;
 }
 .faq-q::-webkit-details-marker { display:none; }
 .faq-q::marker { display:none; content:""; }
@@ -1156,6 +1174,8 @@ details[open] > .faq-q::after {
         <div class="sb-shell">
           <iframe src="https://rickbroider.substack.com/embed" width="100%" height="150" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free to get the Top 7 Collapse Patterns report"></iframe>
         </div>
+        <!-- Mobile fallback: visible button when iframe doesn't render -->
+        <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="mobile-cta-btn">Get the Free Report →</a>
         <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
         <p class="form-guarantee">If the report doesn't name what's happening in your project, reply. Rick diagnoses it personally.</p>
       </div>
