@@ -432,7 +432,7 @@ body::after {
   .hero-inner {
     padding:80px 60px 60px;
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     gap:52px;
   }
   .hero-copy  {
@@ -440,25 +440,52 @@ body::after {
     min-width:0;
   }
   .hero-offer {
-    flex:0 0 400px;
-    width:400px;
-    min-width:400px;
-    max-width:400px;
-    align-self:center;
+    flex:0 0 440px;
+    width:440px;
+    min-width:440px;
+    max-width:440px;
+    align-self:flex-start;
     margin-top:0;
   }
 }
 @media (min-width:1200px) {
   .hero-offer {
-    flex:0 0 440px;
-    width:440px;
-    min-width:440px;
-    max-width:440px;
+    flex:0 0 480px;
+    width:480px;
+    min-width:480px;
+    max-width:480px;
   }
   .hero-inner { padding:120px 80px 100px; gap:72px; }
 }
 
-/* TRUST BAR - above headline, small, earned-authority */
+/* VIDEO PLAYER in hero right column */
+.hero-vid-wrap {
+  margin-bottom:16px;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(200,155,60,.25);
+  box-shadow:0 8px 48px rgba(0,0,0,.6);
+  background:#000;
+  position:relative;
+}
+.hero-vid {
+  display:block;
+  width:100%;
+  max-height:360px;
+  object-fit:cover;
+  border-radius:12px;
+}
+.hero-vid-label {
+  font-family:'Syne',sans-serif;
+  font-size:11px; font-weight:700;
+  letter-spacing:.10em; text-transform:uppercase;
+  color:rgba(200,155,60,.7);
+  text-align:center;
+  padding:8px 0 2px;
+}
+@media (max-width:899px) {
+  .hero-vid { max-height:220px; }
+}
 .trust-bar {
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   margin-bottom:22px;
@@ -1149,8 +1176,24 @@ details[open] > .faq-q::after {
 
     </div>
 
-    <!-- RIGHT: offer box -->
+    <!-- RIGHT: video + offer box stacked -->
     <div class="hero-offer">
+
+      <!-- VIDEO PLAYER -->
+      <div class="hero-vid-wrap">
+        <video
+          class="hero-vid"
+          src="The_7_Collapse_Patterns.mp4"
+          poster="hero-seven-fires.png"
+          preload="metadata"
+          playsinline
+          controls
+          aria-label="The 7 Collapse Patterns: watch before you read anything else"
+        ></video>
+        <div class="hero-vid-label">6 min 40 sec &nbsp;·&nbsp; Watch before you scroll</div>
+      </div>
+
+      <!-- OFFER BOX: below video -->
       <div class="free-offer">
         <span class="free-offer-label">What you get, free</span>
         <div class="free-give">
@@ -1179,6 +1222,7 @@ details[open] > .faq-q::after {
         <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
         <p class="form-guarantee">If the report doesn't name what's happening in your project, reply. Rick diagnoses it personally.</p>
       </div>
+
     </div>
 
   </div>
@@ -1256,145 +1300,7 @@ details[open] > .faq-q::after {
 <!-- ============================================================
      VIDEO EMBED - RICK INTRO
 ============================================================ -->
-<section class="section sr" style="padding-top:0;padding-bottom:0;" aria-label="Message from Rick">
-<div class="wrap" style="max-width:680px;text-align:center;">
 
-  <div class="eyebrow" style="justify-content:center;margin-bottom:28px;">
-    <span class="ey-bar"></span>
-    <span class="ey-txt">A message from Rick</span>
-    <span class="ey-bar"></span>
-  </div>
-
-  <!-- Video card  -  portrait ratio, links to Substack post -->
-  <a
-    href="https://rickbroider.substack.com/p/before-you-go-any-further-watch-this"
-    target="_blank"
-    rel="noopener"
-    aria-label="Watch: Before You Go Any Further  -  a message from Rick"
-    style="
-      display:block;
-      position:relative;
-      width:100%;
-      max-width:340px;
-      margin:0 auto 28px;
-      border-radius:14px;
-      overflow:hidden;
-      box-shadow:0 8px 48px rgba(0,0,0,.6);
-      border:1px solid rgba(255,255,255,.09);
-      aspect-ratio:9/16;
-      background:#0a0b14;
-      text-decoration:none;
-      cursor:pointer;
-    "
-    onmouseover="this.querySelector('.vplay').style.transform='scale(1.08)'"
-    onmouseout="this.querySelector('.vplay').style.transform='scale(1)'"
-  >
-    <!-- Portrait photo background -->
-    <div style="
-      position:absolute;inset:0;
-      background-image:url('rick-portrait-600.jpg');
-      background-size:cover;
-      background-position:center top;
-    "></div>
-    <!-- Dark overlay so text stays readable -->
-    <div style="
-      position:absolute;inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(7,8,14,.55) 0%,
-        rgba(7,8,14,.25) 40%,
-        rgba(7,8,14,.6) 75%,
-        rgba(7,8,14,.85) 100%
-      );
-    "></div>
-
-    <!-- Gold accent top bar -->
-    <div style="
-      position:absolute;top:0;left:0;right:0;height:3px;
-      background:linear-gradient(90deg,var(--gold),var(--teal));
-    "></div>
-
-    <!-- Center play button -->
-    <div class="vplay" style="
-      position:absolute;
-      top:50%;left:50%;
-      transform:translate(-50%,-50%);
-      width:80px;height:80px;
-      border-radius:50%;
-      background:rgba(200,155,60,.2);
-      border:2px solid rgba(200,155,60,.7);
-      display:flex;align-items:center;justify-content:center;
-      transition:transform .2s ease;
-      z-index:2;
-      backdrop-filter:blur(2px);
-    ">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <polygon points="6,3 20,12 6,21" fill="#C89B3C"/>
-      </svg>
-    </div>
-
-    <!-- Label top -->
-    <div style="
-      position:absolute;top:20px;left:0;right:0;
-      text-align:center;
-      font-family:'Syne',sans-serif;
-      font-size:11px;font-weight:800;
-      letter-spacing:.14em;text-transform:uppercase;
-      color:rgba(200,155,60,.9);
-      z-index:2;
-    ">Watch on Substack</div>
-
-    <!-- Duration bottom -->
-    <div style="
-      position:absolute;bottom:20px;left:0;right:0;
-      text-align:center;
-      z-index:2;
-    ">
-      <div style="
-        font-family:'Playfair Display',serif;
-        font-size:clamp(16px,4vw,20px);
-        font-style:italic;font-weight:700;
-        color:var(--white);
-        line-height:1.3;
-        padding:0 24px;
-      ">Before You Go<br>Any Further</div>
-      <div style="
-        font-family:'Lora',serif;
-        font-size:13px;color:var(--silver);
-        margin-top:6px;
-      ">2 min 44 sec</div>
-    </div>
-  </a>
-
-  <p style="
-    font-family:'Lora',serif;
-    font-size:clamp(15px,2.2vw,17px);
-    color:var(--silver);
-    line-height:1.8;
-    text-align:center;
-    max-width:480px;
-    margin:0 auto 28px;
-  ">
-    Two minutes before you read anything else.<br>
-    This is who I am and why I built this.
-  </p>
-
-  <p style="
-    font-family:'Syne',sans-serif;
-    font-size:12px;
-    font-weight:700;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    color:rgba(200,155,60,.6);
-    text-align:center;
-    margin:0 auto 0;
-    padding-bottom:48px;
-  ">
-    Or keep reading below  -  the 7 fires are next
-  </p>
-
-</div>
-</section>
 
 
 <!-- ============================================================
