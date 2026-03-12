@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collapse Diagnostic | Stopping the Collapse · Rick Broider</title>
+  <meta name="description" content="Find the structural pattern that is most active in your project right now. 7 questions. 4 minutes. Specific results.">
+  <meta property="og:title" content="The Collapse Diagnostic — Which pattern is active in your project?">
+  <meta property="og:description" content="7 structural failure modes. 4 minutes. Find yours at StopTheCollapse.com">
+  <meta property="og:image" content="https://stopthecollapse.com/og-diagnostic.png">
+  <meta property="og:url" content="https://stopthecollapse.com/diagnostic">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#07080E; --deep:#0C0F1E; --surface:#111526; --card:#161A2E; --card2:#181C30;
+      --gold:#C89B3C; --gold-hi:#F0C050; --gold-dim:rgba(200,155,60,.1);
+      --ember:#E07830; --teal:#0E8A7A;
+      --violet:#7B5EA7;
+      --white:#FFFFFF; --pearl:#EDE8DC; --silver:#C0C0D0; --mist:#7878A0;
+      --border:rgba(255,255,255,.07);
+      --f1:#C0392B; --f2:#D9A741; --f3:#7B68EE; --f4:#B87333; --f5:#E07B39; --f6:#7AD1E2; --f7:#A8C5A0;
+      --progress:0%;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy);color:var(--white);font-family:'Lora',serif;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;}
+
+    /* COSMOS BG */
+    .cosmos{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:radial-gradient(ellipse 140% 65% at 50% -8%,#16203C 0%,var(--navy) 58%);}
+    .cosmos::after{content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 60% 40% at 80% 90%,rgba(123,104,238,.06) 0%,transparent 70%);}
+
+    .app{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;}
+
+    /* PROGRESS BAR */
+    .prog-bar-wrap{position:fixed;top:0;left:0;right:0;z-index:100;height:3px;background:rgba(255,255,255,.05);}
+    .prog-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-hi));width:var(--progress);transition:width .5s ease;}
+
+    /* HEADER */
+    .header{padding:clamp(20px,4vw,32px) clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.04);}
+    .logo{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,155,60,.65);text-decoration:none;}
+    .logo strong{color:var(--gold);}
+    .q-counter{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--mist);}
+
+    /* SCREENS */
+    .screen{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;
+      padding:clamp(32px,6vw,72px) clamp(20px,5vw,48px);max-width:680px;margin:0 auto;width:100%;}
+    .screen.active{display:flex;}
+
+    /* INTRO SCREEN */
+    .intro-badge{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,155,60,.65);border:1px solid rgba(200,155,60,.2);border-radius:100px;padding:5px 14px;margin-bottom:28px;}
+    .intro-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    .intro-h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,56px);font-weight:900;line-height:1.05;color:var(--white);margin-bottom:20px;text-align:center;}
+    .intro-h1 em{color:var(--gold);font-style:italic;}
+    .intro-sub{font-size:clamp(15px,2vw,17px);color:var(--silver);line-height:1.8;text-align:center;max-width:520px;margin-bottom:36px;}
+    .intro-meta{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-bottom:40px;}
+    .intro-meta-item{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);display:flex;align-items:center;gap:6px;}
+    .intro-meta-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);}
+
+    /* BUTTONS */
+    .btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:15px 36px;border-radius:10px;border:none;cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;}
+    .btn-primary:hover{background:var(--gold-hi);transform:translateY(-2px);}
+    .btn-primary svg{width:16px;height:16px;}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);background:transparent;border:1px solid rgba(255,255,255,.1);padding:11px 24px;border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+    /* QUESTION SCREEN */
+    .q-screen{width:100%;}
+    .q-pattern-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:3px 10px;border-radius:5px;display:inline-block;margin-bottom:20px;border:1px solid;}
+    .q-headline{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);font-weight:700;font-style:italic;color:var(--pearl);line-height:1.3;margin-bottom:14px;}
+    .q-context{font-size:clamp(14px,1.8vw,16px);color:var(--mist);line-height:1.75;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.06);}
+    .q-prompt{font-family:'Playfair Display',serif;font-size:clamp(16px,2.2vw,20px);font-style:italic;color:var(--white);line-height:1.5;margin-bottom:28px;}
+
+    /* ANSWER OPTIONS */
+    .answers{display:flex;flex-direction:column;gap:10px;width:100%;margin-bottom:32px;}
+    .answer-btn{
+      display:flex;align-items:flex-start;gap:14px;
+      padding:16px 20px;border-radius:12px;
+      background:rgba(255,255,255,.03);
+      border:1.5px solid rgba(255,255,255,.08);
+      cursor:pointer;transition:all .2s;text-align:left;width:100%;
+    }
+    .answer-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);}
+    .answer-btn.selected-0{background:rgba(255,255,255,.06);border-color:rgba(200,200,220,.4);}
+    .answer-btn.selected-1{background:rgba(200,155,60,.08);border-color:var(--gold);}
+    .answer-btn.selected-2{background:rgba(192,57,43,.1);border-color:#E06050;}
+    .answer-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;border:1.5px solid rgba(255,255,255,.12);color:var(--mist);transition:all .2s;margin-top:1px;}
+    .answer-btn.selected-0 .answer-icon{background:rgba(255,255,255,.08);border-color:rgba(200,200,220,.5);color:var(--white);}
+    .answer-btn.selected-1 .answer-icon{background:rgba(200,155,60,.2);border-color:var(--gold);color:var(--gold);}
+    .answer-btn.selected-2 .answer-icon{background:rgba(192,57,43,.18);border-color:#E06050;color:#E08070;}
+    .answer-text{flex:1;}
+    .answer-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);margin-bottom:3px;transition:color .2s;}
+    .answer-btn.selected-0 .answer-label{color:var(--silver);}
+    .answer-btn.selected-1 .answer-label{color:var(--gold);}
+    .answer-btn.selected-2 .answer-label{color:#E08070;}
+    .answer-desc{font-size:clamp(13px,1.7vw,15px);color:var(--silver);line-height:1.6;}
+
+    /* NAV ROW */
+    .q-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    .q-dots{display:flex;gap:6px;align-items:center;}
+    .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s;}
+    .dot.done{background:var(--gold);}
+    .dot.current{background:var(--white);transform:scale(1.3);}
+
+    /* TRANSITION ANIMATION */
+    .q-screen{animation:fadeUp .35s ease both;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+    /* RESULTS SCREEN */
+    .results-screen{width:100%;max-width:680px;}
+    .result-card{
+      background:linear-gradient(135deg,var(--card) 0%,rgba(8,10,18,.95) 100%);
+      border:1px solid rgba(200,155,60,.2);border-radius:20px;
+      padding:clamp(28px,5vw,48px);margin-bottom:24px;
+      position:relative;overflow:hidden;
+    }
+    .result-card::before{
+      content:'';position:absolute;top:-60px;right:-60px;
+      width:200px;height:200px;border-radius:50%;
+      background:radial-gradient(circle,rgba(200,155,60,.08) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .result-eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,155,60,.55);margin-bottom:12px;}
+    .result-pattern-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;}
+    .result-fcode{font-family:'DM Mono',monospace;font-size:32px;font-weight:500;line-height:1;}
+    .result-fname{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--white);line-height:1.2;}
+    .result-tagline{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--mist);margin-bottom:20px;}
+    .result-feel{font-style:italic;font-size:clamp(15px,2vw,17px);color:rgba(200,155,60,.8);line-height:1.65;border-left:2px solid rgba(200,155,60,.25);padding-left:16px;margin-bottom:22px;}
+    .result-body{font-size:clamp(14px,1.8vw,16px);color:var(--silver);line-height:1.82;margin-bottom:22px;}
+    .result-body p+p{margin-top:12px;}
+    .result-body strong{color:var(--white);}
+
+    /* RISK TIER */
+    .risk-tier{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:10px;margin-bottom:22px;}
+    .risk-low{background:rgba(74,158,122,.08);border:1px solid rgba(74,158,122,.22);}
+    .risk-moderate{background:rgba(200,155,60,.08);border:1px solid rgba(200,155,60,.22);}
+    .risk-high{background:rgba(224,120,48,.1);border:1px solid rgba(224,120,48,.22);}
+    .risk-critical{background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.3);}
+    .risk-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .risk-low .risk-dot{background:#4A9E7A;}
+    .risk-moderate .risk-dot{background:var(--gold);}
+    .risk-high .risk-dot{background:var(--ember);}
+    .risk-critical .risk-dot{background:#C0392B;}
+    .risk-text{flex:1;}
+    .risk-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:2px;}
+    .risk-low .risk-label{color:#4A9E7A;}
+    .risk-moderate .risk-label{color:var(--gold);}
+    .risk-high .risk-label{color:var(--ember);}
+    .risk-critical .risk-label{color:#E07060;}
+    .risk-desc{font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.6;}
+    .risk-score{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);}
+
+    /* MINI MAP SVG */
+    .mini-map-wrap{margin:20px 0;border-radius:12px;overflow:hidden;background:rgba(8,10,18,.8);border:1px solid rgba(122,209,226,.08);}
+
+    /* SCORE BARS */
+    .score-bars{margin:20px 0;}
+    .sbar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+    .sbar-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);width:80px;flex-shrink:0;text-align:right;}
+    .sbar-track{flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;}
+    .sbar-fill{height:100%;border-radius:3px;transition:width .6s ease;}
+    .sbar-val{font-family:'DM Mono',monospace;font-size:12px;color:var(--white);width:14px;text-align:center;}
+
+    /* CHAPTERS */
+    .chapters-block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px 20px;margin-bottom:20px;}
+    .chapters-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-bottom:10px;}
+    .chapter-chips{display:flex;flex-wrap:wrap;gap:6px;}
+    .ch-chip{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;padding:4px 10px;border-radius:6px;}
+    .ch-free{color:var(--gold);background:rgba(200,155,60,.1);border:1px solid rgba(200,155,60,.2);}
+    .ch-paid{color:var(--teal);background:rgba(14,138,122,.08);border:1px solid rgba(14,138,122,.18);}
+    .ch-bonus{color:var(--violet);background:rgba(123,94,167,.08);border:1px solid rgba(123,94,167,.18);}
+
+    /* DOOR INDICATOR */
+    .door-block{padding:16px 20px;border-radius:10px;margin-bottom:20px;}
+    .door-a{background:rgba(14,138,122,.07);border:1px solid rgba(14,138,122,.2);}
+    .door-b{background:rgba(123,94,167,.07);border:1px solid rgba(123,94,167,.2);}
+    .door-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;}
+    .door-a .door-label{color:var(--teal);}
+    .door-b .door-label{color:var(--violet);}
+    .door-text{font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.65;}
+
+    /* EMAIL CAPTURE */
+    .email-block{background:linear-gradient(135deg,rgba(200,155,60,.06) 0%,rgba(14,18,36,.8) 100%);border:1px solid rgba(200,155,60,.18);border-radius:16px;padding:clamp(24px,4vw,36px);margin-bottom:24px;text-align:center;}
+    .email-h{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,22px);font-weight:900;color:var(--white);margin-bottom:8px;}
+    .email-sub{font-size:clamp(13px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:20px;}
+    .email-form{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+    .email-input{flex:1;min-width:200px;padding:12px 16px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:8px;color:var(--white);font-family:'Lora',serif;font-size:15px;outline:none;transition:border-color .2s;}
+    .email-input::placeholder{color:var(--mist);}
+    .email-input:focus{border-color:var(--gold);}
+    .email-submit{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:12px 24px;border-radius:8px;border:none;cursor:pointer;transition:background .2s;white-space:nowrap;}
+    .email-submit:hover{background:var(--gold-hi);}
+    .email-note{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.06em;color:var(--mist);margin-top:10px;}
+    .email-sent{display:none;font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:clamp(14px,1.8vw,16px);}
+
+    /* SHARE BLOCK */
+    .share-block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:clamp(20px,3vw,28px);margin-bottom:24px;}
+    .share-h{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-bottom:6px;}
+    .share-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(14px,1.8vw,16px);color:var(--pearl);line-height:1.55;margin-bottom:16px;}
+    .share-btns{display:flex;gap:8px;flex-wrap:wrap;}
+    .share-btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;border-radius:8px;border:1px solid;cursor:pointer;transition:all .2s;text-decoration:none;}
+    .share-copy{color:var(--gold);border-color:rgba(200,155,60,.3);background:rgba(200,155,60,.06);}
+    .share-copy:hover{background:rgba(200,155,60,.12);}
+    .share-x{color:var(--silver);border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04);}
+    .share-x:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.08);}
+    .copy-confirm{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);opacity:0;transition:opacity .3s;margin-left:4px;}
+
+    /* CTA BLOCK */
+    .cta-block{text-align:center;margin-bottom:40px;}
+    .cta-h{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,22px);font-weight:900;color:var(--white);margin-bottom:8px;}
+    .cta-sub{font-size:clamp(13px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:20px;}
+    .cta-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    .cta-primary{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:14px 28px;border-radius:10px;text-decoration:none;transition:all .2s;}
+    .cta-primary:hover{background:var(--gold-hi);transform:translateY(-2px);}
+    .cta-secondary{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);border:1px solid rgba(255,255,255,.1);padding:12px 22px;border-radius:8px;text-decoration:none;transition:all .2s;}
+    .cta-secondary:hover{border-color:var(--gold);color:var(--gold);}
+
+    /* FOOTER */
+    .footer{padding:28px 24px;text-align:center;border-top:1px solid var(--border);}
+    .footer p{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);line-height:1.9;}
+    .footer strong{color:var(--gold);}
+    .footer a{color:var(--mist);text-decoration:none;border-bottom:1px solid rgba(120,120,160,.25);transition:color .15s;}
+    .footer a:hover{color:var(--gold);}
+
+    /* RESTART */
+    .restart-btn{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);background:transparent;border:none;cursor:pointer;margin-top:8px;padding:6px 0;}
+    .restart-btn:hover{color:var(--silver);}
+
+    @media(max-width:480px){
+      .answer-btn{padding:13px 15px;}
+      .share-btns{flex-direction:column;}
+      .email-form{flex-direction:column;}
+      .cta-btns{flex-direction:column;align-items:center;}
+    }
+  </style>
+</head>
+<body>
+<div class="cosmos"></div>
+<div class="app">
+
+  <div class="prog-bar-wrap"><div class="prog-bar" id="progBar"></div></div>
+
+  <header class="header">
+    <a href="https://stopthecollapse.com" class="logo"><strong>STC</strong> · Collapse Diagnostic</a>
+    <span class="q-counter" id="qCounter"></span>
+  </header>
+
+  <!-- ═══ INTRO SCREEN ═══ -->
+  <div class="screen active" id="screen-intro">
+    <div style="text-align:center;width:100%;">
+      <div class="intro-badge">Field Diagnostic · 4 Minutes</div>
+      <h1 class="intro-h1">Which <em>collapse pattern</em><br>is active in your project?</h1>
+      <p class="intro-sub">Ninety percent of regenerative communities, intentional organizations, and mission-driven projects fail. Not because the people stopped caring. Because the structural patterns went unnamed.<br><br>Seven questions. Specific results. A named path forward.</p>
+      <div class="intro-meta">
+        <span class="intro-meta-item">7 Questions</span>
+        <span class="intro-meta-item">4 Minutes</span>
+        <span class="intro-meta-item">No signup required</span>
+        <span class="intro-meta-item">Shareable results</span>
+      </div>
+      <button class="btn-primary" onclick="startQuiz()">
+        Begin the Diagnostic
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </button>
+      <p style="margin-top:16px;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);">Answer for your project as it is right now — not as you want it to be.</p>
+    </div>
+  </div>
+
+  <!-- ═══ QUESTION SCREENS ═══ -->
+  <div class="screen" id="screen-questions">
+    <div class="q-screen" id="qContent"></div>
+    <div class="q-nav" id="qNav">
+      <div class="q-dots" id="qDots"></div>
+      <button class="btn-ghost" id="nextBtn" onclick="nextQuestion()" style="display:none;">
+        Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══ RESULTS SCREEN ═══ -->
+  <div class="screen" id="screen-results" style="padding-top:40px;justify-content:flex-start;">
+    <div class="results-screen" id="resultsContent"></div>
+  </div>
+
+  <footer class="footer">
+    <p><strong>Stopping the Collapse</strong> &middot; Rick Broider (Omja Brhad) &middot; <a href="https://stopthecollapse.com">StopTheCollapse.com</a></p>
+    <p style="margin-top:4px;font-size:10px;">From <em>Bridging Earth &amp; Kanaria: Stopping the Collapse</em></p>
+  </footer>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+
+const PATTERNS = {
+  p1:{code:'F1',name:'Interpersonal Conflict',color:'#C0392B',tagline:'The same argument keeps coming back in different forms.',
+    feel:'"The relational field has shifted. People you trusted are now in opposing camps. Conversations that should be simple have become charged. Someone leaves meetings without saying what they actually meant."',
+    body:'<p>Conflict is not the problem. Unprocessed conflict — conflict that has no named architecture for resolution — is. Every surviving community has an explicit conflict protocol. Not because they are more evolved. Because they understood early that without one, personal history becomes organizational infrastructure.</p><p><strong>The pattern that never gets named becomes the pattern that runs the organization.</strong> What you are experiencing is almost certainly not about the specific argument. It is about the absence of the structure that would have made that argument navigable.</p>',
+    door:'a',
+    chapters:[{label:'Ch 18',type:'free',name:'Inviting Through Ethics'},{label:'Ch 22',type:'paid',name:'Weaving Harmonic Governance'},{label:'Ch 25',type:'paid',name:'Leading Through Harmonic Architecture'},{label:'Ch 28',type:'paid',name:'Forming Kinship Constellations'},{label:'Ch 31',type:'paid',name:'Restoring the Balance'}]},
+  p2:{code:'F2',name:'No Shared Vision',color:'#D9A741',tagline:'People are doing the work but pulling in different directions.',
+    feel:'"We all agreed on the mission. But somewhere between the founding conversation and today, we are clearly not building the same thing. Meetings feel circular. New people bring interpretations of the project that don\'t match what you understood it to be."',
+    body:'<p>Vision drift is not about lack of commitment. It is about the absence of a living document that holds the shared picture and gets renewed deliberately. Most founding teams have the vision in their heads. The problem is that it lives differently in each head — and the gap between those versions compounds every month.</p><p><strong>A vision is not a statement. It is a practice of alignment that requires structural maintenance.</strong> The communities that last revisit their founding covenant at regular intervals, not because they have lost it, but because they know drift is automatic.</p>',
+    door:'b',
+    chapters:[{label:'Ch 1',type:'free',name:'Awakening Omja Brhad'},{label:'Ch 6',type:'paid',name:'Discovering Earth\'s Cosmic Potential'},{label:'Ch 11',type:'paid',name:'Decoding the Kanarian Blueprint'},{label:'Ch 19',type:'paid',name:'Reviving the Dream Seed of Memory'},{label:'Ch 23',type:'paid',name:'Aligning with Planetary Citizenship'}]},
+  p3:{code:'F3',name:'Governance Shadows',color:'#7B68EE',tagline:'Decisions happen in back channels. Nobody has the map.',
+    feel:'"Decisions are being made but no one knows by whom or how. Power has collected in a person or a clique without anyone agreeing to it. Accountability lives nowhere — and naming this feels like a personal attack on whoever is at the center."',
+    body:'<p>Power always exists. The only question is whether it is visible or hidden. Too many communities try to flatten leadership instead of transforming it. The result is fake flatness — the illusion of equality without the structure to support it. In practice, decisions get made by whoever speaks loudest or carries the founder\'s implicit approval.</p><p><strong>A governance vacuum does not just fail when there is conflict. It generates conflict by its absence.</strong> Every community in the long-survival cohort has written governance. This is not bureaucracy. It is the architecture of trust.</p>',
+    door:'a',
+    chapters:[{label:'Ch 4',type:'free',name:'Crossing the Threshold of Contact'},{label:'Ch 8',type:'paid',name:'Restoring Galactic Ethics'},{label:'Ch 12',type:'paid',name:'Engineering the Starseed Blueprint'},{label:'Ch 15',type:'paid',name:'Summoning the Galactic Council'},{label:'Ch 22',type:'paid',name:'Weaving Harmonic Governance'}]},
+  p4:{code:'F4',name:'Financial Fragility',color:'#B87333',tagline:"Spirit doesn't pay the land lease.",
+    feel:'"The money conversation is always stressful. People are contributing unequally and it\'s creating resentment. Survival feels dependent on one or two people\'s financial endurance — and nobody is allowed to say that out loud without feeling like they\'re betraying the mission."',
+    body:'<p>Financial fragility is the most pragmatic collapse pattern and the most consistently underestimated. Founders who are purpose-driven treat money as secondary to vision — and communities pay for that sequencing with their lives. Land is bought before a budget exists. Roles are promised before resources are real.</p><p><strong>When a project becomes a source of financial anxiety for its members, it triggers scarcity patterns in the group field. Scarcity destroys trust. When trust is gone, every other collapse pattern accelerates.</strong> Damanhur\'s founder, when asked the secret to their longevity, gave a structural answer: "Think like a business."</p>',
+    door:'a',
+    chapters:[{label:'Ch 10',type:'paid',name:'Constructing the Architecture of Harmony'},{label:'Ch 12',type:'paid',name:'Engineering the Starseed Blueprint'},{label:'Ch 25',type:'paid',name:'Leading Through Harmonic Architecture'},{label:'Appendix X',type:'bonus',name:'Regenerative Money That Actually Works'}]},
+  p5:{code:'F5',name:'Burnout & Depletion',color:'#E07B39',tagline:'The most empathetic people leave first.',
+    feel:'"The people who care most are the most depleted. Enthusiasm has been replaced by obligation. People show up but are not really present. You are running the project on the fumes of the original commitment — and you can feel the reserves running out."',
+    body:'<p>Burnout in regenerative projects has a specific target: the most committed, most empathetic, most responsible people carry the most load — and they are the last to ask for help. By the time they leave, or go quiet, or start missing meetings, the project has already lost its structural core.</p><p>A founding community project will take 2–7 years to become established. Most communities do not account for this in their design. <strong>Showing up out of obligation after the aliveness has gone is often called commitment. It is a warning signal.</strong> Damanhur designed role-rotation structures specifically to prevent burnout concentrating on the most empathetic members.</p>',
+    door:'b',
+    chapters:[{label:'Ch 5',type:'paid',name:'Remembering the Kanarian Codes'},{label:'Ch 10',type:'paid',name:'Constructing the Architecture of Harmony'},{label:'Ch 20',type:'paid',name:'Activating Galactic Harmonics'},{label:'Ch 32',type:'paid',name:'Spiraling Beyond Continuity'}]},
+  p6:{code:'F6',name:'Wrong-Fit People',color:'#7AD1E2',tagline:'Open doors become open wounds.',
+    feel:'"Someone is in who shouldn\'t be, and everything is more complicated because of it. Or: there is no clear sense of who this project is not for, and that ambiguity is allowing misalignment to accumulate. The culture you intended is not the culture you have."',
+    body:'<p>This is the most ethically uncomfortable pattern — because the impulse behind it is often beautiful. Of course you want to be inclusive. But open admission is not the same as intentional community. It is the fastest way to dilute a culture before it has had time to crystallize.</p><p>Screening members — having explicit admission criteria, a genuine alignment process, and the willingness to say no — is among the top structural predictors of community survival. <strong>Having clarity about who this project is not for is not exclusion. It is the condition of coherence.</strong></p>',
+    door:'b',
+    chapters:[{label:'Ch 18',type:'free',name:'Inviting Through Ethics'},{label:'Ch 12',type:'paid',name:'Engineering the Starseed Blueprint'},{label:'Ch 25',type:'paid',name:'Leading Through Harmonic Architecture'}]},
+  p7:{code:'F7',name:'Scale Trap',color:'#A8C5A0',tagline:'Growing too fast or staying too small — both kill.',
+    feel:'"Something worked beautifully at a small size and broke when it grew. Or: it has stayed deliberately small and is now suffocating. The 8–25–60 member thresholds each require a completely different organizational architecture — and nobody warned you."',
+    body:'<p>Size is infrastructure. Most founders intuitively understand that a project needs to grow — but almost no one has a deliberate theory of scale. The result is either premature expansion that dilutes culture before it sets, or permanent smallness that cannot generate enough energy, resources, or redundancy to be sustainable.</p><p>Research from long-surviving communities points to a critical threshold zone above roughly 25 people and below roughly 8. <strong>The communities that survived built a theory of scale before they needed it.</strong> Damanhur federated into sub-communities at scale. Enspiral built nodes. Both by deliberate design.</p>',
+    door:'a',
+    chapters:[{label:'Ch 7',type:'paid',name:'Inhabiting a New Earth Design'},{label:'Ch 12',type:'paid',name:'Engineering the Starseed Blueprint'},{label:'Ch 25',type:'paid',name:'Leading Through Harmonic Architecture'},{label:'Ch 26',type:'paid',name:'Cohering Across Civilizations'}]}
+};
+
+const QUESTIONS = [
+  {id:'p1',
+   tag:'Relational Field',
+   headline:'In your last three significant meetings, was there a moment something went unsaid?',
+   context:'Not because there was nothing to say — because saying it felt too risky, too personal, or too likely to open something that couldn\'t be closed.',
+   prompt:'How present is unresolved relational tension in your project right now?',
+   options:[
+     {score:0,label:'Not present',desc:'Conflict arises and resolves. The field feels clear. People say what they mean.'},
+     {score:1,label:'Present, manageable',desc:'There is tension, but it is named. We have some way of working through it, even if imperfect.'},
+     {score:2,label:'Active and urgent',desc:'There are conversations that need to happen and are not happening. The field is charged.'}
+   ]},
+  {id:'p2',
+   tag:'Shared Vision',
+   headline:'If you asked three core members to describe the project\'s purpose in one sentence — would the sentences match?',
+   context:'Not the mission statement. What they actually believe the project is for, what it is building, and who it is serving.',
+   prompt:'How aligned is your team on where this project is actually going?',
+   options:[
+     {score:0,label:'Fully aligned',desc:'We have a living shared picture. New people find it quickly. It does not require constant recalibration.'},
+     {score:1,label:'Mostly aligned, some drift',desc:'The core vision is shared but the details diverge. We have not revisited it formally in a while.'},
+     {score:2,label:'Different pictures',desc:'People are building something, but the pictures are different. I am not sure we would write the same sentence.'}
+   ]},
+  {id:'p3',
+   tag:'Governance Architecture',
+   headline:'When a significant decision needs to be made — is there a clear, trusted process for making it?',
+   context:'Not consensus by exhaustion. Not whoever speaks loudest. A process that everyone knows and trusts, even when they do not like the outcome.',
+   prompt:'How clear and functional is your decision-making architecture right now?',
+   options:[
+     {score:0,label:'Clear and functional',desc:'We have a written or well-understood process. People know how decisions get made and by whom.'},
+     {score:1,label:'Informal but mostly works',desc:'We figure it out, but it depends on who is in the room. It is not written down anywhere.'},
+     {score:2,label:'Unclear or contested',desc:'Decision-making defaults to whoever has the most tenure, loudest voice, or founder proximity. There is no process.'}
+   ]},
+  {id:'p4',
+   tag:'Financial Architecture',
+   headline:'Does your project have a written economic model — and have you looked at it recently?',
+   context:'Not a dream of grants or future revenue. An actual picture of what comes in, what goes out, how long the runway is, and who knows.',
+   prompt:'How financially transparent and stable is your project right now?',
+   options:[
+     {score:0,label:'Clear and documented',desc:'We have a budget, a model, and the key people know the numbers. Money is not an avoided topic.'},
+     {score:1,label:'Rough picture, some avoidance',desc:'We have a general sense but the specifics are fuzzy. The money conversation is uncomfortable.'},
+     {score:2,label:'Fragile or avoided',desc:'Financial reality is unclear, unequally held, or actively not discussed. One person leaving could collapse the model.'}
+   ]},
+  {id:'p5',
+   tag:'Sustainable Capacity',
+   headline:'Who in your project is carrying more than their share — and do they know it is being seen?',
+   context:'The person who responds to everything, covers the gaps, never says no. They are often the last to ask for help and the first to quietly disappear when they have had enough.',
+   prompt:'How sustainable is the load distribution in your project right now?',
+   options:[
+     {score:0,label:'Distributed and sustainable',desc:'Roles are clear. Rest is protected. No one person is structural infrastructure for everything.'},
+     {score:1,label:'Somewhat concentrated',desc:'A few people carry more than others. This is acknowledged but not yet structurally addressed.'},
+     {score:2,label:'Concentrated and urgent',desc:'One to three people are carrying the weight of ten. Depletion is visible. Nobody has a solution yet.'}
+   ]},
+  {id:'p6',
+   tag:'Membership Integrity',
+   headline:'Is there anyone inside your project whose presence is costing more than their absence would?',
+   context:'Not because they are a bad person. Because the fit is wrong. The values do not align, the commitment is different, or the dynamic they create absorbs more energy than the project has.',
+   prompt:'How coherent is your membership or core team relative to the project\'s actual values?',
+   options:[
+     {score:0,label:'High coherence',desc:'People are here because they genuinely fit. We have a process for evaluating that. We have said no before.'},
+     {score:1,label:'Some misalignment',desc:'There are people whose fit is uncertain. We have not yet addressed it directly. The cost is manageable.'},
+     {score:2,label:'Active misalignment',desc:'There is someone — or a pattern of someone — whose presence is creating recurring disruption. It is not being addressed.'}
+   ]},
+  {id:'p7',
+   tag:'Scale Architecture',
+   headline:'Does your project have a theory of how it grows — or does growth just happen to you?',
+   context:'Not a vision of being big. A structural understanding of what changes at 8, 25, and 60 people — and what architecture needs to be in place before each threshold.',
+   prompt:'How deliberately designed is your project\'s approach to scale?',
+   options:[
+     {score:0,label:'Deliberate and designed',desc:'We have thought through the scale thresholds. Our governance and structure can absorb growth without breaking culture.'},
+     {score:1,label:'Some thinking, no architecture',desc:'We know we will need to figure this out. We have not built the structure yet. Growth is somewhat ad hoc.'},
+     {score:2,label:'No theory at all',desc:'Growth happens or does not happen. We have not designed for it. The structure that works now would break under pressure.'}
+   ]}
+];
+
+const TIERS = [
+  {max:3,label:'Low Structural Risk',cls:'risk-low',next:'Your architecture has more strength than you may realize. Use this diagnostic to identify your single highest-scoring pattern and stress-test it before it grows.'},
+  {max:6,label:'Moderate Risk — Act Soon',cls:'risk-moderate',next:'You have named patterns that are present. Your highest-scoring pattern is your entry point. Do not start at Chapter 1. Start at your fire.'},
+  {max:10,label:'High Risk — Act Now',cls:'risk-high',next:'At least two patterns are active simultaneously. This is how cascades begin — one pattern weakens the field for the next. Address the highest-scoring one first, this week.'},
+  {max:14,label:'Critical — Structural Failure Is Close',cls:'risk-critical',next:'The patterns you are carrying are compounding. You need the full architecture, not just one chapter. Start with your primary pattern today — not next month.'}
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+
+let currentQ = 0;
+let scores = {};
+let doorScore = {a:0, b:0};
+
+// ═══════════════════════════════════════════════
+// QUIZ ENGINE
+// ═══════════════════════════════════════════════
+
+function startQuiz() {
+  showScreen('questions');
+  renderQuestion(0);
+  updateProgress();
+}
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+}
+
+function renderQuestion(idx) {
+  const q = QUESTIONS[idx];
+  const pat = PATTERNS[q.id];
+  const selected = scores[q.id];
+
+  // dots
+  let dots = '';
+  QUESTIONS.forEach((_, i) => {
+    let cls = 'dot';
+    if (scores[QUESTIONS[i].id] !== undefined) cls += ' done';
+    if (i === idx) cls += ' current';
+    dots += `<div class="${cls}"></div>`;
+  });
+  document.getElementById('qDots').innerHTML = dots;
+
+  // counter
+  document.getElementById('qCounter').textContent = `${idx + 1} of ${QUESTIONS.length}`;
+
+  // options
+  let optHTML = '';
+  q.options.forEach(opt => {
+    const isSel = selected === opt.score;
+    const selCls = isSel ? ` selected-${opt.score}` : '';
+    optHTML += `
+      <button class="answer-btn${selCls}" onclick="selectAnswer('${q.id}', ${opt.score}, '${pat.door}', this)">
+        <div class="answer-icon">${opt.score === 0 ? '○' : opt.score === 1 ? '◑' : '●'}</div>
+        <div class="answer-text">
+          <div class="answer-label">${opt.label}</div>
+          <div class="answer-desc">${opt.desc}</div>
+        </div>
+      </button>`;
+  });
+
+  const tagColor = pat.color;
+  document.getElementById('qContent').innerHTML = `
+    <div style="animation:fadeUp .35s ease both;">
+      <span class="q-pattern-tag" style="color:${tagColor};border-color:${tagColor}40;background:${tagColor}12;">${q.id.toUpperCase()} · ${q.tag}</span>
+      <p class="q-headline">${q.headline}</p>
+      <p class="q-context">${q.context}</p>
+      <p class="q-prompt">${q.prompt}</p>
+      <div class="answers">${optHTML}</div>
+    </div>`;
+
+  // next button
+  const nextBtn = document.getElementById('nextBtn');
+  if (selected !== undefined) {
+    nextBtn.style.display = 'inline-flex';
+    nextBtn.textContent = idx === QUESTIONS.length - 1 ? 'See My Results' : 'Next';
+    if (idx === QUESTIONS.length - 1) {
+      nextBtn.innerHTML = 'See My Results <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+    } else {
+      nextBtn.innerHTML = 'Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+    }
+  } else {
+    nextBtn.style.display = 'none';
+  }
+}
+
+function selectAnswer(patId, score, door, btn) {
+  scores[patId] = score;
+  if (score > 0) doorScore[door] = (doorScore[door] || 0) + score;
+
+  // update visual state of all buttons
+  btn.parentElement.querySelectorAll('.answer-btn').forEach(b => {
+    b.className = 'answer-btn';
+  });
+  btn.classList.add('selected-' + score);
+  btn.querySelector('.answer-icon').textContent = score === 0 ? '○' : score === 1 ? '◑' : '●';
+
+  // show next button
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.style.display = 'inline-flex';
+  if (currentQ === QUESTIONS.length - 1) {
+    nextBtn.innerHTML = 'See My Results <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  } else {
+    nextBtn.innerHTML = 'Next <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+  }
+  updateProgress();
+}
+
+function nextQuestion() {
+  if (scores[QUESTIONS[currentQ].id] === undefined) return;
+  if (currentQ < QUESTIONS.length - 1) {
+    currentQ++;
+    renderQuestion(currentQ);
+    window.scrollTo({top:0,behavior:'smooth'});
+  } else {
+    showResults();
+  }
+}
+
+function updateProgress() {
+  const done = Object.keys(scores).length;
+  const pct = Math.round((done / QUESTIONS.length) * 100);
+  document.getElementById('progBar').style.width = pct + '%';
+  document.documentElement.style.setProperty('--progress', pct + '%');
+}
+
+// ═══════════════════════════════════════════════
+// RESULTS ENGINE
+// ═══════════════════════════════════════════════
+
+function showResults() {
+  showScreen('results');
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  const ids = Object.keys(PATTERNS);
+  const total = ids.reduce((a,id) => a + (scores[id]||0), 0);
+  const primary = ids.reduce((a,b) => (scores[a]||0) >= (scores[b]||0) ? a : b);
+  const secondary = ids.filter(id => id !== primary).reduce((a,b) => (scores[a]||0) >= (scores[b]||0) ? a : b);
+  const pat = PATTERNS[primary];
+  const tier = TIERS.find(t => total <= t.max) || TIERS[TIERS.length-1];
+  const isDoorA = doorScore.a >= doorScore.b;
+
+  // encode results in URL
+  const params = new URLSearchParams();
+  ids.forEach(id => params.set(id, scores[id]||0));
+  params.set('primary', primary);
+  window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+
+  // score bars
+  let barsHTML = '';
+  ids.forEach(id => {
+    const p = PATTERNS[id];
+    const s = scores[id] || 0;
+    const pct = (s/2)*100;
+    const isPrimary = id === primary;
+    barsHTML += `
+      <div class="sbar-row">
+        <div class="sbar-label" style="${isPrimary?'color:'+p.color:''}">${p.code}</div>
+        <div class="sbar-track">
+          <div class="sbar-fill" style="width:${pct}%;background:${p.color};${isPrimary?'box-shadow:0 0 8px '+p.color+'60':''}"></div>
+        </div>
+        <div class="sbar-val" style="${isPrimary?'color:'+p.color:''}">${s}</div>
+      </div>`;
+  });
+
+  // chapter chips
+  let chipsHTML = '';
+  pat.chapters.forEach(ch => {
+    const cls = ch.type === 'free' ? 'ch-free' : ch.type === 'bonus' ? 'ch-bonus' : 'ch-paid';
+    chipsHTML += `<span class="ch-chip ${cls}">${ch.label} — ${ch.name}</span>`;
+  });
+
+  // door content
+  const doorHTML = isDoorA
+    ? `<div class="door-block door-a"><div class="door-label">Your Entry · The Architect Path</div><div class="door-text">Your pattern scores lean structural and governance-focused. The chapters mapped to your primary pattern address the architectural failure directly — the missing system, the absent document, the unwritten protocol. Start there. Build the container before you revisit the conversation.</div></div>`
+    : `<div class="door-block door-b"><div class="door-label">Your Entry · The Weaver Path</div><div class="door-text">Your pattern scores lean relational and somatic. The chapters mapped to your primary pattern work with the felt experience of the collapse — the depletion, the fractured field, the invisible load. Start there. The structural repair will follow once the relational ground is named.</div></div>`;
+
+  // share text
+  const shareText = `I just ran the Collapse Diagnostic. My primary pattern is ${pat.code} — ${pat.name}. Total score: ${total}/14. Which one is yours?\n\nstopthecollapse.com/diagnostic`;
+  const tweetText = encodeURIComponent(`I ran the Collapse Diagnostic. My primary structural failure pattern is ${pat.code}: ${pat.name}. Score: ${total}/14.\n\nWhich one is yours? → stopthecollapse.com/diagnostic`);
+
+  // secondary pattern note
+  const sec = PATTERNS[secondary];
+  const secScore = scores[secondary] || 0;
+  const secNote = secScore > 0 ? `<p style="margin-top:12px;font-size:clamp(13px,1.7vw,14px);color:var(--mist);line-height:1.65;">Secondary pattern: <span style="color:${sec.color};font-family:'DM Mono',monospace;">${sec.code}</span> ${sec.name} (score: ${secScore}). When two patterns are active simultaneously, they usually compound each other. Address ${pat.code} first.</p>` : '';
+
+  document.getElementById('resultsContent').innerHTML = `
+    <!-- PRIMARY RESULT CARD -->
+    <div class="result-card" style="border-color:${pat.color}30;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,${pat.color},${pat.color}60);border-radius:20px 20px 0 0;"></div>
+      <div class="result-eyebrow">Your Primary Collapse Pattern</div>
+      <div class="result-pattern-badge">
+        <div class="result-fcode" style="color:${pat.color};font-family:'DM Mono',monospace;">${pat.code}</div>
+        <div style="width:1px;height:36px;background:rgba(255,255,255,.1);margin:0 4px;"></div>
+        <div>
+          <div class="result-fname">${pat.name}</div>
+          <div class="result-tagline">${pat.tagline}</div>
+        </div>
+      </div>
+      <p class="result-feel">${pat.feel}</p>
+      <div class="result-body">${pat.body}</div>
+
+      <!-- RISK TIER -->
+      <div class="risk-tier ${tier.cls}">
+        <div class="risk-dot"></div>
+        <div class="risk-text">
+          <div class="risk-label">${tier.label}</div>
+          <div class="risk-desc">${tier.next}</div>
+        </div>
+        <div class="risk-score">${total}<span style="font-size:.4em;color:var(--mist);">/14</span></div>
+      </div>
+      ${secNote}
+    </div>
+
+    <!-- SCORE MAP -->
+    <div class="result-card" style="padding-bottom:28px;">
+      <div class="result-eyebrow" style="margin-bottom:14px;">Your Full Pattern Map</div>
+      <div class="score-bars">${barsHTML}</div>
+    </div>
+
+    <!-- DOOR + CHAPTERS -->
+    <div class="result-card">
+      <div class="result-eyebrow" style="margin-bottom:14px;">Your Entry Path</div>
+      ${doorHTML}
+      <div class="chapters-block">
+        <div class="chapters-label">Audiobook chapters mapped to ${pat.code} — start here</div>
+        <div class="chapter-chips">${chipsHTML}</div>
+        <p style="margin-top:10px;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);">
+          <span style="color:var(--gold);">■</span> Free access &nbsp;
+          <span style="color:var(--teal);">■</span> Builder Pass &nbsp;
+          <span style="color:var(--violet);">■</span> Bonus episode
+        </p>
+      </div>
+    </div>
+
+    <!-- EMAIL CAPTURE -->
+    <div class="email-block">
+      <div class="email-h">Send me my full results report</div>
+      <div class="email-sub">Get a PDF version of your results with the complete repair protocol for ${pat.code}, all chapter links, and the diagnostic Founding Listener Pass offer. No spam. Unsubscribe anytime.</div>
+      <div class="email-form">
+        <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
+        <button class="email-submit" onclick="submitEmail()">Send My Report</button>
+      </div>
+      <p class="email-note">You will be subscribed to Stopping the Collapse on Substack. Free tier. No credit card.</p>
+      <p class="email-sent" id="emailSent">You are in. Check your inbox in the next few minutes.</p>
+    </div>
+
+    <!-- SHARE -->
+    <div class="share-block">
+      <div class="share-h">Pass it to your co-founder or core team</div>
+      <p class="share-quote">"This pattern is easier to repair when more than one person can see it. Forward this link and ask: which pattern do you think is most active in what we are building right now?"</p>
+      <div class="share-btns">
+        <button class="share-btn share-copy" onclick="copyLink('${shareText}')">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="9" height="9" rx="1"/><path d="M11 5V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2"/></svg>
+          Copy link + results
+          <span class="copy-confirm" id="copyConfirm">Copied</span>
+        </button>
+        <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text=${tweetText}" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M12.6 0h2.454l-5.36 6.778L16 16h-4.937l-3.867-5.594L2.771 16H.316l5.733-7.25L0 0h5.063l3.495 5.114zm-.86 14.376h1.36L4.323 1.539H2.865z"/></svg>
+          Share on X
+        </a>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <div class="cta-h">The repair architecture exists.</div>
+      <div class="cta-sub">The 33-chapter audiobook maps every pattern to the structural intervention that addresses it. Delivered as a private podcast to Apple, Spotify, or any podcast app. Start with the chapter for ${pat.code} — it is your entry point, not Chapter 1.</div>
+      <div class="cta-btns">
+        <a class="cta-primary" href="https://stopthecollapse.com">Get the Builder Pass &rarr;</a>
+        <a class="cta-secondary" href="https://rickbroider.substack.com/subscribe">Subscribe Free First</a>
+      </div>
+      <button class="restart-btn" onclick="restartQuiz()">Retake for a different project</button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// ACTIONS
+// ═══════════════════════════════════════════════
+
+function submitEmail() {
+  const email = document.getElementById('emailInput').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('emailInput').style.borderColor = '#E06050';
+    return;
+  }
+  // In production: POST to Substack or ConvertKit API
+  // For now: open Substack subscribe with email pre-filled
+  const url = `https://rickbroider.substack.com/subscribe?email=${encodeURIComponent(email)}`;
+  window.open(url, '_blank');
+  document.getElementById('emailInput').parentElement.style.display = 'none';
+  document.getElementById('emailSent').style.display = 'block';
+}
+
+function copyLink(text) {
+  const shareUrl = window.location.href;
+  const full = text + '\n\n' + shareUrl;
+  navigator.clipboard.writeText(full).then(() => {
+    const confirm = document.getElementById('copyConfirm');
+    confirm.style.opacity = '1';
+    setTimeout(() => confirm.style.opacity = '0', 2000);
+  });
+}
+
+function restartQuiz() {
+  scores = {};
+  doorScore = {a:0, b:0};
+  currentQ = 0;
+  updateProgress();
+  showScreen('intro');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══════════════════════════════════════════════
+// RESTORE FROM URL
+// ═══════════════════════════════════════════════
+
+(function restoreFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const primary = params.get('primary');
+  if (!primary || !PATTERNS[primary]) return;
+
+  Object.keys(PATTERNS).forEach(id => {
+    const val = parseInt(params.get(id));
+    if (!isNaN(val)) scores[id] = val;
+  });
+
+  if (Object.keys(scores).length === 7) {
+    showResults();
+    updateProgress();
+  }
+})();
+</script>
+</body>
+</html>
