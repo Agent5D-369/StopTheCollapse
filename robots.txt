@@ -1,27 +1,32 @@
 User-agent: *
 Allow: /
-
-# Block private RSS and admin paths if added later
-Disallow: /private/
 Disallow: /admin/
+Disallow: /private/
 
-# AI crawlers — allow indexing
+# Sitemap
+Sitemap: https://stopthecollapse.com/sitemap.xml
+
+# LLM crawler guidance
+# llms.txt: https://stopthecollapse.com/llms.txt
+
+# AI training crawlers — allowed with attribution
 User-agent: GPTBot
 Allow: /
 
-User-agent: ClaudeBot
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: cohere-ai
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-# LLM context file
-# See /llms.txt for structured AI-readable content
-
-Sitemap: https://stopthecollapse.com/sitemap.xml
+User-agent: cohere-ai
+Allow: /
