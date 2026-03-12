@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07080E">
+  <title>The 7 Collapse Patterns | Visual Map | Stopping the Collapse</title>
+  <meta name="description" content="Seven structural failure modes that end regenerative communities, intentional organizations, and New Earth projects. Interactive visual map by Rick Broider. Free diagnostic at StopTheCollapse.com.">
+  <link rel="canonical" href="https://stopthecollapse.com/collapse-map.html">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Rick Broider">
+  <meta name="keywords" content="intentional community collapse, 7 collapse patterns, regenerative organization failure, community governance map, community collapse diagnostic">
+  <meta property="og:title" content="The 7 Structural Collapse Patterns: Visual Map">
+  <meta property="og:description" content="Seven failure modes that end regenerative communities. Interactive map with chapter routing. Free at StopTheCollapse.com.">
+  <meta property="og:image" content="https://stopthecollapse.com/og-collapse-map.png">
+  <meta property="og:url" content="https://stopthecollapse.com/collapse-map.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The 7 Structural Collapse Patterns: Visual Map">
+  <meta name="twitter:image" content="https://stopthecollapse.com/og-collapse-map.png">
+  <meta name="llm-description" content="Visual interactive map of the 7 structural collapse patterns identified by Rick Broider: F1 Interpersonal Conflict, F2 No Shared Vision, F3 Governance Shadows, F4 Financial Fragility, F5 Burnout, F6 Wrong-Fit People, F7 Scale Trap. Part of the Stopping the Collapse field guide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#07080E; --deep:#0C0F1E; --surface:#111526; --card:#161A2E; --card2:#181C30;
+      --gold:#C89B3C; --gold-hi:#F0C050; --gold-dim:rgba(200,155,60,.1);
+      --ember:#E07830; --teal:#0E8A7A; --teal-dim:rgba(14,138,122,.1);
+      --violet:#7B5EA7; --violet-dim:rgba(123,94,167,.1);
+      --white:#FFFFFF; --pearl:#EDE8DC; --silver:#C0C0D0; --mist:#7878A0;
+      --border:rgba(255,255,255,.07); --max:820px;
+      --f1:#C0392B; --f2:#D9A741; --f3:#7B68EE; --f4:#B87333; --f5:#E07B39; --f6:#7AD1E2; --f7:#A8C5A0;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy);color:var(--white);font-family:'Lora',serif;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+    @media print{
+      body{background:#fff;color:#0a0a0a;font-size:10pt;}
+      .cosmos,.no-print,.print-bar{display:none!important;}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    }
+    .cosmos{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 140% 65% at 50% -8%,#16203C 0%,var(--navy) 58%);pointer-events:none;}
+    .page{position:relative;z-index:1;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,52px);}
+    .section{padding:clamp(36px,5vw,60px) 0;}
+    .divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(200,155,60,.18),transparent);}
+    .eyebrow{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,155,60,.55);margin-bottom:12px;}
+    .h2{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,34px);font-weight:900;line-height:1.2;color:var(--white);margin-bottom:18px;}
+    .h2 em{color:var(--gold);font-style:italic;}
+    .prose{font-family:'Lora',serif;font-size:clamp(15px,2vw,17px);color:var(--silver);line-height:1.82;}
+    .prose p+p{margin-top:16px;}
+
+    /* HERO */
+    .hero{background:linear-gradient(170deg,#0C0F1E 0%,#07080E 100%);border-bottom:1px solid rgba(200,155,60,.12);padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,72px);text-align:center;}
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,155,60,.65);border:1px solid rgba(200,155,60,.2);border-radius:100px;padding:6px 16px;margin-bottom:28px;}
+    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    .hero-h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5.5vw,54px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:12px;}
+    .hero-h1 em{color:var(--gold);font-style:italic;}
+    .hero-sub{font-size:clamp(15px,2.2vw,17px);color:var(--silver);max-width:560px;margin:0 auto 24px;line-height:1.75;}
+    .hero-byline{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);}
+    .hero-byline strong{color:var(--gold);}
+    a.sl{color:var(--mist);text-decoration:none;border-bottom:1px solid rgba(120,120,160,.3);transition:color .15s,border-color .15s;}
+    a.sl:hover{color:var(--gold);border-color:var(--gold);}
+
+    /* MAP CONTAINER — responsive SVG */
+    .map-section{padding:clamp(40px,6vw,72px) 0;}
+    .map-wrap{max-width:680px;margin:0 auto;padding:0 clamp(16px,4vw,40px);}
+    .map-container{
+      width:100%;
+      background:radial-gradient(ellipse 100% 80% at 50% 50%, #1A1F33 0%, #080A12 100%);
+      border-radius:16px;
+      border:1px solid rgba(122,209,226,0.12);
+      box-shadow:0 0 60px rgba(122,209,226,0.06), 0 0 0 1px rgba(255,255,255,0.04);
+      overflow:hidden;
+      position:relative;
+    }
+    .map-container svg{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* TOOLTIP — pure CSS, shown on hover via sibling/data trick */
+    .node-group{cursor:pointer;}
+    .node-group .tooltip{
+      opacity:0;
+      transition:opacity 0.2s;
+      pointer-events:none;
+    }
+    .node-group:hover .tooltip{opacity:1;}
+    .node-group:hover .node-ring{
+      filter:url(#nodeGlowFilter);
+    }
+    .node-group:hover .connector{
+      stroke-opacity:0.9;
+      stroke-dasharray:none;
+    }
+
+    /* LEGEND GRID */
+    .legend-section{padding:0 0 clamp(40px,6vw,64px);}
+    .legend-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:12px;
+      max-width:680px;
+      margin:0 auto;
+      padding:0 clamp(16px,4vw,40px);
+    }
+    .legend-item{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.06);
+      transition:background 0.2s, border-color 0.2s;
+    }
+    .legend-item:hover{background:rgba(255,255,255,0.05);}
+    .legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+    .legend-code{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;margin-bottom:3px;}
+    .legend-name{font-family:'Lora',serif;font-size:13px;color:rgba(248,247,244,0.8);line-height:1.4;}
+    .legend-desc{font-family:'Lora',serif;font-size:11.5px;color:rgba(192,192,208,0.6);line-height:1.5;margin-top:4px;}
+
+    /* DOWNLOAD ROW */
+    .dl-section{padding:0 0 clamp(40px,5vw,60px);}
+    .dl-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:680px;margin:0 auto;padding:0 clamp(16px,4vw,40px);}
+    .dl-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:rgba(200,155,60,.8);
+      border:1px solid rgba(200,155,60,.25);
+      border-radius:8px;
+      padding:10px 20px;
+      text-decoration:none;
+      background:rgba(200,155,60,.04);
+      transition:all 0.2s;
+    }
+    .dl-btn:hover{background:rgba(200,155,60,.1);border-color:rgba(200,155,60,.5);color:var(--gold-hi);}
+    .dl-btn::before{content:'↓';font-size:14px;}
+
+    /* CTA BLOCK */
+    .cta-block{
+      max-width:680px;margin:0 auto;padding:clamp(28px,4vw,44px) clamp(20px,4vw,44px);
+      background:rgba(14,18,36,0.7);
+      border:1px solid rgba(200,155,60,.15);
+      border-radius:14px;
+      text-align:center;
+      margin-bottom:clamp(40px,6vw,72px);
+    }
+    .cta-block .cta-hed{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-weight:900;color:var(--white);margin-bottom:10px;}
+    .cta-block .cta-body{font-family:'Lora',serif;font-size:clamp(14px,1.8vw,16px);color:var(--silver);margin-bottom:22px;line-height:1.7;}
+    .cta-btn{display:inline-block;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:13px 32px;border-radius:8px;text-decoration:none;transition:background .2s,transform .15s;}
+    .cta-btn:hover{background:var(--gold-hi);transform:translateY(-1px);}
+    .cta-or{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);margin:14px 0;}
+    .cta-sec{font-family:'Lora',serif;font-size:13px;color:var(--mist);}
+    .cta-sec a{color:var(--mist);}
+
+    /* FOOTER */
+    .rfooter{border-top:1px solid var(--border);padding:34px 22px;text-align:center;}
+    .rfooter p{font-family:'Syne',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);line-height:1.9;}
+    .rfooter strong{color:var(--gold);}
+
+    /* PRINT BUTTON */
+    .print-bar{position:fixed;bottom:24px;right:24px;z-index:100;}
+    .print-btn{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--card);color:var(--gold);border:1px solid rgba(200,155,60,.3);border-radius:8px;padding:10px 18px;cursor:pointer;transition:all .15s;}
+    .print-btn:hover{background:var(--gold);color:var(--navy);}
+
+    /* MOBILE ADJUSTMENTS */
+    @media(max-width:480px){
+      .legend-grid{grid-template-columns:1fr 1fr;}
+      .legend-desc{display:none;}
+    }
+    @media(max-width:340px){
+      .legend-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cosmos"></div>
+<div class="page">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-badge">Field Diagnostic &nbsp;&middot;&nbsp; Seven Structural Failure Modes</div>
+    <h1 class="hero-h1">The 7 <em>Collapse</em> Patterns</h1>
+    <p class="hero-sub">These are the structural conditions that end regenerative communities, intentional organizations, and New Earth projects. Not because the people stopped caring. Because the patterns went unnamed.</p>
+    <div class="hero-byline">By <strong>Rick Broider</strong> (Omja Brhad) &nbsp;&middot;&nbsp; <a href="https://stopthecollapse.com" class="sl">StopTheCollapse.com</a></div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <div class="map-wrap">
+    <div class="map-container">
+      <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The 7 Collapse Patterns diagnostic map showing seven interconnected structural failure modes">
+        <defs>
+          <radialGradient id="bgG" cx="50%" cy="50%" r="70%">
+            <stop offset="0%" stop-color="#1A1F33"/>
+            <stop offset="100%" stop-color="#080A12"/>
+          </radialGradient>
+          <radialGradient id="cglow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#D9C37A" stop-opacity="0.9"/>
+            <stop offset="60%" stop-color="#C4A84E" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#8B6914" stop-opacity="0"/>
+          </radialGradient>
+          <!-- Per-node halo gradients -->
+          <radialGradient id="h0" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#C0392B" stop-opacity="0.3"/><stop offset="100%" stop-color="#C0392B" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#D9A741" stop-opacity="0.3"/><stop offset="100%" stop-color="#D9A741" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7B68EE" stop-opacity="0.3"/><stop offset="100%" stop-color="#7B68EE" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#B87333" stop-opacity="0.3"/><stop offset="100%" stop-color="#B87333" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h4" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#E07B39" stop-opacity="0.3"/><stop offset="100%" stop-color="#E07B39" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h5" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#7AD1E2" stop-opacity="0.3"/><stop offset="100%" stop-color="#7AD1E2" stop-opacity="0"/></radialGradient>
+          <radialGradient id="h6" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#A8C5A0" stop-opacity="0.3"/><stop offset="100%" stop-color="#A8C5A0" stop-opacity="0"/></radialGradient>
+          <!-- Glow filters -->
+          <filter id="cgf" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="14" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="nodeGlowFilter" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="7" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="800" height="800" fill="url(#bgG)"/>
+
+        <!-- Stars -->
+        <circle cx="73" cy="44" r="1.2" fill="white" opacity="0.22"/>
+        <circle cx="156" cy="127" r="0.6" fill="white" opacity="0.15"/>
+        <circle cx="234" cy="67" r="1.2" fill="white" opacity="0.29"/>
+        <circle cx="312" cy="193" r="0.6" fill="white" opacity="0.22"/>
+        <circle cx="445" cy="38" r="1.2" fill="white" opacity="0.36"/>
+        <circle cx="523" cy="152" r="0.6" fill="white" opacity="0.15"/>
+        <circle cx="634" cy="73" r="1.2" fill="white" opacity="0.22"/>
+        <circle cx="712" cy="201" r="0.6" fill="white" opacity="0.29"/>
+        <circle cx="89" cy="356" r="0.6" fill="white" opacity="0.22"/>
+        <circle cx="178" cy="445" r="1.2" fill="white" opacity="0.15"/>
+        <circle cx="723" cy="378" r="0.6" fill="white" opacity="0.29"/>
+        <circle cx="756" cy="512" r="1.2" fill="white" opacity="0.22"/>
+        <circle cx="67" cy="623" r="0.6" fill="white" opacity="0.36"/>
+        <circle cx="189" cy="712" r="1.2" fill="white" opacity="0.15"/>
+        <circle cx="345" cy="756" r="0.6" fill="white" opacity="0.22"/>
+        <circle cx="512" cy="734" r="1.2" fill="white" opacity="0.29"/>
+        <circle cx="667" cy="689" r="0.6" fill="white" opacity="0.22"/>
+        <circle cx="734" cy="623" r="1.2" fill="white" opacity="0.15"/>
+
+        <!-- Orbit ring -->
+        <circle cx="400" cy="420" r="272" fill="none" stroke="rgba(122,209,226,0.1)" stroke-width="1" stroke-dasharray="4 8"/>
+
+        <!-- Connectors (static, hover handled by CSS on node groups) -->
+        <!-- F1 connector -->
+        <line class="connector" x1="400" y1="420" x2="400" y2="148" stroke="#C0392B" stroke-width="0.8" stroke-opacity="0.22" stroke-dasharray="3 6"/>
+        <!-- F2 connector -->
+        <line class="connector" x1="400" y1="420" x2="639" y2="264" stroke="#D9A741" stroke-width="0.8" stroke-opacity="0.22" stroke-dasharray="3 6"/>
+        <!-- F3 connector -->
+        <line class="connector" x1="400" y1="420" x2="655" y2="538" stroke="#7B68EE" stroke-width="0.8" stroke-opacity="0.22" stroke-dasharray="3 6"/>
+        <!-- F4 connector -->
+        <line class="connector" x1="400" y1="420" x2="518" y2="680" stroke="#B87333" stroke-width="0.8" stroke-opacity="0.22" stroke-dasharray="3 6"/>
+        <!-- F5 connector -->
+        <line class="connector" x1="400" y1="420" x2="282" y2="680" stroke="#E07B39" stroke-width="0.8" stroke-opacity="0.22" stroke-dasharray="3 6"/>
+        <!-- F6 connector -->
+        <line class="connector" x1="400" y1="420" x2="145" y2="538" stroke="#7AD1E2" stroke-width="0.8" stroke-opacity="0.22" stroke-dasharray="3 6"/>
+        <!-- F7 connector -->
+        <line class="connector" x1="400" y1="420" x2="161" y2="264" stroke="#A8C5A0" stroke-width="0.8" stroke-opacity="0.22" stroke-dasharray="3 6"/>
+
+        <!-- Center glow -->
+        <circle cx="400" cy="420" r="100" fill="url(#cglow)" opacity="0.35" filter="url(#cgf)"/>
+
+        <!-- Center ring -->
+        <circle cx="400" cy="420" r="48" fill="#0E1224" stroke="#D9C37A" stroke-width="1.8"/>
+        <circle cx="400" cy="420" r="40" fill="none" stroke="#D9C37A" stroke-width="0.5" stroke-opacity="0.35"/>
+
+        <!-- Center text -->
+        <text x="400" y="410" text-anchor="middle" fill="#D9C37A" font-size="11" font-family="Georgia, serif" letter-spacing="0.15em">THE 7</text>
+        <text x="400" y="424" text-anchor="middle" fill="#D9C37A" font-size="11" font-family="Georgia, serif" letter-spacing="0.12em">COLLAPSE</text>
+        <text x="400" y="438" text-anchor="middle" fill="#D9C37A" font-size="11" font-family="Georgia, serif" letter-spacing="0.12em">PATTERNS</text>
+
+        <!-- F1 NODE · Interpersonal Conflict · top center -->
+        <g class="node-group" tabindex="0" role="button" aria-label="F1 Interpersonal Conflict">
+          <circle cx="400" cy="148" r="88" fill="url(#h0)" opacity="0.5"/>
+          <circle class="node-ring" cx="400" cy="148" r="62" fill="#0E1224" stroke="#C0392B" stroke-width="1.5" stroke-opacity="0.75"/>
+          <text x="400" y="137" text-anchor="middle" fill="#C0392B" font-size="17" font-family="Georgia, serif" font-weight="bold" letter-spacing="0.05em">F1</text>
+          <text x="400" y="153" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Interpersonal</text>
+          <text x="400" y="166" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Conflict</text>
+          <!-- tooltip -->
+          <g class="tooltip">
+            <rect x="260" y="218" width="280" height="46" rx="5" fill="rgba(14,18,36,0.97)" stroke="#C0392B" stroke-width="0.8" stroke-opacity="0.5"/>
+            <text x="400" y="237" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">The same argument keeps coming back</text>
+            <text x="400" y="251" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">in different forms.</text>
+          </g>
+        </g>
+
+        <!-- F2 NODE · No Shared Vision · upper right -->
+        <g class="node-group" tabindex="0" role="button" aria-label="F2 No Shared Vision">
+          <circle cx="639" cy="264" r="88" fill="url(#h1)" opacity="0.5"/>
+          <circle class="node-ring" cx="639" cy="264" r="62" fill="#0E1224" stroke="#D9A741" stroke-width="1.5" stroke-opacity="0.75"/>
+          <text x="639" y="253" text-anchor="middle" fill="#D9A741" font-size="17" font-family="Georgia, serif" font-weight="bold" letter-spacing="0.05em">F2</text>
+          <text x="639" y="269" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">No Shared</text>
+          <text x="639" y="282" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Vision</text>
+          <g class="tooltip">
+            <rect x="450" y="334" width="280" height="46" rx="5" fill="rgba(14,18,36,0.97)" stroke="#D9A741" stroke-width="0.8" stroke-opacity="0.5"/>
+            <text x="590" y="353" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">People are doing the work but</text>
+            <text x="590" y="367" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">pulling in different directions.</text>
+          </g>
+        </g>
+
+        <!-- F3 NODE · Governance Shadows · lower right -->
+        <g class="node-group" tabindex="0" role="button" aria-label="F3 Governance Shadows">
+          <circle cx="655" cy="538" r="88" fill="url(#h2)" opacity="0.5"/>
+          <circle class="node-ring" cx="655" cy="538" r="62" fill="#0E1224" stroke="#7B68EE" stroke-width="1.5" stroke-opacity="0.75"/>
+          <text x="655" y="527" text-anchor="middle" fill="#7B68EE" font-size="17" font-family="Georgia, serif" font-weight="bold" letter-spacing="0.05em">F3</text>
+          <text x="655" y="543" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Governance</text>
+          <text x="655" y="556" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Shadows</text>
+          <g class="tooltip">
+            <rect x="350" y="470" width="290" height="46" rx="5" fill="rgba(14,18,36,0.97)" stroke="#7B68EE" stroke-width="0.8" stroke-opacity="0.5"/>
+            <text x="495" y="489" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">Decisions happen in back channels.</text>
+            <text x="495" y="503" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">Nobody has the map.</text>
+          </g>
+        </g>
+
+        <!-- F4 NODE · Financial Fragility · bottom right -->
+        <g class="node-group" tabindex="0" role="button" aria-label="F4 Financial Fragility">
+          <circle cx="518" cy="680" r="88" fill="url(#h3)" opacity="0.5"/>
+          <circle class="node-ring" cx="518" cy="680" r="62" fill="#0E1224" stroke="#B87333" stroke-width="1.5" stroke-opacity="0.75"/>
+          <text x="518" y="669" text-anchor="middle" fill="#B87333" font-size="17" font-family="Georgia, serif" font-weight="bold" letter-spacing="0.05em">F4</text>
+          <text x="518" y="685" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Financial</text>
+          <text x="518" y="698" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Fragility</text>
+          <g class="tooltip">
+            <rect x="230" y="608" width="280" height="46" rx="5" fill="rgba(14,18,36,0.97)" stroke="#B87333" stroke-width="0.8" stroke-opacity="0.5"/>
+            <text x="370" y="627" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">The money conversation keeps</text>
+            <text x="370" y="641" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">getting deferred.</text>
+          </g>
+        </g>
+
+        <!-- F5 NODE · Burnout · bottom left -->
+        <g class="node-group" tabindex="0" role="button" aria-label="F5 Burnout and Depletion">
+          <circle cx="282" cy="680" r="88" fill="url(#h4)" opacity="0.5"/>
+          <circle class="node-ring" cx="282" cy="680" r="62" fill="#0E1224" stroke="#E07B39" stroke-width="1.5" stroke-opacity="0.75"/>
+          <text x="282" y="669" text-anchor="middle" fill="#E07B39" font-size="17" font-family="Georgia, serif" font-weight="bold" letter-spacing="0.05em">F5</text>
+          <text x="282" y="685" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Burnout &amp;</text>
+          <text x="282" y="698" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Depletion</text>
+          <g class="tooltip">
+            <rect x="90" y="608" width="290" height="46" rx="5" fill="rgba(14,18,36,0.97)" stroke="#E07B39" stroke-width="0.8" stroke-opacity="0.5"/>
+            <text x="235" y="627" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">Your most committed people are</text>
+            <text x="235" y="641" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">closest to leaving.</text>
+          </g>
+        </g>
+
+        <!-- F6 NODE · Wrong-Fit People · lower left -->
+        <g class="node-group" tabindex="0" role="button" aria-label="F6 Wrong-Fit People">
+          <circle cx="145" cy="538" r="88" fill="url(#h5)" opacity="0.5"/>
+          <circle class="node-ring" cx="145" cy="538" r="62" fill="#0E1224" stroke="#7AD1E2" stroke-width="1.5" stroke-opacity="0.75"/>
+          <text x="145" y="527" text-anchor="middle" fill="#7AD1E2" font-size="17" font-family="Georgia, serif" font-weight="bold" letter-spacing="0.05em">F6</text>
+          <text x="145" y="543" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Wrong-Fit</text>
+          <text x="145" y="556" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">People</text>
+          <g class="tooltip">
+            <rect x="160" y="470" width="290" height="46" rx="5" fill="rgba(14,18,36,0.97)" stroke="#7AD1E2" stroke-width="0.8" stroke-opacity="0.5"/>
+            <text x="305" y="489" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">Misaligned presence costs more</text>
+            <text x="305" y="503" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">than absence would.</text>
+          </g>
+        </g>
+
+        <!-- F7 NODE · Scale Trap · upper left -->
+        <g class="node-group" tabindex="0" role="button" aria-label="F7 Scale Trap">
+          <circle cx="161" cy="264" r="88" fill="url(#h6)" opacity="0.5"/>
+          <circle class="node-ring" cx="161" cy="264" r="62" fill="#0E1224" stroke="#A8C5A0" stroke-width="1.5" stroke-opacity="0.75"/>
+          <text x="161" y="253" text-anchor="middle" fill="#A8C5A0" font-size="17" font-family="Georgia, serif" font-weight="bold" letter-spacing="0.05em">F7</text>
+          <text x="161" y="269" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Scale</text>
+          <text x="161" y="282" text-anchor="middle" fill="rgba(248,247,244,0.85)" font-size="10" font-family="Georgia, serif">Trap</text>
+          <g class="tooltip">
+            <rect x="70" y="334" width="280" height="46" rx="5" fill="rgba(14,18,36,0.97)" stroke="#A8C5A0" stroke-width="0.8" stroke-opacity="0.5"/>
+            <text x="210" y="353" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">What worked at one size</text>
+            <text x="210" y="367" text-anchor="middle" fill="rgba(248,247,244,0.75)" font-size="10" font-family="Georgia, serif">is breaking at another.</text>
+          </g>
+        </g>
+
+        <!-- Title -->
+        <text x="400" y="46" text-anchor="middle" fill="rgba(248,247,244,0.88)" font-size="20" font-family="Georgia, serif" letter-spacing="0.12em">STOPPING THE COLLAPSE</text>
+        <text x="400" y="68" text-anchor="middle" fill="rgba(122,209,226,0.65)" font-size="10" font-family="Georgia, serif" letter-spacing="0.2em">FIELD DIAGNOSTIC · SEVEN STRUCTURAL FAILURE MODES</text>
+        <line x1="220" y1="78" x2="580" y2="78" stroke="rgba(217,195,122,0.2)" stroke-width="0.5"/>
+
+        <!-- Footer line -->
+        <line x1="220" y1="768" x2="580" y2="768" stroke="rgba(217,195,122,0.12)" stroke-width="0.5"/>
+        <text x="400" y="784" text-anchor="middle" fill="rgba(248,247,244,0.25)" font-size="9" font-family="Georgia, serif" letter-spacing="0.14em">StopTheCollapse.com · Rick Broider (Omja Brhad)</text>
+
+      </svg>
+    </div>
+
+    <p style="text-align:center;font-family:'Lora',serif;font-size:13px;color:rgba(120,120,160,0.6);margin-top:12px;letter-spacing:0.04em;">
+      Hover any node to reveal the pattern signal
+    </p>
+  </div>
+</div>
+
+<!-- LEGEND GRID -->
+<div class="legend-section">
+  <div class="legend-grid">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--f1);"></div>
+      <div>
+        <div class="legend-code" style="color:var(--f1);">F1</div>
+        <div class="legend-name">Interpersonal Conflict</div>
+        <div class="legend-desc">The same argument keeps coming back in different forms.</div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--f2);"></div>
+      <div>
+        <div class="legend-code" style="color:var(--f2);">F2</div>
+        <div class="legend-name">No Shared Vision</div>
+        <div class="legend-desc">People are doing the work but pulling in different directions.</div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--f3);"></div>
+      <div>
+        <div class="legend-code" style="color:var(--f3);">F3</div>
+        <div class="legend-name">Governance Shadows</div>
+        <div class="legend-desc">Decisions happen in back channels. Nobody has the map.</div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--f4);"></div>
+      <div>
+        <div class="legend-code" style="color:var(--f4);">F4</div>
+        <div class="legend-name">Financial Fragility</div>
+        <div class="legend-desc">The money conversation keeps getting deferred.</div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--f5);"></div>
+      <div>
+        <div class="legend-code" style="color:var(--f5);">F5</div>
+        <div class="legend-name">Burnout &amp; Depletion</div>
+        <div class="legend-desc">Your most committed people are closest to leaving.</div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--f6);"></div>
+      <div>
+        <div class="legend-code" style="color:var(--f6);">F6</div>
+        <div class="legend-name">Wrong-Fit People</div>
+        <div class="legend-desc">Misaligned presence costs more than absence would.</div>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:var(--f7);"></div>
+      <div>
+        <div class="legend-code" style="color:var(--f7);">F7</div>
+        <div class="legend-name">Scale Trap</div>
+        <div class="legend-desc">What worked at one size is breaking at another.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOWNLOAD ROW -->
+<div class="dl-section">
+  <div class="dl-row">
+    <a href="collapse-map-1080x1080.svg" download class="dl-btn">1080×1080 Social</a>
+    <a href="collapse-map-1456x816.svg" download class="dl-btn">1456×816 Substack</a>
+  </div>
+</div>
+
+<!-- CTA BLOCK -->
+<div class="wrap">
+  <div class="cta-block">
+    <div class="cta-hed">Find your pattern. Start there.</div>
+    <div class="cta-body">Four questions. No signup required. Routes you directly to the chapters that address your specific pattern.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:14px;">
+      <a href="/diagnostic" class="cta-btn">Take the diagnostic &rarr;</a>
+      <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="cta-btn" style="background:transparent;border:1px solid rgba(200,155,60,.4);color:var(--gold);">Subscribe free</a>
+    </div>
+    <div class="cta-sec">Full 33-chapter audiobook via <a href="https://rickbroider.substack.com/subscribe" class="sl">Builder Pass &rarr; $7 / mo</a></div>
+  </div>
+</div>
+
+<footer class="rfooter">
+  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:rgba(237,232,220,.5);margin-bottom:6px;">Stopping the Collapse</div>
+  <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:10px;">
+    <a href="https://rickbroider.substack.com" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(114,114,154,.38);text-decoration:none;">Substack</a>
+    <a href="patterns.html" style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(114,114,154,.38);text-decoration:none;">The 7 Patterns</a>
+    <a href="about.html" style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(114,114,154,.38);text-decoration:none;">About Rick</a>
+    <a href="privacy.html" style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(114,114,154,.38);text-decoration:none;">Privacy</a>
+  </div>
+  <p style="margin-top:16px;font-size:10px;">&copy; 2026 Rick Broider &middot; All rights reserved</p>
+</footer>
+
+</div><!-- /page -->
+
+<div class="print-bar no-print">
+  <button class="print-btn" onclick="window.print()">&#8595; Save as PDF</button>
+</div>
+
+</body>
+</html>

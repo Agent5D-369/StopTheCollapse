@@ -1,0 +1,186 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="0%" r="90%">
+      <stop offset="0%" stop-color="#16203C"/>
+      <stop offset="100%" stop-color="#07080E"/>
+    </radialGradient>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C89B3C" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#C89B3C" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Star field -->
+  <circle cx="80" cy="40" r="0.8" fill="white" opacity="0.2"/>
+  <circle cx="180" cy="90" r="0.5" fill="white" opacity="0.15"/>
+  <circle cx="320" cy="30" r="1" fill="white" opacity="0.25"/>
+  <circle cx="450" cy="70" r="0.6" fill="white" opacity="0.18"/>
+  <circle cx="620" cy="25" r="0.8" fill="white" opacity="0.2"/>
+  <circle cx="750" cy="55" r="0.5" fill="white" opacity="0.15"/>
+  <circle cx="900" cy="35" r="1" fill="white" opacity="0.22"/>
+  <circle cx="1050" cy="65" r="0.6" fill="white" opacity="0.17"/>
+  <circle cx="1150" cy="20" r="0.8" fill="white" opacity="0.2"/>
+  <circle cx="60" cy="180" r="0.5" fill="white" opacity="0.15"/>
+  <circle cx="200" cy="520" r="0.8" fill="white" opacity="0.12"/>
+  <circle cx="1100" cy="500" r="0.6" fill="white" opacity="0.15"/>
+  <circle cx="950" cy="580" r="0.8" fill="white" opacity="0.12"/>
+  <circle cx="100" cy="580" r="0.5" fill="white" opacity="0.15"/>
+  <circle cx="1180" cy="200" r="0.8" fill="white" opacity="0.18"/>
+
+  <!-- Top gold divider line -->
+  <line x1="40" y1="0" x2="1160" y2="0" stroke="#C89B3C" stroke-width="3" opacity="0.6"/>
+
+  <!-- HEADER SECTION -->
+  <!-- Eyebrow -->
+  <text x="600" y="48" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="bold" letter-spacing="3" text-transform="uppercase" fill="#C89B3C" opacity="0.7">STOPPING THE COLLAPSE · RICK BROIDER</text>
+
+  <!-- Main title -->
+  <text x="600" y="92" text-anchor="middle" font-family="Georgia, serif" font-size="38" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">The 7 Structural Patterns</text>
+  <text x="600" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="38" font-weight="900" fill="#C89B3C" font-style="italic" letter-spacing="-0.5">That Collapse Regenerative Projects</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="158" text-anchor="middle" font-family="Georgia, serif" font-size="13.5" fill="#C0C0D0">Not because the people didn't care. Because the patterns went unnamed until it was too late.</text>
+
+  <!-- Gold rule under header -->
+  <line x1="200" y1="172" x2="1000" y2="172" stroke="#C89B3C" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- ============================================================ -->
+  <!-- PATTERN CARDS — 4 top row, 3 bottom row -->
+  <!-- ============================================================ -->
+
+  <!-- ROW 1 — F1, F2, F3, F4 -->
+  <!-- spacing: x starts at 40, each card 280px wide, gap 12px -->
+
+  <!-- F1 — Interpersonal Conflict -->
+  <rect x="28" y="186" width="272" height="168" rx="8" fill="#C0392B" fill-opacity="0.06" stroke="#C0392B" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="28" y="186" width="4" height="168" rx="2" fill="#C0392B" opacity="0.7"/>
+  <!-- code badge -->
+  <text x="44" y="210" font-family="Georgia, serif" font-size="18" font-weight="900" fill="#C0392B" letter-spacing="1">F1</text>
+  <!-- title -->
+  <text x="44" y="232" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#EDE8DC">Interpersonal Conflict</text>
+  <!-- divider -->
+  <line x1="44" y1="240" x2="288" y2="240" stroke="#C0392B" stroke-opacity="0.2" stroke-width="0.5"/>
+  <!-- feel line -->
+  <text x="44" y="258" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">The same argument keeps coming back.</text>
+  <text x="44" y="272" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">People you trusted are in opposing camps.</text>
+  <!-- desc -->
+  <text x="44" y="293" font-family="Georgia, serif" font-size="10" fill="#9898B8">Communities don't collapse because people</text>
+  <text x="44" y="307" font-family="Georgia, serif" font-size="10" fill="#9898B8">disagree. They collapse because the container</text>
+  <text x="44" y="321" font-family="Georgia, serif" font-size="10" fill="#9898B8">to process conflict was never built.</text>
+  <!-- chapters chip -->
+  <rect x="44" y="334" width="136" height="16" rx="3" fill="#C0392B" fill-opacity="0.12" stroke="#C0392B" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="52" y="345" font-family="Georgia, serif" font-size="8.5" fill="#C0392B" opacity="0.9">Chapters: 18 · 22 · 25 · 28 · 31</text>
+
+  <!-- F2 — No Shared Vision -->
+  <rect x="312" y="186" width="272" height="168" rx="8" fill="#D9A741" fill-opacity="0.06" stroke="#D9A741" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="312" y="186" width="4" height="168" rx="2" fill="#D9A741" opacity="0.7"/>
+  <text x="328" y="210" font-family="Georgia, serif" font-size="18" font-weight="900" fill="#D9A741" letter-spacing="1">F2</text>
+  <text x="328" y="232" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#EDE8DC">No Shared Vision</text>
+  <line x1="328" y1="240" x2="572" y2="240" stroke="#D9A741" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="328" y="258" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">People are doing the work but pulling</text>
+  <text x="328" y="272" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">in different directions.</text>
+  <text x="328" y="293" font-family="Georgia, serif" font-size="10" fill="#9898B8">Vision drift is not a communication problem.</text>
+  <text x="328" y="307" font-family="Georgia, serif" font-size="10" fill="#9898B8">It is a structural problem. When vision isn't</text>
+  <text x="328" y="321" font-family="Georgia, serif" font-size="10" fill="#9898B8">encoded in governance, it becomes folklore.</text>
+  <rect x="328" y="334" width="130" height="16" rx="3" fill="#D9A741" fill-opacity="0.12" stroke="#D9A741" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="336" y="345" font-family="Georgia, serif" font-size="8.5" fill="#D9A741" opacity="0.9">Chapters: 1 · 6 · 11 · 19 · 23 · 27 · 33</text>
+
+  <!-- F3 — Governance Shadows -->
+  <rect x="596" y="186" width="272" height="168" rx="8" fill="#7B68EE" fill-opacity="0.06" stroke="#7B68EE" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="596" y="186" width="4" height="168" rx="2" fill="#7B68EE" opacity="0.7"/>
+  <text x="612" y="210" font-family="Georgia, serif" font-size="18" font-weight="900" fill="#7B68EE" letter-spacing="1">F3</text>
+  <text x="612" y="232" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#EDE8DC">Governance Shadows</text>
+  <line x1="612" y1="240" x2="856" y2="240" stroke="#7B68EE" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="612" y="258" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">Decisions are made but no one knows</text>
+  <text x="612" y="272" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">by whom or how. Power lives nowhere.</text>
+  <text x="612" y="293" font-family="Georgia, serif" font-size="10" fill="#9898B8">Fake flatness is still hierarchy — just</text>
+  <text x="612" y="307" font-family="Georgia, serif" font-size="10" fill="#9898B8">unaccountable. A governance vacuum doesn't</text>
+  <text x="612" y="321" font-family="Georgia, serif" font-size="10" fill="#9898B8">just fail. It generates conflict by its absence.</text>
+  <rect x="612" y="334" width="148" height="16" rx="3" fill="#7B68EE" fill-opacity="0.12" stroke="#7B68EE" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="620" y="345" font-family="Georgia, serif" font-size="8.5" fill="#7B68EE" opacity="0.9">Chapters: 4 · 8 · 12 · 15 · 21 · 22 · 25</text>
+
+  <!-- F4 — Financial Fragility -->
+  <rect x="880" y="186" width="292" height="168" rx="8" fill="#B87333" fill-opacity="0.06" stroke="#B87333" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="880" y="186" width="4" height="168" rx="2" fill="#B87333" opacity="0.7"/>
+  <text x="896" y="210" font-family="Georgia, serif" font-size="18" font-weight="900" fill="#B87333" letter-spacing="1">F4</text>
+  <text x="896" y="232" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#EDE8DC">Financial Fragility</text>
+  <line x1="896" y1="240" x2="1160" y2="240" stroke="#B87333" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="896" y="258" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">The money conversation is always</text>
+  <text x="896" y="272" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">deferred. Survival depends on one person.</text>
+  <text x="896" y="293" font-family="Georgia, serif" font-size="10" fill="#9898B8">Financial anxiety triggers scarcity patterns.</text>
+  <text x="896" y="307" font-family="Georgia, serif" font-size="10" fill="#9898B8">Scarcity destroys trust. When trust goes,</text>
+  <text x="896" y="321" font-family="Georgia, serif" font-size="10" fill="#9898B8">every other collapse pattern accelerates.</text>
+  <rect x="896" y="334" width="108" height="16" rx="3" fill="#B87333" fill-opacity="0.12" stroke="#B87333" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="904" y="345" font-family="Georgia, serif" font-size="8.5" fill="#B87333" opacity="0.9">Chapters: 12 · 25 + App. X</text>
+
+  <!-- ROW 2 — F5, F6, F7 centered -->
+  <!-- 3 cards at 360px each with gaps, centered in 1200px -->
+  <!-- x positions: 40, 420, 800 -->
+
+  <!-- F5 — Burnout -->
+  <rect x="28" y="368" width="360" height="168" rx="8" fill="#E07B39" fill-opacity="0.06" stroke="#E07B39" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="28" y="368" width="4" height="168" rx="2" fill="#E07B39" opacity="0.7"/>
+  <text x="44" y="392" font-family="Georgia, serif" font-size="18" font-weight="900" fill="#E07B39" letter-spacing="1">F5</text>
+  <text x="44" y="414" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#EDE8DC">Burnout &amp; Loss of Commitment</text>
+  <line x1="44" y1="422" x2="376" y2="422" stroke="#E07B39" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="44" y="440" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">The people who care most are the most depleted.</text>
+  <text x="44" y="454" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">Enthusiasm has been replaced by obligation.</text>
+  <text x="44" y="475" font-family="Georgia, serif" font-size="10" fill="#9898B8">Burnout in mission-driven projects targets the most</text>
+  <text x="44" y="489" font-family="Georgia, serif" font-size="10" fill="#9898B8">committed people. They are the last to ask for help.</text>
+  <text x="44" y="503" font-family="Georgia, serif" font-size="10" fill="#9898B8">When they go quiet, the project has lost its core.</text>
+  <rect x="44" y="516" width="120" height="16" rx="3" fill="#E07B39" fill-opacity="0.12" stroke="#E07B39" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="52" y="527" font-family="Georgia, serif" font-size="8.5" fill="#E07B39" opacity="0.9">Chapters: 5 · 10 · 13 · 20 · 32</text>
+
+  <!-- F6 — Wrong-Fit People -->
+  <rect x="420" y="368" width="360" height="168" rx="8" fill="#7AD1E2" fill-opacity="0.06" stroke="#7AD1E2" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="420" y="368" width="4" height="168" rx="2" fill="#7AD1E2" opacity="0.7"/>
+  <text x="436" y="392" font-family="Georgia, serif" font-size="18" font-weight="900" fill="#7AD1E2" letter-spacing="1">F6</text>
+  <text x="436" y="414" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#EDE8DC">The Wrong-Fit People Problem</text>
+  <line x1="436" y1="422" x2="768" y2="422" stroke="#7AD1E2" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="436" y="440" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">Someone is in who shouldn't be. Or there is</text>
+  <text x="436" y="454" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">no clarity about who this project is not for.</text>
+  <text x="436" y="475" font-family="Georgia, serif" font-size="10" fill="#9898B8">Open admission is not the same as intentional</text>
+  <text x="436" y="489" font-family="Georgia, serif" font-size="10" fill="#9898B8">community. Explicit criteria, alignment process,</text>
+  <text x="436" y="503" font-family="Georgia, serif" font-size="10" fill="#9898B8">and off-ramps are care, not gatekeeping.</text>
+  <rect x="436" y="516" width="110" height="16" rx="3" fill="#7AD1E2" fill-opacity="0.12" stroke="#7AD1E2" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="444" y="527" font-family="Georgia, serif" font-size="8.5" fill="#7AD1E2" opacity="0.9">Chapters: 12 · 18 · 25</text>
+
+  <!-- F7 — Scale Trap -->
+  <rect x="812" y="368" width="360" height="168" rx="8" fill="#A8C5A0" fill-opacity="0.06" stroke="#A8C5A0" stroke-opacity="0.25" stroke-width="1"/>
+  <rect x="812" y="368" width="4" height="168" rx="2" fill="#A8C5A0" opacity="0.7"/>
+  <text x="828" y="392" font-family="Georgia, serif" font-size="18" font-weight="900" fill="#A8C5A0" letter-spacing="1">F7</text>
+  <text x="828" y="414" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#EDE8DC">The Scale Trap</text>
+  <line x1="828" y1="422" x2="1160" y2="422" stroke="#A8C5A0" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="828" y="440" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">What worked at a small size broke when it grew.</text>
+  <text x="828" y="454" font-family="Georgia, serif" font-size="10.5" fill="#C0C0D0" font-style="italic">Thresholds: 8 persons, 25 persons, 60 persons.</text>
+  <text x="828" y="475" font-family="Georgia, serif" font-size="10" fill="#9898B8">Each size threshold requires a completely different</text>
+  <text x="828" y="489" font-family="Georgia, serif" font-size="10" fill="#9898B8">organizational architecture. The communities that</text>
+  <text x="828" y="503" font-family="Georgia, serif" font-size="10" fill="#9898B8">survive built a theory of scale before they needed it.</text>
+  <rect x="828" y="516" width="148" height="16" rx="3" fill="#A8C5A0" fill-opacity="0.12" stroke="#A8C5A0" stroke-opacity="0.2" stroke-width="0.5"/>
+  <text x="836" y="527" font-family="Georgia, serif" font-size="8.5" fill="#A8C5A0" opacity="0.9">Chapters: 7 · 12 · 25 · 26 + App. Y</text>
+
+  <!-- FOOTER BAR -->
+  <rect x="0" y="548" width="1200" height="82" fill="#0C0F1E" opacity="0.9"/>
+  <line x1="0" y1="548" x2="1200" y2="548" stroke="#C89B3C" stroke-width="0.5" opacity="0.35"/>
+
+  <!-- Cascade sequence -->
+  <text x="600" y="568" text-anchor="middle" font-family="Georgia, serif" font-size="9.5" font-weight="bold" letter-spacing="1.5" fill="#C89B3C" opacity="0.6">THE CASCADE</text>
+  <!-- cascade pills -->
+  <text x="600" y="586" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#C0C0D0" letter-spacing="0.5">F2 Vision  →  F3 Governance  →  F1 Conflict  →  F5 Burnout  →  F6 Wrong People  →  F7 Scale  →  F4 Finance</text>
+
+  <!-- Bottom line: attribution left, URL right -->
+  <text x="40" y="614" font-family="Georgia, serif" font-size="11" fill="#7878A0">From <tspan font-style="italic">Bridging Earth &amp; Kanaria: Stopping the Collapse</tspan> by Rick Broider</text>
+  <text x="1160" y="614" text-anchor="end" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#C89B3C" letter-spacing="0.5">stopthecollapse.com/diagnostic</text>
+
+</svg>
