@@ -53,7 +53,7 @@
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
     .intro-h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,54px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:20px;text-align:center;}
     .intro-h1 em{color:var(--gold);font-style:italic;}
-    .intro-sub{font-size:clamp(15px,2vw,17px);color:var(--silver);line-height:1.8;text-align:center;max-width:520px;margin-bottom:32px;}
+    .intro-sub{font-size:clamp(16px,2vw,18px);color:var(--silver);line-height:1.8;text-align:center;max-width:520px;margin-bottom:32px;}
     .intro-meta{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;}
     .intro-meta-item{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);display:flex;align-items:center;gap:6px;}
     .intro-meta-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);}
@@ -70,8 +70,8 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
     .q-pattern-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:3px 10px;border-radius:5px;display:inline-block;margin-bottom:18px;border:1px solid;}
     .q-headline{font-family:'Playfair Display',serif;font-size:clamp(20px,3.2vw,30px);font-weight:700;font-style:italic;color:var(--pearl);line-height:1.3;margin-bottom:12px;}
-    .q-context{font-size:clamp(14px,1.8vw,16px);color:var(--mist);line-height:1.75;margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.06);}
-    .q-prompt{font-family:'Playfair Display',serif;font-size:clamp(15px,2vw,19px);font-style:italic;color:var(--white);line-height:1.5;margin-bottom:24px;}
+    .q-context{font-size:clamp(15px,1.8vw,17px);color:var(--mist);line-height:1.78;margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.06);}
+    .q-prompt{font-family:'Playfair Display',serif;font-size:clamp(16px,2vw,20px);font-style:italic;color:var(--white);line-height:1.5;margin-bottom:24px;}
 
     /* ANSWERS */
     .answers{display:flex;flex-direction:column;gap:9px;width:100%;margin-bottom:28px;}
@@ -89,7 +89,7 @@
     .sel-0 .a-label{color:var(--silver);}
     .sel-1 .a-label{color:var(--gold);}
     .sel-2 .a-label{color:#E08070;}
-    .a-desc{font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.6;}
+    .a-desc{font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.65;}
 
     /* NAV ROW */
     .q-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
@@ -110,8 +110,8 @@
     .result-fcode{font-family:'DM Mono',monospace;font-size:32px;font-weight:500;line-height:1;}
     .result-fname{font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,26px);font-weight:700;color:var(--white);line-height:1.2;}
     .result-tagline{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--mist);margin-bottom:18px;}
-    .result-feel{font-style:italic;font-size:clamp(14px,1.9vw,16px);color:rgba(200,155,60,.8);line-height:1.65;border-left:2px solid rgba(200,155,60,.22);padding-left:16px;margin-bottom:20px;}
-    .result-body{font-size:clamp(14px,1.8vw,16px);color:var(--silver);line-height:1.82;margin-bottom:20px;}
+    .result-feel{font-style:italic;font-size:clamp(15px,1.9vw,17px);color:rgba(200,155,60,.8);line-height:1.68;border-left:2px solid rgba(200,155,60,.22);padding-left:16px;margin-bottom:20px;}
+    .result-body{font-size:clamp(15px,1.8vw,17px);color:var(--silver);line-height:1.85;margin-bottom:20px;}
     .result-body p+p{margin-top:11px;}
     .result-body strong{color:var(--white);}
 
@@ -132,7 +132,7 @@
     .risk-moderate .risk-label{color:var(--gold);}
     .risk-high .risk-label{color:var(--ember);}
     .risk-critical .risk-label{color:#E07060;}
-    .risk-desc{font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.62;}
+    .risk-desc{font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.65;}
     .risk-score{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold);flex-shrink:0;}
 
     /* ACTIVE PATTERNS BLOCK */
@@ -141,17 +141,17 @@
     .active-pattern-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);}
     .active-pattern-row:last-child{border-bottom:none;}
     .ap-code{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;font-weight:500;width:26px;flex-shrink:0;}
-    .ap-name{font-size:clamp(12px,1.6vw,13px);color:var(--silver);flex:1;line-height:1.4;}
+    .ap-name{font-size:clamp(13px,1.6vw,14px);color:var(--silver);flex:1;line-height:1.4;}
     .ap-rank{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:4px;flex-shrink:0;}
     .ap-primary{background:rgba(200,155,60,.15);color:var(--gold);}
     .ap-secondary{background:rgba(255,255,255,.05);color:var(--mist);}
-    .ap-note{font-size:clamp(12px,1.6vw,13px);color:var(--mist);line-height:1.65;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.04);}
+    .ap-note{font-size:clamp(13px,1.6vw,14px);color:var(--mist);line-height:1.68;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.04);}
 
     /* SCORE BARS */
     .score-bars{margin:16px 0;}
     .sbar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
     .sbar-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);width:26px;flex-shrink:0;text-align:right;}
-    .sbar-name{font-family:'Lora',serif;font-size:clamp(11px,1.5vw,12px);color:var(--mist);width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .sbar-name{font-family:'Lora',serif;font-size:clamp(12px,1.5vw,13px);color:var(--mist);width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .sbar-track{flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;}
     .sbar-fill{height:100%;border-radius:3px;transition:width .7s ease .1s;}
     .sbar-val{font-family:'DM Mono',monospace;font-size:12px;color:var(--white);width:14px;text-align:center;}
@@ -175,36 +175,43 @@
     .door-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px;}
     .door-a .door-label{color:var(--teal);}
     .door-b .door-label{color:var(--violet);}
-    .door-text{font-size:clamp(13px,1.7vw,14px);color:var(--silver);line-height:1.65;}
+    .door-text{font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.72;}
     .door-cta{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:10px 18px;border-radius:8px;text-decoration:none;transition:all .2s;}
     .door-cta-a{background:rgba(14,138,122,.15);color:var(--teal);border:1px solid rgba(14,138,122,.35);}
     .door-cta-a:hover{background:rgba(14,138,122,.25);border-color:var(--teal);}
     .door-cta-b{background:rgba(123,94,167,.15);color:var(--violet);border:1px solid rgba(123,94,167,.35);}
     .door-cta-b:hover{background:rgba(123,94,167,.25);border-color:var(--violet);}
 
-    /* EMAIL / PRINT BLOCK */
-    .save-block{background:linear-gradient(135deg,rgba(200,155,60,.06) 0%,rgba(14,18,36,.85) 100%);border:1px solid rgba(200,155,60,.18);border-radius:16px;padding:clamp(22px,4vw,34px);margin-bottom:22px;text-align:center;}
-    .save-h{font-family:'Playfair Display',serif;font-size:clamp(17px,2.4vw,22px);font-weight:900;color:var(--white);margin-bottom:7px;}
-    .save-sub{font-size:clamp(13px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:20px;}
-    .save-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
-    .save-print{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:12px 22px;border-radius:8px;border:none;cursor:pointer;transition:background .2s;}
-    .save-print:hover{background:var(--gold-hi);}
-    .save-divider{display:flex;align-items:center;gap:10px;margin:14px 0;}
-    .save-divider-line{flex:1;height:1px;background:rgba(255,255,255,.06);}
-    .save-divider-text{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);}
+    /* OFFER BLOCK - replaces save block */
+    .offer-block{background:linear-gradient(135deg,rgba(200,155,60,.07) 0%,rgba(14,18,36,.9) 100%);border:1px solid rgba(200,155,60,.22);border-radius:18px;padding:clamp(24px,4vw,36px);margin-bottom:22px;}
+    .offer-h{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,24px);font-weight:900;color:var(--white);margin-bottom:6px;text-align:center;}
+    .offer-sub{font-size:clamp(14px,1.7vw,16px);color:var(--silver);line-height:1.72;margin-bottom:20px;text-align:center;}
+    .offer-gives{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+    .offer-row{display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;}
+    .offer-check{font-size:14px;color:var(--gold);flex-shrink:0;margin-top:1px;}
+    .offer-txt{font-size:clamp(13px,1.6vw,14px);color:var(--pearl);line-height:1.6;}
+    .offer-txt strong{color:var(--white);}
+    .offer-txt .offer-badge{display:inline-block;font-family:'Syne',sans-serif;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:4px;margin-left:5px;vertical-align:middle;}
+    .ob-free{background:rgba(200,155,60,.15);color:var(--gold);}
+    .ob-paid{background:rgba(14,138,122,.12);color:var(--teal);}
     .email-form{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
-    .email-input{flex:1;min-width:200px;padding:11px 15px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:8px;color:var(--white);font-family:'Lora',serif;font-size:15px;outline:none;transition:border-color .2s;}
+    .email-input{flex:1;min-width:200px;padding:12px 15px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:8px;color:var(--white);font-family:'Lora',serif;font-size:15px;outline:none;transition:border-color .2s;}
     .email-input::placeholder{color:var(--mist);}
     .email-input:focus{border-color:var(--gold);}
-    .email-submit{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--gold);padding:11px 20px;border-radius:8px;border:1.5px solid rgba(200,155,60,.4);cursor:pointer;transition:all .2s;white-space:nowrap;}
-    .email-submit:hover{background:rgba(200,155,60,.1);}
-    .email-note{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.06em;color:var(--mist);margin-top:10px;line-height:1.6;}
-    .email-sent{display:none;font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:clamp(14px,1.8vw,16px);padding:10px 0;}
+    .email-cta-btn{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:12px 22px;border-radius:8px;border:none;cursor:pointer;transition:background .2s;white-space:nowrap;}
+    .email-cta-btn:hover{background:var(--gold-hi);}
+    .offer-note{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.06em;color:var(--mist);margin-top:10px;line-height:1.65;text-align:center;}
+    .offer-alt{display:flex;align-items:center;gap:10px;margin:16px 0 0;}
+    .offer-alt-line{flex:1;height:1px;background:rgba(255,255,255,.05);}
+    .offer-alt-text{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);}
+    .save-pdf-btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);background:transparent;border:1px solid rgba(255,255,255,.08);padding:9px 18px;border-radius:8px;cursor:pointer;margin-top:10px;transition:all .2s;}
+    .save-pdf-btn:hover{border-color:rgba(255,255,255,.2);color:var(--silver);}
+    .email-sent{display:none;font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:clamp(14px,1.8vw,16px);padding:10px 0;text-align:center;}
 
     /* SHARE BLOCK */
     .share-block{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:clamp(18px,3vw,26px);margin-bottom:22px;}
     .share-h{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);margin-bottom:6px;}
-    .share-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(14px,1.8vw,16px);color:var(--pearl);line-height:1.55;margin-bottom:16px;}
+    .share-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.8vw,17px);color:var(--pearl);line-height:1.58;margin-bottom:12px;}
     .share-btns{display:flex;gap:7px;flex-wrap:wrap;}
     .share-btn{display:inline-flex;align-items:center;gap:7px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:10px 14px;border-radius:8px;border:1px solid;cursor:pointer;transition:all .2s;text-decoration:none;position:relative;}
     .share-copy{color:var(--gold);border-color:rgba(200,155,60,.3);background:rgba(200,155,60,.06);}
@@ -222,7 +229,7 @@
     /* CTA */
     .cta-block{text-align:center;margin-bottom:40px;}
     .cta-h{font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,22px);font-weight:900;color:var(--white);margin-bottom:8px;}
-    .cta-sub{font-size:clamp(13px,1.7vw,15px);color:var(--silver);line-height:1.72;margin-bottom:20px;}
+    .cta-sub{font-size:clamp(14px,1.7vw,16px);color:var(--silver);line-height:1.75;margin-bottom:20px;}
     .cta-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
     .cta-primary{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#07080E;padding:14px 28px;border-radius:10px;text-decoration:none;transition:all .2s;}
     .cta-primary:hover{background:var(--gold-hi);transform:translateY(-2px);}
@@ -240,16 +247,15 @@
 
     /* PRINT */
     @media print{
-      .cosmos,.prog-bar-wrap,.header,.q-nav,.share-block,.save-block .email-form,.save-block .save-divider,.save-block .email-note,.cta-block,.restart-btn,.footer,.save-print{display:none!important;}
+      .cosmos,.prog-bar-wrap,.header,.q-nav,.share-block,.offer-block .email-form,.offer-block .offer-alt,.offer-note,.cta-block,.restart-btn,.footer,.save-pdf-btn,.door-cta{display:none!important;}
       body{background:#fff;color:#111;}
       .result-card{background:#f8f7f4;border:1px solid #ddd;border-radius:8px;break-inside:avoid;}
       .result-eyebrow,.risk-label,.sbar-label,.chapters-label,.door-label,.result-tagline{color:#555;}
       .result-fname,.result-body strong,.cta-h{color:#111;}
       .result-feel,.result-body,.risk-desc,.a-desc,.door-text,.ap-name{color:#333;}
       .risk-score,.result-fcode{color:#C89B3C;}
-      .save-block{display:block!important;background:#f0ede4;border:1px solid #C89B3C;padding:16px;text-align:left;}
-      .save-block .save-h,.save-block .save-sub{display:block!important;}
-      .save-block .save-actions{display:none!important;}
+      .offer-block{display:block!important;background:#f0ede4;border:1px solid #C89B3C;padding:16px;text-align:left;}
+      .offer-h,.offer-sub,.offer-gives{display:block!important;}
     }
 
     @media(max-width:480px){
@@ -813,23 +819,45 @@ function showResults() {
       </div>
     </div>
 
-    <!-- SAVE / PRINT -->
-    <div class="save-block" id="saveBlock">
-      <div class="save-h">Keep your results</div>
-      <div class="save-sub">Your results are encoded in this page's URL. Copy the link or bookmark it now. It will restore your full results whenever you return. Or print to PDF for your files.</div>
-      <div class="save-actions">
-        <button class="save-print" onclick="window.print()">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4V2h8v2M4 12H2V7h12v5h-2M4 12v2h8v-2"/></svg>
+    <!-- OFFER LADDER -->
+    <div class="offer-block" id="offerBlock">
+      <div class="offer-h">Get the full report. Free.</div>
+      <div class="offer-sub">The diagnostic named your pattern. The report gives you the field research, the real cases, and the structural repair for all seven. Subscribe free and it arrives immediately.</div>
+      <div class="offer-gives">
+        <div class="offer-row">
+          <span class="offer-check">✓</span>
+          <div class="offer-txt"><strong>Top 7 Collapse Patterns Report</strong> <span class="offer-badge ob-free">Free</span><br>Field research, warning signs, and repair architecture for all seven patterns. The in-depth version of what you just saw. Yours immediately on signup.</div>
+        </div>
+        <div class="offer-row">
+          <span class="offer-check">✓</span>
+          <div class="offer-txt"><strong>Navigation Legend</strong> <span class="offer-badge ob-free">Free</span><br>Maps every collapse pattern to the exact audiobook chapters that address it. Designed to share with your co-founder or core team. Arrives in your second email.</div>
+        </div>
+        <div class="offer-row">
+          <span class="offer-check">✓</span>
+          <div class="offer-txt"><strong>Three full audiobook chapters,</strong> matched to ${pat.code}. <span class="offer-badge ob-free">Free</span><br>Start at your pattern. Not Chapter 1.</div>
+        </div>
+        <div class="offer-row" style="border-color:rgba(14,138,122,.2);">
+          <span class="offer-check" style="color:var(--teal);">+</span>
+          <div class="offer-txt"><strong>Builder Pass: all 33 chapters</strong> <span class="offer-badge ob-paid">$7 / mo</span><br>Full audiobook on private podcast RSS. Apple Podcasts, Spotify, Overcast. Unlocks every chapter mapped to every pattern. 7-day free trial. Cancel any time.</div>
+        </div>
+      </div>
+      <div class="email-form" id="emailForm">
+        <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
+        <button class="email-cta-btn" onclick="submitEmail()">Get the free report</button>
+      </div>
+      <p class="offer-note">No spam. Unsubscribe any time. Powered by Substack.<br>Honest note: the Builder Pass upgrade is separate, optional, and clearly explained. Nothing is hidden.</p>
+      <p class="email-sent" id="emailSent">You are in. Check your inbox. The report is on its way.</p>
+      <div class="offer-alt">
+        <div class="offer-alt-line"></div>
+        <div class="offer-alt-text">or just save your results</div>
+        <div class="offer-alt-line"></div>
+      </div>
+      <div style="text-align:center;margin-top:10px;">
+        <button class="save-pdf-btn" onclick="window.print()">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4V2h8v2M4 12H2V7h12v5h-2M4 12v2h8v-2"/></svg>
           Save as PDF
         </button>
       </div>
-      <div class="save-divider"><div class="save-divider-line"></div><div class="save-divider-text">or send the link to your inbox</div><div class="save-divider-line"></div></div>
-      <div class="email-form" id="emailForm">
-        <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
-        <button class="email-submit" onclick="submitEmail()">Send the link</button>
-      </div>
-      <p class="email-note">Subscribes you to the free tier of Stopping the Collapse on Substack. Your welcome email will include a reminder to bookmark this URL. No spam. Unsubscribe anytime.</p>
-      <p class="email-sent" id="emailSent">Done. Check your inbox. Your results URL is in the browser bar above.</p>
     </div>
 
     <!-- SHARE -->
@@ -861,11 +889,10 @@ function showResults() {
 
     <!-- CTA -->
     <div class="cta-block">
-      <div class="cta-h">The architecture exists. Start at your pattern, not Chapter 1.</div>
-      <div class="cta-sub">33 chapters. Every collapse pattern mapped to the structural intervention that addresses it. Delivered as a private podcast feed to Apple, Spotify, or any podcast app. Honest note: this is not a quick fix. It is a rigorous framework. Signal-sensitive builders who engage with the full architecture report it changes how they see every decision they make inside a project.</div>
+      <div class="cta-h">Ready to repair it, not just name it?</div>
+      <div class="cta-sub">The Builder Pass gives you all 33 chapters on private podcast RSS. Every collapse pattern mapped to the structural intervention that addresses it. Seven-day free trial. Start at ${pat.code}. Cancel any time, one click.</div>
       <div class="cta-btns">
         <a class="cta-primary" href="https://stopthecollapse.com">Get the Builder Pass</a>
-        <a class="cta-secondary" href="https://rickbroider.substack.com/subscribe">Start free first</a>
       </div>
       <button class="restart-btn" onclick="restartQuiz()">Retake for a different project</button>
     </div>`;
