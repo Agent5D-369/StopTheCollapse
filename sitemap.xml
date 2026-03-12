@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
   <url>
     <loc>https://stopthecollapse.com/</loc>
     <lastmod>2026-03-12</lastmod>
@@ -10,7 +8,6 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Interactive Diagnostic -->
   <url>
     <loc>https://stopthecollapse.com/diagnostic</loc>
     <lastmod>2026-03-12</lastmod>
@@ -18,7 +15,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- The 7 Patterns (reference page) -->
   <url>
     <loc>https://stopthecollapse.com/patterns.html</loc>
     <lastmod>2026-03-12</lastmod>
@@ -26,7 +22,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Full Diagnostic Report (gated freebie / team exercise) -->
   <url>
     <loc>https://stopthecollapse.com/report-7-patterns.html</loc>
     <lastmod>2026-03-12</lastmod>
@@ -34,7 +29,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Navigation Legend (3-axis chapter map) -->
   <url>
     <loc>https://stopthecollapse.com/navigation-legend.html</loc>
     <lastmod>2026-03-12</lastmod>
@@ -42,7 +36,6 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- About Rick -->
   <url>
     <loc>https://stopthecollapse.com/about.html</loc>
     <lastmod>2026-03-12</lastmod>
@@ -50,15 +43,11 @@
     <priority>0.7</priority>
   </url>
 
-
-  <!-- Collapse Map (visual reference) -->
   <url>
     <loc>https://stopthecollapse.com/collapse-map.html</loc>
     <lastmod>2026-03-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
-
-  <!-- privacy.html: noindex -- intentionally excluded from sitemap -->
 
 </urlset>
