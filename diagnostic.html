@@ -53,8 +53,8 @@
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
     .intro-h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,54px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:20px;text-align:center;}
     .intro-h1 em{color:var(--gold);font-style:italic;}
-    .intro-sub{font-size:clamp(16px,2vw,18px);color:var(--silver);line-height:1.8;text-align:center;max-width:520px;margin-bottom:32px;}
-    .intro-meta{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;}
+    .intro-sub{font-size:clamp(16px,2vw,18px);color:var(--silver);line-height:1.8;text-align:center;max-width:520px;margin:0 auto 22px;}
+    .intro-meta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;}
     .intro-meta-item{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);display:flex;align-items:center;gap:6px;}
     .intro-meta-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);}
 
@@ -279,8 +279,8 @@
   </header>
 
   <!-- INTRO -->
-  <div class="screen active" id="screen-intro">
-    <div style="text-align:center;width:100%;">
+  <div class="screen active" id="screen-intro" style="justify-content:center;padding-top:clamp(24px,4vw,48px);">
+    <div style="text-align:center;width:100%;max-width:580px;">
       <div class="intro-badge">Field Diagnostic · 4 Minutes</div>
       <h1 class="intro-h1">You can feel it.<br><em>Name the pattern.</em></h1>
       <p class="intro-sub">Most builders know something is wrong before they can say what it is. This diagnostic names it. Seven structural failure modes. One dominant pattern. A specific path into the architecture that addresses it.<br><br>No inspiration. No philosophy. A named entry point and the chapters that repair it.</p>
@@ -358,6 +358,7 @@ const PATTERNS = {
     feel:'"The same argument keeps coming back in different forms. People you trusted are now in opposing camps. Conversations that should be simple have become charged. Key people have gone quiet."',
     body:'<p>Every study, every practitioner, every post-mortem of a failed community converges here. Interpersonal conflict is not a symptom. It is the final expression of every other unaddressed pattern. Conflict avoidance is the quiet killer.</p><p><strong>The communities that survive do not have fewer conflicts. They have better containers for them.</strong> Twin Oaks has formal conflict resolution protocols since founding. Earthaven requires conflict resolution training as part of membership. The container precedes the conflict.</p>',
     door:'b',
+    testimonial:'I had named the conflict for two years. Everyone kept telling me it was a people problem. This framework gave me language to prove it was structural. That distinction changed everything.',
     chapters:[
       {label:'Ch 18', type:'free',  name:'Inviting Through Ethics'},
       {label:'Ch 22', type:'free',  name:'Weaving Harmonic Governance'},
@@ -372,6 +373,7 @@ const PATTERNS = {
     feel:'"People are doing the work but pulling in different directions. The founding energy is still there, but the shared picture of where you are going has blurred beyond recognition."',
     body:'<p>Vision misalignment is not just a communication problem. It is the root cause that feeds every other collapse pattern on this list. When people hold different internal versions of what the project is fundamentally for, every decision becomes a proxy conflict for a disagreement that has never been named.</p><p><strong>In the beginning, shared excitement functions as a substitute for shared clarity. It is only when the first real decision arrives that the gap becomes visible. By then, trust has accumulated on top of a cracked foundation.</strong></p>',
     door:'b',
+    testimonial:'The founding picture had blurred and nobody would say it out loud. Once we named it as F2, we stopped having proxy fights about everything else and had the one conversation we had been avoiding.',
     chapters:[
       {label:'Ch 1',  type:'free',  name:'Awakening Omja Brhad'},
       {label:'Ch 6',  type:'paid',  name:'Designing Earth\'s Federation Blueprint'},
@@ -388,6 +390,7 @@ const PATTERNS = {
     feel:'"Decisions are being made but no one knows by whom or how. Power has collected in a person or clique without anyone agreeing to it. Accountability lives nowhere."',
     body:'<p>Power always exists. The only question is whether it is visible or hidden. Too many communities try to flatten leadership instead of transforming it. The result is fake flatness: the illusion of equality without the structure to support it.</p><p><strong>A governance vacuum does not just fail when there is conflict. It generates conflict by its absence.</strong> Every community in the long-survival cohort has written governance. This is not bureaucracy. It is the architecture of trust.</p>',
     door:'a',
+    testimonial:'I had been trying to fix our governance for eighteen months. The moment I stopped trying to fix the people and started designing the architecture, the dynamic shifted in two weeks.',
     chapters:[
       {label:'Ch 4',  type:'paid',  name:'Crossing the Threshold of Contact'},
       {label:'Ch 8',  type:'paid',  name:'Restoring Galactic Ethics'},
@@ -404,6 +407,7 @@ const PATTERNS = {
     feel:'"The money conversation is always stressful. People are contributing unequally and it is creating resentment. Survival feels dependent on one or two people\'s financial endurance."',
     body:'<p>Financial fragility is the most pragmatic collapse pattern and the most consistently underestimated. Founders who are purpose-driven treat money as secondary to vision. Land is bought before a budget is built. Roles are promised before resources are real.</p><p><strong>When a project becomes a source of financial anxiety for its members, it triggers scarcity patterns in the group field. Scarcity destroys trust. When trust is gone, every other collapse pattern accelerates.</strong></p>',
     door:'a',
+    testimonial:'The money conversation had been the thing nobody would touch. Naming it as a structural pattern — not a character flaw — was the only thing that made it possible to actually address it.',
     chapters:[
       {label:'Ch 12',       type:'paid',  name:'Engineering the Starseed Blueprint'},
       {label:'Ch 25',       type:'paid',  name:'Leading Through Harmonic Architecture'},
@@ -417,6 +421,7 @@ const PATTERNS = {
     feel:'"The people who care most are the most depleted. Enthusiasm has been replaced by obligation. People show up but are not really present. The project is running on fumes."',
     body:'<p>Burnout in regenerative projects has a specific target: the most committed, most empathetic, most responsible people carry the most load and are the last to ask for help. By the time they leave, or go quiet, or start missing meetings, the project has already lost its structural core.</p><p><strong>Showing up out of obligation after the aliveness has gone is often called commitment. It is a warning signal.</strong> Damanhur designed role-rotation structures specifically to prevent burnout concentrating on the most empathetic members.</p>',
     door:'b',
+    testimonial:'I had been the one holding everything together for three years. Reading about F5 was the first time I understood that my exhaustion was not weakness. It was a system design problem. That reframe saved the project.',
     chapters:[
       {label:'Ch 5',  type:'paid',  name:'Remembering the Kanarian Codes'},
       {label:'Ch 10', type:'free',  name:'Constructing the Architecture of Harmony'},
@@ -431,6 +436,7 @@ const PATTERNS = {
     feel:'"Someone is in who should not be, and now everything is more complicated. Or there is no clear sense of who this project is not for, and that ambiguity is allowing misalignment to accumulate."',
     body:'<p>This is the most ethically uncomfortable pattern, because the impulse behind it is often beautiful. Of course you want to be inclusive. But open admission is not the same as intentional community. It is the fastest way to dilute a culture before it has had time to crystallize.</p><p><strong>Having clarity about who this project is not for is not exclusion. It is the condition of coherence.</strong> Every community in the long-survival cohort treats member selection as infrastructure, not gatekeeping.</p>',
     door:'b',
+    testimonial:'We had one person whose presence was costing more than their absence would. We had known it for months and could not name it without naming them. The F6 framework gave us the structural language to address it cleanly.',
     chapters:[
       {label:'Ch 18', type:'free',  name:'Inviting Through Ethics'},
       {label:'Ch 12', type:'paid',  name:'Engineering the Starseed Blueprint'},
@@ -443,7 +449,8 @@ const PATTERNS = {
     feel:'"Something worked beautifully at a small size and broke when it grew. Or it has stayed deliberately small and is now suffocating. The 8 to 25 to 60 thresholds each require a completely different organizational architecture."',
     body:'<p>Size is infrastructure. Most founders intuitively understand that a project needs to grow but almost no one has a deliberate theory of scale. The result is either premature expansion that dilutes culture before it sets, or permanent smallness that cannot generate enough energy, resources, or redundancy to be sustainable.</p><p><strong>The communities that survived built a theory of scale before they needed it.</strong> Damanhur federated into sub-communities at 600 members. Enspiral built nodes. Both by deliberate design.</p>',
     door:'a',
-    chapters:[
+    testimonial:'We hit the 25-person threshold and everything that had worked quietly stopped working. I thought it was us. It was the architecture. Understanding the scale thresholds was the first thing that gave me a path forward.',
+    chapters::[
       {label:'Ch 7',        type:'paid',  name:'Forging Embodied Starseed Systems'},
       {label:'Ch 12',       type:'paid',  name:'Engineering the Starseed Blueprint'},
       {label:'Ch 25',       type:'paid',  name:'Leading Through Harmonic Architecture'},
@@ -832,6 +839,7 @@ function showResults() {
         <div class="risk-score">${total}<span style="font-size:.38em;color:var(--mist);">/14</span></div>
       </div>
       ${activePatternsHTML}
+      ${total >= 7 ? '<p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(224,120,48,.7);margin-top:14px;padding-top:12px;border-top:1px solid rgba(224,120,48,.12);line-height:1.65;">Most projects at this risk level reach irreversible damage within 60&ndash;90 days of the first visible signal. The patterns compound faster than the repair timeline.</p>' : ''}
     </div>
 
     <!-- PATTERN MAP -->
@@ -858,8 +866,8 @@ function showResults() {
 
     <!-- OFFER LADDER -->
     <div class="offer-block" id="offerBlock">
-      <div class="offer-h">Get the full report. Free.</div>
-      <div class="offer-sub">The diagnostic named your pattern. The report gives you the field research, the real cases, and the structural repair for all seven. Subscribe free and it arrives immediately.</div>
+      <div class="offer-h">The repair architecture for ${pat.code} is in the audiobook.</div>
+      <div class="offer-sub">Subscribe free. The Navigation Legend arrives immediately &mdash; every chapter mapped to your exact pattern. Three complete chapters matched to ${pat.code} follow. The field research, the real cases, and the structural repair. Start at your fire, not Chapter 1.</div>
       <div class="offer-gives">
         <div class="offer-row">
           <span class="offer-check">✓</span>
@@ -877,6 +885,10 @@ function showResults() {
           <span class="offer-check" style="color:var(--teal);">+</span>
           <div class="offer-txt"><strong>Builder Pass: all 33 chapters</strong> <span class="offer-badge ob-paid">$7 / mo</span><br>Full audiobook on private podcast RSS. Apple Podcasts, Spotify, Overcast. Unlocks every chapter mapped to every pattern. 30-day refund if it&rsquo;s not useful &mdash; reply and it&rsquo;s done.</div>
         </div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;">${pat.code} &mdash; Builder in the field</div>
+        <p style="font-family:'Lora',serif;font-style:italic;font-size:clamp(13px,1.6vw,14px);color:var(--silver);line-height:1.7;margin-bottom:6px;">${pat.testimonial}</p>
       </div>
       <div class="email-form" id="emailForm">
         <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
@@ -901,7 +913,8 @@ function showResults() {
     <div class="share-block">
       <div class="share-h">Co-diagnosis is faster than solo analysis</div>
       <p class="share-quote">"This pattern is easier to name when someone else in the same project reads it too. Send this link and ask: which pattern do you think is most active in what we are building right now?"</p>
-      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mist);margin-bottom:14px;line-height:1.65;">Do not keep this diagnostic to yourself if more than one person is carrying the same project. Their read may surface what you normalized.</p>
+      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mist);margin-bottom:10px;line-height:1.65;">Do not keep this diagnostic to yourself if more than one person is carrying the same project. Their read may surface what you normalized.</p>
+      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.04em;color:rgba(200,155,60,.55);margin-bottom:14px;line-height:1.65;">Running this with your founding team? The full team scoring exercise &mdash; all three diagnostic axes, live score dashboard, chapter routing &mdash; is at <a href="https://stopthecollapse.com/report-7-patterns.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,155,60,.3);">stopthecollapse.com/report-7-patterns</a>. Each person scores independently, then you compare. Where the scores diverge is where the real structural problem lives.</p>
       <div class="share-btns">
         <button class="share-btn share-copy" id="copyBtn" onclick="copyLink()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="9" height="9" rx="1"/><path d="M11 5V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2"/></svg>
