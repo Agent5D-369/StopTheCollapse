@@ -316,6 +316,24 @@
     </div>
   </div>
 
+  <!-- ZERO SCORE SCREEN -->
+  <div class="screen" id="screen-zero" style="padding-top:36px;">
+    <div style="text-align:center;max-width:560px;width:100%;">
+      <div class="intro-badge" style="margin-bottom:24px;">Diagnostic Complete</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:18px;">No active patterns detected.</h2>
+      <p style="font-family:'Lora',serif;font-size:clamp(16px,2vw,18px);color:var(--silver);line-height:1.85;margin-bottom:28px;">Your answers indicate your project is not currently experiencing any of the seven structural failure patterns at a measurable level. That is worth acknowledging.</p>
+      <p style="font-family:'Lora',serif;font-size:clamp(15px,1.8vw,17px);color:var(--mist);line-height:1.75;margin-bottom:32px;">Most founders in this position are either early-stage and still building, or are running systems healthy enough that the patterns have not surfaced yet. The Navigation Legend is still useful — it shows you what to watch for at each growth threshold before it becomes a fire.</p>
+      <div style="background:rgba(200,155,60,.06);border:1px solid rgba(200,155,60,.18);border-radius:14px;padding:24px;margin-bottom:28px;text-align:left;">
+        <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,155,60,.6);margin-bottom:12px;">What to do now</div>
+        <p style="font-family:'Lora',serif;font-size:clamp(14px,1.7vw,16px);color:var(--silver);line-height:1.75;margin-bottom:10px;">Subscribe free to get the Navigation Legend. It maps all seven patterns to the exact chapters that address each one — useful as a structural health check even when nothing is actively breaking.</p>
+        <p style="font-family:'Lora',serif;font-size:clamp(13px,1.6vw,14px);color:var(--mist);line-height:1.68;">If something feels subtly off but you couldn't score it above zero, that is worth trusting. Run the diagnostic again in 30 days, or forward it to your co-founder and compare reads.</p>
+      </div>
+      <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="btn-primary" style="margin-bottom:16px;">Get the Navigation Legend Free</a>
+      <br>
+      <button class="restart-btn" onclick="restartQuiz()" style="margin-top:12px;">Retake the diagnostic</button>
+    </div>
+  </div>
+
   <!-- RESULTS -->
   <div class="screen" id="screen-results" style="padding-top:36px;justify-content:flex-start;">
     <div class="results-screen" id="resultsContent"></div>
@@ -342,7 +360,7 @@ const PATTERNS = {
     door:'b',
     chapters:[
       {label:'Ch 18', type:'free',  name:'Inviting Through Ethics'},
-      {label:'Ch 22', type:'paid',  name:'Weaving Harmonic Governance'},
+      {label:'Ch 22', type:'free',  name:'Weaving Harmonic Governance'},
       {label:'Ch 25', type:'paid',  name:'Leading Through Harmonic Architecture'},
       {label:'Ch 28', type:'paid',  name:'Forming Kinship Constellations'},
       {label:'Ch 31', type:'paid',  name:'Restoring the Balance'}
@@ -371,12 +389,12 @@ const PATTERNS = {
     body:'<p>Power always exists. The only question is whether it is visible or hidden. Too many communities try to flatten leadership instead of transforming it. The result is fake flatness: the illusion of equality without the structure to support it.</p><p><strong>A governance vacuum does not just fail when there is conflict. It generates conflict by its absence.</strong> Every community in the long-survival cohort has written governance. This is not bureaucracy. It is the architecture of trust.</p>',
     door:'a',
     chapters:[
-      {label:'Ch 4',  type:'free',  name:'Crossing the Threshold of Contact'},
+      {label:'Ch 4',  type:'paid',  name:'Crossing the Threshold of Contact'},
       {label:'Ch 8',  type:'paid',  name:'Restoring Galactic Ethics'},
       {label:'Ch 12', type:'paid',  name:'Engineering the Starseed Blueprint'},
       {label:'Ch 15', type:'paid',  name:'Summoning the Galactic Council'},
       {label:'Ch 21', type:'paid',  name:'Returning to Organic Alliance'},
-      {label:'Ch 22', type:'paid',  name:'Weaving Harmonic Governance'},
+      {label:'Ch 22', type:'free',  name:'Weaving Harmonic Governance'},
       {label:'Ch 25', type:'paid',  name:'Leading Through Harmonic Architecture'}
     ]
   },
@@ -401,7 +419,7 @@ const PATTERNS = {
     door:'b',
     chapters:[
       {label:'Ch 5',  type:'paid',  name:'Remembering the Kanarian Codes'},
-      {label:'Ch 10', type:'paid',  name:'Constructing the Architecture of Harmony'},
+      {label:'Ch 10', type:'free',  name:'Constructing the Architecture of Harmony'},
       {label:'Ch 13', type:'paid',  name:'Resonating Earth-Kanaria Harmonics'},
       {label:'Ch 20', type:'paid',  name:'Activating Galactic Harmonics'},
       {label:'Ch 32', type:'paid',  name:'Spiraling Beyond Continuity'}
@@ -665,16 +683,28 @@ function updateProgress() {
 // ═══════════════════════════════════════════
 
 function showResults() {
-  showScreen('results');
   window.scrollTo({top:0, behavior:'smooth'});
 
   const ids = Object.keys(PATTERNS);
   const total = ids.reduce((a, id) => a + (scores[id] || 0), 0);
 
+  // ── BUG 1 FIX: Zero-total = no active patterns. Show dedicated screen. ──
+  if (total === 0) {
+    showScreen('zero');
+    return;
+  }
+
+  showScreen('results');
+
   // Sort all patterns by score descending
   const ranked = ids
     .map(id => ({id, score: scores[id] || 0, pat: PATTERNS[id]}))
     .sort((a, b) => b.score - a.score);
+
+  // ── BUG 2 FIX: Detect ties at the top score. ──
+  const topScore = ranked[0].score;
+  const topTied = ranked.filter(r => r.score === topScore);
+  const hasTie = topTied.length > 1;
 
   const primary = ranked[0];
   const pat = primary.pat;
@@ -772,10 +802,17 @@ function showResults() {
   const igText = encodeURIComponent('Just ran the Collapse Diagnostic.\n\nMy primary pattern: ' + pat.code + ' - ' + pat.name + '\nScore: ' + total + '/14\n\nIf you\'re building something and it feels like it\'s starting to fracture: stopthecollapse.com/diagnostic\n\nWhich pattern do you think is most active in what we\'re building right now?');
 
   document.getElementById('resultsContent').innerHTML = `
+    <!-- TIE BANNER: only shown when patterns are tied -->
+    ${hasTie ? `<div style="background:rgba(200,155,60,.08);border:1px solid rgba(200,155,60,.25);border-radius:12px;padding:14px 18px;margin-bottom:18px;">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Two patterns are tied</div>
+      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:10px;">${topTied.map(r => r.pat.code + ' &mdash; ' + r.pat.name).join(' and ')} scored equally. The result below shows the first. Start with whichever pattern feels most acute right now, then return for the other.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">${topTied.map(r => `<span style="font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border-radius:5px;border:1px solid ${r.pat.color}40;color:${r.pat.color};background:${r.pat.color}12;">${r.pat.code}</span>`).join('')}</div>
+    </div>` : ''}
+
     <!-- PRIMARY CARD -->
     <div class="result-card" style="border-color:${pat.color}30;">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,${pat.color},${pat.color}50);border-radius:20px 20px 0 0;"></div>
-      <div class="result-eyebrow">Your Primary Collapse Pattern</div>
+      <div class="result-eyebrow">${hasTie ? 'Co-Primary Collapse Pattern' : 'Your Primary Collapse Pattern'}</div>
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
         <div class="result-fcode" style="color:${pat.color};">${pat.code}</div>
         <div style="width:1px;height:34px;background:rgba(255,255,255,.1);"></div>
@@ -838,7 +875,7 @@ function showResults() {
         </div>
         <div class="offer-row" style="border-color:rgba(14,138,122,.2);">
           <span class="offer-check" style="color:var(--teal);">+</span>
-          <div class="offer-txt"><strong>Builder Pass: all 33 chapters</strong> <span class="offer-badge ob-paid">$7 / mo</span><br>Full audiobook on private podcast RSS. Apple Podcasts, Spotify, Overcast. Unlocks every chapter mapped to every pattern. 7-day free trial. Cancel any time.</div>
+          <div class="offer-txt"><strong>Builder Pass: all 33 chapters</strong> <span class="offer-badge ob-paid">$7 / mo</span><br>Full audiobook on private podcast RSS. Apple Podcasts, Spotify, Overcast. Unlocks every chapter mapped to every pattern. 30-day refund if it&rsquo;s not useful &mdash; reply and it&rsquo;s done.</div>
         </div>
       </div>
       <div class="email-form" id="emailForm">
@@ -890,7 +927,7 @@ function showResults() {
     <!-- CTA -->
     <div class="cta-block">
       <div class="cta-h">Ready to repair it, not just name it?</div>
-      <div class="cta-sub">The Builder Pass gives you all 33 chapters on private podcast RSS. Every collapse pattern mapped to the structural intervention that addresses it. Seven-day free trial. Start at ${pat.code}. Cancel any time, one click.</div>
+      <div class="cta-sub">The Builder Pass gives you all 33 chapters on private podcast RSS. Every collapse pattern mapped to the structural intervention that addresses it. 30-day refund if it&rsquo;s not useful. Start at ${pat.code}.</div>
       <div class="cta-btns">
         <a class="cta-primary" href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener">Get the Builder Pass</a>
       </div>
