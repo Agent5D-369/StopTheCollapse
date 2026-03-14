@@ -329,7 +329,7 @@
         <p style="font-family:'Lora',serif;font-size:clamp(14px,1.7vw,16px);color:var(--silver);line-height:1.75;margin-bottom:10px;">Subscribe free to get the Navigation Legend. It maps all seven patterns to the exact chapters that address each one — useful as a structural health check even when nothing is actively breaking.</p>
         <p style="font-family:'Lora',serif;font-size:clamp(13px,1.6vw,14px);color:var(--mist);line-height:1.68;">If something feels subtly off but you couldn't score it above zero, that is worth trusting. Run the diagnostic again in 30 days, or forward it to your co-founder and compare reads.</p>
       </div>
-      <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="btn-primary" style="margin-bottom:16px;">Get the Navigation Legend Free</a>
+      <a href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-cta&utm_campaign=builder-pass" target="_blank" rel="noopener" class="btn-primary" style="margin-bottom:16px;">Get the Navigation Legend Free</a>
       <br>
       <button class="restart-btn" onclick="restartQuiz()" style="margin-top:12px;">Retake the diagnostic</button>
     </div>
@@ -788,7 +788,7 @@ function showResults() {
     ? `<div class="door-block door-a">
         <div class="door-label">Your Entry Path &middot; The Architect</div>
         <div class="door-text" style="margin-bottom:14px;">You feel this in the structure. The governance gap. The decision-making void. Nothing is written down, so everything is personal.<br><br>The chapters mapped to ${pat.code} give you the blueprint first. Named protocols. Architecture you can hand your team without explaining your entire cosmology. Start there. Build the container before you reopen the conversation.</div>
-        <a class="door-cta door-cta-a" href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener">
+        <a class="door-cta door-cta-a" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-door&utm_campaign=free-subscribe" target="_blank" rel="noopener">
           Get the ${pat.code} chapters now
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -796,7 +796,7 @@ function showResults() {
     : `<div class="door-block door-b">
         <div class="door-label">Your Entry Path &middot; The Weaver</div>
         <div class="door-text" style="margin-bottom:14px;">You felt this before anyone named it. The trust eroding in the room. The weight you have been carrying alone. The container that is supposed to hold the project is holding you instead.<br><br>The chapters mapped to ${pat.code} start with the felt experience. They name what you already know and redistribute the load so the structure holds it instead of you. Start there. The structural repair will follow.</div>
-        <a class="door-cta door-cta-b" href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener">
+        <a class="door-cta door-cta-b" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-door&utm_campaign=free-subscribe" target="_blank" rel="noopener">
           Get the ${pat.code} chapters now
           <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -943,7 +943,7 @@ function showResults() {
       <div class="cta-h">Ready to repair it, not just name it?</div>
       <div class="cta-sub">The Builder Pass gives you all 33 chapters on private podcast RSS. Every collapse pattern mapped to the structural intervention that addresses it. 30-day refund if it&rsquo;s not useful. Start at ${pat.code}.</div>
       <div class="cta-btns">
-        <a class="cta-primary" href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener">Get the Builder Pass</a>
+        <a class="cta-primary" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-cta&utm_campaign=builder-pass" target="_blank" rel="noopener">Get the Builder Pass</a>
       </div>
       <button class="restart-btn" onclick="restartQuiz()">Retake for a different project</button>
     </div>`;
@@ -960,7 +960,7 @@ function submitEmail() {
     setTimeout(() => document.getElementById('emailInput').style.borderColor = '', 2000);
     return;
   }
-  const url = 'https://rickbroider.substack.com/subscribe?email=' + encodeURIComponent(email);
+  const url = 'https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-email-form&utm_campaign=free-subscribe' + '&email=' + encodeURIComponent(email);
   window.open(url, '_blank');
   document.getElementById('emailForm').style.display = 'none';
   document.getElementById('emailSent').style.display = 'block';
