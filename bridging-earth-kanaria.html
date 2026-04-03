@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07080E">
+<title>Bridging Earth and Kanaria | The Complete Audiobook | Rick Broider</title>
+<meta name="description" content="A transmission from the civilization that made it through. 33 chapters. Delivered to your podcast app. Written and recorded by Omja Brhad (Rick Broider).">
+<link rel="canonical" href="https://stopthecollapse.com/bridging-earth-kanaria">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stopthecollapse.com/bridging-earth-kanaria">
+<meta property="og:title" content="Bridging Earth and Kanaria — The Complete Audiobook">
+<meta property="og:description" content="A transmission from the civilization that made it through. 33 chapters. Delivered to your podcast app.">
+<meta property="og:image" content="https://stopthecollapse.com/bek-og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:   #07080E;
+  --card:   #0C0E1A;
+  --gold:   #C89B3C;
+  --gold-hi:#D9C37A;
+  --teal:   #0E8A7A;
+  --teal-hi:#7AD1E2;
+  --white:  #FFFFFF;
+  --pearl:  #EDE8DC;
+  --silver: #C0C0D0;
+  --mist:   #7878A0;
+  --r:      14px;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--navy);
+  color:var(--pearl);
+  font-family:'Syne',sans-serif;
+  font-weight:500;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* COSMOS BACKGROUND */
+.cosmos {
+  position:fixed; inset:0; z-index:0;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% -10%, #16203C 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(14,138,122,.08) 0%, transparent 50%),
+    var(--navy);
+  pointer-events:none;
+}
+
+/* LAYOUT */
+.page { position:relative; z-index:1; }
+.wrap { max-width:680px; margin:0 auto; padding:0 24px; }
+.wrap-wide { max-width:960px; margin:0 auto; padding:0 24px; }
+
+/* NAV */
+.nav {
+  position:sticky; top:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 24px;
+  height:56px;
+  background:rgba(7,8,14,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-brand {
+  font-family:'Playfair Display',serif;
+  font-size:15px; font-weight:700;
+  color:var(--pearl);
+  text-decoration:none;
+  letter-spacing:.01em;
+}
+.nav-brand span { color:var(--gold); font-style:italic; }
+.nav-links { display:flex; align-items:center; gap:10px; }
+.nav-link {
+  font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--mist); text-decoration:none;
+  transition:color .18s;
+}
+.nav-link:hover { color:var(--gold); }
+.nav-cta {
+  font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--navy); background:var(--gold);
+  padding:8px 16px; border-radius:8px;
+  text-decoration:none;
+  transition:background .18s;
+}
+.nav-cta:hover { background:var(--gold-hi); }
+
+/* HERO */
+.hero {
+  padding:80px 0 60px;
+  text-align:center;
+}
+.hero-eyebrow {
+  font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(122,209,226,.7);
+  margin-bottom:20px;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content:''; width:40px; height:1px;
+  background:rgba(122,209,226,.25);
+}
+.h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,8vw,72px);
+  font-weight:900;
+  line-height:1.06;
+  letter-spacing:-.025em;
+  color:var(--white);
+  margin-bottom:10px;
+}
+.h1 em { color:var(--gold); font-style:italic; }
+.h1-sub {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(20px,3.5vw,30px);
+  font-weight:700;
+  font-style:italic;
+  color:var(--silver);
+  margin-bottom:28px;
+  line-height:1.4;
+}
+.hero-body {
+  font-family:'Lora',serif;
+  font-size:clamp(17px,2.2vw,19px);
+  color:var(--silver);
+  line-height:1.85;
+  max-width:560px;
+  margin:0 auto 36px;
+}
+.hero-body strong { color:var(--pearl); }
+
+/* PRIMARY CTA */
+.cta-primary {
+  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  font-family:'Syne',sans-serif;
+  font-size:14px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--navy);
+  background:var(--gold);
+  padding:18px 36px;
+  border-radius:12px;
+  text-decoration:none;
+  transition:all .2s;
+  box-shadow:0 0 40px rgba(200,155,60,.2);
+}
+.cta-primary:hover {
+  background:var(--gold-hi);
+  transform:translateY(-2px);
+  box-shadow:0 8px 48px rgba(200,155,60,.3);
+}
+.cta-primary .arr { font-size:18px; }
+.cta-note {
+  font-family:'Syne',sans-serif;
+  font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--mist);
+  margin-top:12px;
+}
+
+/* DIVIDER */
+.divider {
+  width:60px; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(200,155,60,.4), transparent);
+  margin:48px auto;
+}
+
+/* SECTION */
+.section { padding:60px 0; }
+
+/* WHAT IT IS */
+.what-grid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+  margin:32px 0;
+}
+@media(min-width:600px) {
+  .what-grid { grid-template-columns:1fr 1fr; }
+}
+.what-card {
+  background:rgba(12,14,26,.7);
+  border:1px solid rgba(200,155,60,.12);
+  border-radius:var(--r);
+  padding:22px 20px;
+}
+.what-card-icon {
+  font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:10px; display:block;
+}
+.what-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:18px; font-weight:700; color:var(--white);
+  margin-bottom:8px; line-height:1.3;
+}
+.what-card p {
+  font-family:'Lora',serif;
+  font-size:15px; color:var(--silver); line-height:1.75;
+}
+
+/* FOR SECTION */
+.for-list {
+  list-style:none;
+  display:flex; flex-direction:column; gap:14px;
+  margin:28px 0;
+}
+.for-list li {
+  font-family:'Lora',serif;
+  font-size:clamp(16px,2vw,18px);
+  color:var(--silver);
+  line-height:1.7;
+  padding-left:28px;
+  position:relative;
+}
+.for-list li::before {
+  content:'';
+  position:absolute; left:0; top:10px;
+  width:12px; height:1px;
+  background:var(--gold);
+}
+.for-list li strong { color:var(--pearl); }
+
+/* PHASES */
+.phase-grid {
+  display:grid; grid-template-columns:1fr;
+  gap:12px; margin:28px 0;
+}
+@media(min-width:600px) {
+  .phase-grid { grid-template-columns:1fr 1fr; }
+}
+.phase-card {
+  background:rgba(12,14,26,.6);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r);
+  padding:20px;
+}
+.phase-num {
+  font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(122,209,226,.6); margin-bottom:8px; display:block;
+}
+.phase-title {
+  font-family:'Playfair Display',serif;
+  font-size:16px; font-weight:700; color:var(--white);
+  margin-bottom:6px;
+}
+.phase-range {
+  font-size:12px; color:var(--mist);
+}
+
+/* QUOTE */
+.pull-quote {
+  border-left:2px solid var(--gold);
+  padding:20px 24px;
+  margin:36px 0;
+  background:rgba(200,155,60,.04);
+  border-radius:0 var(--r) var(--r) 0;
+}
+.pull-quote p {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,2.5vw,22px);
+  font-style:italic;
+  color:var(--pearl);
+  line-height:1.6;
+}
+.pull-quote cite {
+  font-family:'Syne',sans-serif;
+  font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--mist);
+  margin-top:12px;
+  display:block;
+  font-style:normal;
+}
+
+/* AUTHOR */
+.author-band {
+  background:rgba(12,14,26,.8);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r);
+  padding:32px 28px;
+  margin:48px 0 32px;
+}
+.author-label {
+  font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--mist); margin-bottom:16px;
+}
+.author-name {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,4vw,30px); font-weight:900;
+  color:var(--white); margin-bottom:6px;
+}
+.author-title {
+  font-family:'Syne',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:18px;
+}
+.author-body {
+  font-family:'Lora',serif;
+  font-size:clamp(15px,2vw,17px); color:var(--silver); line-height:1.8;
+}
+
+/* PURCHASE BOX */
+.purchase-box {
+  background:rgba(12,14,26,.9);
+  border:1.5px solid rgba(200,155,60,.3);
+  border-radius:var(--r);
+  padding:36px 28px;
+  text-align:center;
+  box-shadow:0 0 80px rgba(200,155,60,.07);
+}
+.purchase-label {
+  font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:20px; display:block;
+}
+.purchase-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(24px,4vw,32px); font-weight:900;
+  color:var(--white); margin-bottom:8px; line-height:1.2;
+}
+.purchase-subtitle {
+  font-family:'Lora',serif;
+  font-size:16px; font-style:italic;
+  color:var(--silver); margin-bottom:28px; line-height:1.6;
+}
+.price-row {
+  display:flex; align-items:baseline; justify-content:center; gap:6px;
+  margin-bottom:24px;
+}
+.price-amount {
+  font-family:'Syne',sans-serif;
+  font-size:48px; font-weight:800; color:var(--white); line-height:1;
+}
+.price-note {
+  font-family:'Syne',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--mist);
+}
+.purchase-includes {
+  text-align:left;
+  list-style:none;
+  display:flex; flex-direction:column; gap:10px;
+  margin:0 0 28px;
+}
+.purchase-includes li {
+  font-family:'Lora',serif;
+  font-size:15px; color:var(--silver); line-height:1.6;
+  display:flex; align-items:flex-start; gap:10px;
+}
+.purchase-includes li::before {
+  content:'✓';
+  color:var(--gold); font-size:12px; font-weight:800;
+  flex-shrink:0; margin-top:3px;
+}
+.purchase-includes li strong { color:var(--pearl); }
+
+/* SUBSTACK ALT */
+.sub-alt {
+  margin-top:28px;
+  padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.sub-alt-label {
+  font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--mist); margin-bottom:16px;
+}
+.sub-alt-cta {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:'Syne',sans-serif;
+  font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(122,209,226,.85);
+  background:rgba(122,209,226,.07);
+  border:1.5px solid rgba(122,209,226,.2);
+  padding:12px 24px; border-radius:8px;
+  text-decoration:none;
+  transition:all .2s;
+  width:100%;
+  justify-content:center;
+}
+.sub-alt-cta:hover {
+  background:rgba(122,209,226,.12);
+  border-color:rgba(122,209,226,.35);
+}
+
+/* FREE PREVIEW */
+.preview-band {
+  background:rgba(122,209,226,.04);
+  border:1px solid rgba(122,209,226,.15);
+  border-radius:var(--r);
+  padding:24px 22px;
+  margin:24px 0;
+  text-align:center;
+}
+.preview-band-label {
+  font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(122,209,226,.7); margin-bottom:10px;
+}
+.preview-band-text {
+  font-family:'Lora',serif;
+  font-size:15px; color:var(--silver); line-height:1.7; margin-bottom:16px;
+}
+.preview-link {
+  font-family:'Syne',sans-serif;
+  font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--gold); text-decoration:none;
+}
+.preview-link:hover { text-decoration:underline; }
+
+/* FOOTER */
+footer {
+  padding:40px 0 48px;
+  border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;
+}
+.ft-brand {
+  font-family:'Playfair Display',serif;
+  font-size:16px; font-weight:700;
+  color:rgba(237,232,220,.3);
+  margin-bottom:12px;
+}
+.ft-links {
+  display:flex; justify-content:center; gap:20px; flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.ft-link {
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(120,120,160,.45); text-decoration:none;
+  transition:color .18s;
+}
+.ft-link:hover { color:var(--gold); }
+.ft-legal {
+  font-size:12px; color:rgba(120,120,160,.35); line-height:1.6;
+}
+
+/* SCROLL REVEAL */
+.sr { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+.sr.visible { opacity:1; transform:none; }
+
+@media(max-width:540px) {
+  .nav-link { display:none; }
+  .purchase-box { padding:28px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="cosmos"></div>
+<div class="page">
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-brand">Stopping the <span>Collapse</span></a>
+  <div class="nav-links">
+    <a href="/diagnostic.html" class="nav-link">The Diagnostic</a>
+    <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="nav-cta">Get the Book</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+
+    <div class="hero-eyebrow">A transmission from beyond the mainstream</div>
+
+    <h1 class="h1">
+      Bridging Earth<br>
+      <em>&amp; Kanaria</em>
+    </h1>
+
+    <p class="h1-sub">A transmission from the civilization that made it through.</p>
+
+    <p class="hero-body">
+      Thirty-three chapters. Five phases of remembering, rebuilding, and returning to what you
+      already carry. Written and recorded by <strong>Omja Brhad</strong> — galactic liaison,
+      systems architect, Costa Rica — also known as Rick Broider.
+    </p>
+
+    <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="cta-primary">
+      Get the Complete Audiobook
+      <span class="arr">&#8594;</span>
+    </a>
+    <p class="cta-note">$27 one-time &nbsp;&middot;&nbsp; Instant access &nbsp;&middot;&nbsp; Private podcast feed</p>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FREE PREVIEW BAND -->
+<div class="wrap">
+  <div class="preview-band sr">
+    <div class="preview-band-label">Hear it before you decide</div>
+    <p class="preview-band-text">
+      The Preface is four minutes. Free. No signup required.<br>
+      If it lands, the rest of the book will name what that is.
+    </p>
+    <a href="/preface-before-you-begin" class="preview-link">Listen to the Preface free &rarr;</a>
+  </div>
+</div>
+
+<!-- WHAT IT IS -->
+<section class="section sr">
+  <div class="wrap">
+
+    <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:16px;">What this work is</p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:20px;">
+      Not an escape.<br>
+      <span style="color:var(--gold);font-style:italic;">A working example.</span>
+    </h2>
+
+    <p style="font-family:'Lora',serif;font-size:clamp(16px,2vw,18px);color:var(--silver);line-height:1.85;margin-bottom:28px;">
+      Kanaria is not a utopia. It is a civilization that faced the same collapse we are living through
+      and came out the other side. Not through ascension. Through design.
+    </p>
+
+    <p style="font-family:'Lora',serif;font-size:clamp(16px,2vw,18px);color:var(--silver);line-height:1.85;margin-bottom:0;">
+      This audiobook is a decoded transmission from that civilization. The architecture of how they
+      governed, related, built technology, held memory, and sustained commitment without burning out
+      the people who cared most. Every chapter is a working example of something Earth can become
+      when enough of us remember.
+    </p>
+
+    <div class="what-grid" style="margin-top:32px;">
+      <div class="what-card">
+        <span class="what-card-icon">A memory</span>
+        <h3>Encoded before this lifetime</h3>
+        <p>The Kanarian codes you carry did not come from this life. This book helps you recognize them in the structures you are already trying to build.</p>
+      </div>
+      <div class="what-card">
+        <span class="what-card-icon">A map</span>
+        <h3>Five phases of return</h3>
+        <p>Remembering. Rebuilding. Reharmonizing. Rebirthing. Completion. Each phase unlocks a layer. The book does not read the same way twice.</p>
+      </div>
+      <div class="what-card">
+        <span class="what-card-icon">A manual</span>
+        <h3>Architecture you can use now</h3>
+        <p>Ethics, governance, technology, kinship, memory, sovereignty. Every chapter contains structural principles that apply to the project you are building right now.</p>
+      </div>
+      <div class="what-card">
+        <span class="what-card-icon">A transmission</span>
+        <h3>Live signal, not history</h3>
+        <p>Chapter 33 is not a summary. It is a direct transmission. If you feel it reading these words, you already know what it contains.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHO IT IS FOR -->
+<section class="section sr">
+  <div class="wrap">
+
+    <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:16px;">Who this is for</p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:24px;">
+      You have always felt like you are<br>
+      <em style="color:var(--gold);">building for a world that doesn&rsquo;t exist yet.</em>
+    </h2>
+
+    <ul class="for-list">
+      <li>You feel the <strong>collapse of old systems</strong> not as news but as lived experience in your body.</li>
+      <li>You have always sensed that the <strong>frameworks you were given</strong> were not designed for what you are trying to build.</li>
+      <li>You are done with spiritual content that <strong>inspires without delivering architecture.</strong></li>
+      <li>You feel called to something larger than your current life can fully hold, and you want <strong>the structural language</strong> to name it.</li>
+      <li>You are <strong>already building</strong> — a community, a project, a new way of living — and you need the transmission that maps to where you are.</li>
+      <li>You have been <strong>waiting for this book</strong> without knowing its name.</li>
+    </ul>
+
+    <div class="pull-quote">
+      <p>"You are not remembering something lost. You are awakening to something eternal: a frequency you encoded in your bones before this lifetime began."</p>
+      <cite>— Kanarian Council of Unified Frequencies, Chapter 33</cite>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE FIVE PHASES -->
+<section class="section sr">
+  <div class="wrap">
+
+    <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:16px;">Inside the book</p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:8px;">
+      33 chapters. Five phases.<br>
+      <em style="color:var(--gold);">One complete arc.</em>
+    </h2>
+    <p style="font-family:'Lora',serif;font-size:15px;color:var(--mist);margin-bottom:24px;">
+      These are not static phases. They are harmonic shifts. You will move through them again at every threshold.
+    </p>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <span class="phase-num">Phase 1</span>
+        <div class="phase-title">Remembering</div>
+        <div class="phase-range">Chapters 1 &ndash; 6 &nbsp;&middot;&nbsp; The call to origins</div>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">Phase 2</span>
+        <div class="phase-title">Rebuilding</div>
+        <div class="phase-range">Chapters 7 &ndash; 14 &nbsp;&middot;&nbsp; Designing from recovered wisdom</div>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">Phase 3</span>
+        <div class="phase-title">Reharmonizing</div>
+        <div class="phase-range">Chapters 15 &ndash; 22 &nbsp;&middot;&nbsp; Bridging galactic and earth frequencies</div>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">Phase 4</span>
+        <div class="phase-title">Rebirthing</div>
+        <div class="phase-range">Chapters 23 &ndash; 33 &nbsp;&middot;&nbsp; Living federation ethics on Earth</div>
+      </div>
+    </div>
+
+    <p style="font-family:'Lora',serif;font-size:14px;color:var(--mist);text-align:center;margin-top:16px;">
+      Plus: Spiral Completion &nbsp;&middot;&nbsp; the closing transmission. Not an ending. A frequency marker.
+    </p>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AUTHOR -->
+<section class="section sr">
+  <div class="wrap">
+
+    <div class="author-band">
+      <p class="author-label">The author</p>
+      <h2 class="author-name">Omja Brhad</h2>
+      <p class="author-title">Also known as Rick Broider &nbsp;&middot;&nbsp; Costa Rica</p>
+      <p class="author-body">
+        On February 18, 2021 at 7am, something moved through me that I can only describe as remembering.
+        Not a voice. A fusion of timelines. With it came the name of my other world: Kanaria.
+      </p>
+      <p class="author-body" style="margin-top:16px;">
+        I spent three years receiving, building, and testing the transmission. The result is this book.
+        I am a systems architect and community builder on Earth. I am a galactic liaison carrying
+        Kanarian and Arcturian lineage frequencies. Both are true. This book holds both.
+      </p>
+      <p class="author-body" style="margin-top:16px;">
+        I did not write this to convert anyone. I wrote it because I could not not write it.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PURCHASE BOX -->
+<section class="section" id="purchase">
+  <div class="wrap">
+
+    <div class="purchase-box sr">
+      <span class="purchase-label">Complete Audiobook &nbsp;&middot;&nbsp; Immediate Access</span>
+      <h2 class="purchase-title">Bridging Earth and Kanaria</h2>
+      <p class="purchase-subtitle">33 chapters. 5 phases. One complete transmission.</p>
+
+      <div class="price-row">
+        <span class="price-amount">$27</span>
+        <span class="price-note">one-time</span>
+      </div>
+
+      <ul class="purchase-includes">
+        <li><strong>All 33 chapters</strong> of Bridging Earth and Kanaria, recorded by Rick Broider (Omja Brhad)</li>
+        <li><strong>Private podcast RSS feed</strong> — plays in Apple Podcasts, Spotify, Overcast, Pocket Casts, or any podcast app you already use</li>
+        <li><strong>Read-along transcripts</strong> for every chapter — download, print, follow along</li>
+        <li><strong>Spiral Completion</strong> — the closing transmission, free bonus episode</li>
+        <li>Delivered <strong>immediately</strong> on purchase</li>
+      </ul>
+
+      <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="cta-primary" style="width:100%;max-width:420px;">
+        Get the Complete Audiobook &nbsp;&middot;&nbsp; $27
+        <span class="arr">&#8594;</span>
+      </a>
+
+      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.07em;color:var(--mist);margin-top:14px;">
+        Instant access via Hello Audio. Immediate delivery. No subscription required.
+      </p>
+
+      <div class="sub-alt">
+        <p class="sub-alt-label">Prefer a subscription? Get the chapters as they drop.</p>
+        <a href="https://rickbroider.substack.com/subscribe?utm_source=bek-page&utm_medium=purchase-box&utm_campaign=builder-pass" target="_blank" rel="noopener" class="sub-alt-cta">
+          Builder Pass &nbsp;&middot;&nbsp; $7/month or $70/year &rarr;
+        </a>
+        <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mist);margin-top:10px;">
+          Chapter drops twice per week on private RSS. Includes the full 33-chapter audiobook plus essays and builder resources.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- For those not ready to purchase -->
+    <div style="text-align:center;margin-top:28px;">
+      <p style="font-family:'Lora',serif;font-size:15px;color:var(--mist);margin-bottom:14px;">
+        Not ready to purchase? Start with the free Preface.
+      </p>
+      <a href="/preface-before-you-begin" style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;">
+        Listen to the Preface free (4 minutes) &rarr;
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUILDER PATH BRIDGE -->
+<section class="section sr">
+  <div class="wrap" style="text-align:center;">
+
+    <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:16px;">If you came here from a different door</p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);font-weight:700;color:var(--silver);line-height:1.3;margin-bottom:16px;">
+      This book is also the source architecture<br>
+      behind the <em style="color:var(--white);">7 Collapse Patterns</em> framework.
+    </h2>
+
+    <p style="font-family:'Lora',serif;font-size:16px;color:var(--mist);line-height:1.8;max-width:520px;margin:0 auto 24px;">
+      If you are a founder whose project is under structural stress, the Diagnostic names which pattern
+      is active and routes you directly to the chapters that address it.
+    </p>
+
+    <a href="/diagnostic.html" style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1.5px solid rgba(200,155,60,.3);padding:12px 24px;border-radius:8px;display:inline-block;transition:all .2s;" onmouseover="this.style.background='rgba(200,155,60,.08)'" onmouseout="this.style.background='transparent'">
+      Take the Diagnostic &rarr;
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft-brand">Bridging Earth and Kanaria &nbsp;&middot;&nbsp; Stopping the Collapse</div>
+    <div class="ft-links">
+      <a href="/" class="ft-link">Home</a>
+      <a href="/diagnostic.html" class="ft-link">The Diagnostic</a>
+      <a href="/patterns.html" class="ft-link">The 7 Patterns</a>
+      <a href="/about.html" class="ft-link">About Rick</a>
+      <a href="https://rickbroider.substack.com" target="_blank" rel="noopener" class="ft-link">Substack</a>
+      <a href="/privacy.html" class="ft-link">Privacy</a>
+    </div>
+    <p class="ft-legal">
+      &copy; 2025 Rick Broider (Omja Brhad) &nbsp;&middot;&nbsp; Bridging Earth and Kanaria &nbsp;&middot;&nbsp;
+      Licensed under CC BY-SA 4.0 &nbsp;&middot;&nbsp; Costa Rica
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06 });
+document.querySelectorAll('.sr').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
