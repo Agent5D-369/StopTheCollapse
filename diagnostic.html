@@ -618,7 +618,7 @@ function renderQuestion(idx) {
 
   document.getElementById('qContent').innerHTML = `
     <div class="q-anim">
-      <span class="q-pattern-tag" style="color:${pat.color};border-color:${pat.color}40;background:${pat.color}12;">${q.id.toUpperCase()} &middot; ${q.tag}</span>
+      <span class="q-pattern-tag" style="color:${pat.color};border-color:${pat.color}40;background:${pat.color}12;">${q.id.toUpperCase()} · ${q.tag}</span>
       <p class="q-headline">${q.headline}</p>
       <p class="q-context">${q.context}</p>
       <p class="q-prompt">${q.prompt}</p>
@@ -787,7 +787,7 @@ function showResults() {
   // Door block - with CTA, Dream Target voice per locked profile
   const doorHTML = isDoorA
     ? `<div class="door-block door-a">
-        <div class="door-label">Your Entry Path &middot; The Architect</div>
+        <div class="door-label">Your Entry Path · The Architect</div>
         <div class="door-text" style="margin-bottom:14px;">You feel this in the structure. The governance gap. The decision-making void. Nothing is written down, so everything is personal.<br><br>The chapters mapped to ${pat.code} give you the blueprint first. Named protocols. Architecture you can hand your team without explaining your entire cosmology. Start there. Build the container before you reopen the conversation.</div>
         <a class="door-cta door-cta-a" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-door&utm_campaign=free-subscribe" target="_blank" rel="noopener">
           Get the ${pat.code} chapters now
@@ -795,7 +795,7 @@ function showResults() {
         </a>
       </div>`
     : `<div class="door-block door-b">
-        <div class="door-label">Your Entry Path &middot; The Weaver</div>
+        <div class="door-label">Your Entry Path · The Weaver</div>
         <div class="door-text" style="margin-bottom:14px;">You felt this before anyone named it. The trust eroding in the room. The weight you have been carrying alone. The container that is supposed to hold the project is holding you instead.<br><br>The chapters mapped to ${pat.code} start with the felt experience. They name what you already know and redistribute the load so the structure holds it instead of you. Start there. The structural repair will follow.</div>
         <a class="door-cta door-cta-b" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-door&utm_campaign=free-subscribe" target="_blank" rel="noopener">
           Get the ${pat.code} chapters now
@@ -814,7 +814,7 @@ function showResults() {
     <!-- TIE BANNER: only shown when patterns are tied -->
     ${hasTie ? `<div style="background:rgba(200,155,60,.08);border:1px solid rgba(200,155,60,.25);border-radius:12px;padding:14px 18px;margin-bottom:18px;">
       <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Two patterns are tied</div>
-      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:10px;">${topTied.map(r => r.pat.code + ' &mdash; ' + r.pat.name).join(' and ')} scored equally. The result below shows the first. Start with whichever pattern feels most acute right now, then return for the other.</p>
+      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:10px;">${topTied.map(r => r.pat.code + ' — ' + r.pat.name).join(' and ')} scored equally. The result below shows the first. Start with whichever pattern feels most acute right now, then return for the other.</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">${topTied.map(r => `<span style="font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border-radius:5px;border:1px solid ${r.pat.color}40;color:${r.pat.color};background:${r.pat.color}12;">${r.pat.code}</span>`).join('')}</div>
     </div>` : ''}
 
@@ -841,7 +841,7 @@ function showResults() {
         <div class="risk-score">${total}<span style="font-size:.38em;color:var(--mist);">/14</span></div>
       </div>
       ${activePatternsHTML}
-      ${total >= 7 ? '<p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(224,120,48,.7);margin-top:14px;padding-top:12px;border-top:1px solid rgba(224,120,48,.12);line-height:1.65;">Most projects at this risk level reach irreversible damage within 60&ndash;90 days of the first visible signal. The patterns compound faster than the repair timeline.</p>' : ''}
+      ${total >= 7 ? '<p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(224,120,48,.7);margin-top:14px;padding-top:12px;border-top:1px solid rgba(224,120,48,.12);line-height:1.65;">Most projects at this risk level reach irreversible damage within 60–90 days of the first visible signal. The patterns compound faster than the repair timeline.</p>' : ''}
     </div>
 
     <!-- PATTERN MAP -->
@@ -869,7 +869,7 @@ function showResults() {
     <!-- OFFER LADDER -->
     <div class="offer-block" id="offerBlock">
       <div class="offer-h">The repair architecture for ${pat.code} is in the audiobook.</div>
-      <div class="offer-sub">Subscribe free. The Navigation Legend arrives immediately &mdash; every chapter mapped to your exact pattern. Three complete chapters matched to ${pat.code} follow. The field research, the real cases, and the structural repair. Start at your fire, not Chapter 1.</div>
+      <div class="offer-sub">Subscribe free. The Navigation Legend arrives immediately — every chapter mapped to your exact pattern. Three complete chapters matched to ${pat.code} follow. The field research, the real cases, and the structural repair. Start at your fire, not Chapter 1.</div>
       <div class="offer-gives">
         <div class="offer-row">
           <span class="offer-check">✓</span>
@@ -885,11 +885,11 @@ function showResults() {
         </div>
         <div class="offer-row" style="border-color:rgba(14,138,122,.2);">
           <span class="offer-check" style="color:var(--teal);">+</span>
-          <div class="offer-txt"><strong>Builder Pass: all 33 chapters</strong> <span class="offer-badge ob-paid">$7 / mo</span><br>Full audiobook on private podcast RSS. Apple Podcasts, Spotify, Overcast. Unlocks every chapter mapped to every pattern. 30-day refund if it&rsquo;s not useful &mdash; reply and it&rsquo;s done.</div>
+          <div class="offer-txt"><strong>Builder Pass: all 33 chapters</strong> <span class="offer-badge ob-paid">$7 / mo</span><br>Full audiobook on private podcast RSS. Apple Podcasts, Spotify, Overcast. Unlocks every chapter mapped to every pattern. 30-day refund if it’s not useful — reply and it’s done.</div>
         </div>
       </div>
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
-        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;">${pat.code} &mdash; Builder in the field</div>
+        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;">${pat.code} — Builder in the field</div>
         <p style="font-family:'Lora',serif;font-style:italic;font-size:clamp(13px,1.6vw,14px);color:var(--silver);line-height:1.7;margin-bottom:6px;">${pat.testimonial}</p>
       </div>
       <div class="email-form" id="emailForm">
@@ -916,7 +916,7 @@ function showResults() {
       <div class="share-h">Co-diagnosis is faster than solo analysis</div>
       <p class="share-quote">"This pattern is easier to name when someone else in the same project reads it too. Send this link and ask: which pattern do you think is most active in what we are building right now?"</p>
       <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mist);margin-bottom:10px;line-height:1.65;">Do not keep this diagnostic to yourself if more than one person is carrying the same project. Their read may surface what you normalized.</p>
-      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.04em;color:rgba(200,155,60,.55);margin-bottom:14px;line-height:1.65;">Running this with your founding team? The full team scoring exercise &mdash; all three diagnostic axes, live score dashboard, chapter routing &mdash; is at <a href="https://stopthecollapse.com/report-7-patterns.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,155,60,.3);">stopthecollapse.com/report-7-patterns</a>. Each person scores independently, then you compare. Where the scores diverge is where the real structural problem lives.</p>
+      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.04em;color:rgba(200,155,60,.55);margin-bottom:14px;line-height:1.65;">Running this with your founding team? The full team scoring exercise — all three diagnostic axes, live score dashboard, chapter routing — is at <a href="https://stopthecollapse.com/report-7-patterns.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,155,60,.3);">stopthecollapse.com/report-7-patterns</a>. Each person scores independently, then you compare. Where the scores diverge is where the real structural problem lives.</p>
       <div class="share-btns">
         <button class="share-btn share-copy" id="copyBtn" onclick="copyLink()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="9" height="9" rx="1"/><path d="M11 5V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2"/></svg>
@@ -942,7 +942,7 @@ function showResults() {
     <!-- CTA -->
     <div class="cta-block">
       <div class="cta-h">Ready to repair it, not just name it?</div>
-      <div class="cta-sub">The Builder Pass gives you all 33 chapters on private podcast RSS. Every collapse pattern mapped to the structural intervention that addresses it. 30-day refund if it&rsquo;s not useful. Start at ${pat.code}.</div>
+      <div class="cta-sub">The Builder Pass gives you all 33 chapters on private podcast RSS. Every collapse pattern mapped to the structural intervention that addresses it. 30-day refund if it’s not useful. Start at ${pat.code}.</div>
       <div class="cta-btns">
         <a class="cta-primary" href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-cta&utm_campaign=builder-pass" target="_blank" rel="noopener">Get the Builder Pass</a>
       </div>
