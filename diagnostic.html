@@ -10,7 +10,6 @@
   <meta property="og:image" content="https://stopthecollapse.com/og-diagnostic.png">
   <meta property="og:url" content="https://stopthecollapse.com/diagnostic">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<link rel="canonical" href="https://stopthecollapse.com/diagnostic.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +56,7 @@
     .intro-h1 em{color:var(--gold);font-style:italic;}
     .intro-sub{font-size:clamp(16px,2vw,18px);color:var(--silver);line-height:1.8;text-align:center;max-width:520px;margin:0 auto 22px;}
     .intro-meta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;}
-    .intro-meta-item{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);display:flex;align-items:center;gap:6px;}
+    .intro-meta-item{font-family:Syne,sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);display:flex;align-items:center;gap:6px;}
     .intro-meta-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);}
 
     /* BUTTONS */
@@ -330,7 +329,7 @@
         <p style="font-family:'Lora',serif;font-size:clamp(14px,1.7vw,16px);color:var(--silver);line-height:1.75;margin-bottom:10px;">Subscribe free to get the Navigation Legend. It maps all seven patterns to the exact chapters that address each one — useful as a structural health check even when nothing is actively breaking.</p>
         <p style="font-family:'Lora',serif;font-size:clamp(13px,1.6vw,14px);color:var(--mist);line-height:1.68;">If something feels subtly off but you couldn't score it above zero, that is worth trusting. Run the diagnostic again in 30 days, or forward it to your co-founder and compare reads.</p>
       </div>
-      <a href="https://rickbroider.substack.com/subscribe?utm_source=diagnostic&utm_medium=results-cta&utm_campaign=builder-pass" target="_blank" rel="noopener" class="btn-primary" style="margin-bottom:16px;">Get the Navigation Legend Free</a>
+      <a href="https://rickbroider.substack.com/subscribe" target="_blank" rel="noopener" class="btn-primary" style="margin-bottom:16px;">Get the Navigation Legend Free</a>
       <br>
       <button class="restart-btn" onclick="restartQuiz()" style="margin-top:12px;">Retake the diagnostic</button>
     </div>
@@ -753,7 +752,7 @@ function showResults() {
     chipsHTML += `<span class="ch-chip ${cls}">${ch.label} - ${ch.name}</span>`;
   });
   const gapNoteHTML = pat.gapNote
-    ? `<p style="margin-top:12px;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.06em;color:rgba(123,94,167,.75);line-height:1.65;border-top:1px solid rgba(123,94,167,.12);padding-top:10px;">${pat.gapNote}</p>`
+    ? `<p style="margin-top:12px;font-family:Syne,sans-serif;font-size:10px;letter-spacing:.06em;color:rgba(123,94,167,.75);line-height:1.65;border-top:1px solid rgba(123,94,167,.12);padding-top:10px;">${pat.gapNote}</p>`
     : '';
 
   // Active patterns block (all scored patterns)
@@ -813,9 +812,9 @@ function showResults() {
   document.getElementById('resultsContent').innerHTML = `
     <!-- TIE BANNER: only shown when patterns are tied -->
     ${hasTie ? `<div style="background:rgba(200,155,60,.08);border:1px solid rgba(200,155,60,.25);border-radius:12px;padding:14px 18px;margin-bottom:18px;">
-      <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Two patterns are tied</div>
-      <p style="font-family:'Lora',serif;font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:10px;">${topTied.map(r => r.pat.code + ' — ' + r.pat.name).join(' and ')} scored equally. The result below shows the first. Start with whichever pattern feels most acute right now, then return for the other.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;">${topTied.map(r => `<span style="font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border-radius:5px;border:1px solid ${r.pat.color}40;color:${r.pat.color};background:${r.pat.color}12;">${r.pat.code}</span>`).join('')}</div>
+      <div style="font-family:Syne,sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Two patterns are tied</div>
+      <p style="font-family:Lora,serif;font-size:clamp(14px,1.7vw,15px);color:var(--silver);line-height:1.7;margin-bottom:10px;">${topTied.map(r => r.pat.code + ' — ' + r.pat.name).join(' and ')} scored equally. The result below shows the first. Start with whichever pattern feels most acute right now, then return for the other.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">${topTied.map(r => `<span style="font-family:DM Mono,monospace;font-size:11px;padding:3px 10px;border-radius:5px;border:1px solid ${r.pat.color}40;color:${r.pat.color};background:${r.pat.color}12;">${r.pat.code}</span>`).join('')}</div>
     </div>` : ''}
 
     <!-- PRIMARY CARD -->
@@ -889,8 +888,8 @@ function showResults() {
         </div>
       </div>
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;margin-bottom:16px;">
-        <div style="font-family:'Syne',sans-serif;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;">${pat.code} — Builder in the field</div>
-        <p style="font-family:'Lora',serif;font-style:italic;font-size:clamp(13px,1.6vw,14px);color:var(--silver);line-height:1.7;margin-bottom:6px;">${pat.testimonial}</p>
+        <div style="font-family:Syne,sans-serif;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:8px;">${pat.code} — Builder in the field</div>
+        <p style="font-family:Lora,serif;font-style:italic;font-size:clamp(13px,1.6vw,14px);color:var(--silver);line-height:1.7;margin-bottom:6px;">${pat.testimonial}</p>
       </div>
       <div class="email-form" id="emailForm">
         <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
@@ -915,8 +914,8 @@ function showResults() {
     <div class="share-block">
       <div class="share-h">Co-diagnosis is faster than solo analysis</div>
       <p class="share-quote">"This pattern is easier to name when someone else in the same project reads it too. Send this link and ask: which pattern do you think is most active in what we are building right now?"</p>
-      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mist);margin-bottom:10px;line-height:1.65;">Do not keep this diagnostic to yourself if more than one person is carrying the same project. Their read may surface what you normalized.</p>
-      <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.04em;color:rgba(200,155,60,.55);margin-bottom:14px;line-height:1.65;">Running this with your founding team? The full team scoring exercise — all three diagnostic axes, live score dashboard, chapter routing — is at <a href="https://stopthecollapse.com/report-7-patterns.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,155,60,.3);">stopthecollapse.com/report-7-patterns</a>. Each person scores independently, then you compare. Where the scores diverge is where the real structural problem lives.</p>
+      <p style="font-family:Syne,sans-serif;font-size:11px;letter-spacing:.06em;color:var(--mist);margin-bottom:10px;line-height:1.65;">Do not keep this diagnostic to yourself if more than one person is carrying the same project. Their read may surface what you normalized.</p>
+      <p style="font-family:Syne,sans-serif;font-size:11px;letter-spacing:.04em;color:rgba(200,155,60,.55);margin-bottom:14px;line-height:1.65;">Running this with your founding team? The full team scoring exercise — all three diagnostic axes, live score dashboard, chapter routing — is at <a href="https://stopthecollapse.com/report-7-patterns.html" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,155,60,.3);">stopthecollapse.com/report-7-patterns</a>. Each person scores independently, then you compare. Where the scores diverge is where the real structural problem lives.</p>
       <div class="share-btns">
         <button class="share-btn share-copy" id="copyBtn" onclick="copyLink()">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="9" height="9" rx="1"/><path d="M11 5V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2"/></svg>
