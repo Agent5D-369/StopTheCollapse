@@ -476,6 +476,52 @@ body::after {
 .vid-thumb-dur {
   font-family:'Lora',serif; font-size:12px; color:rgba(200,155,60,.8);
 }
+.video-feature {
+  padding:40px 0 28px;
+}
+.video-feature-card {
+  max-width:980px;
+  margin:0 auto;
+  background:rgba(10,12,24,.82);
+  border:1.5px solid rgba(200,155,60,.24);
+  border-radius:var(--r);
+  box-shadow:0 10px 48px rgba(0,0,0,.45), 0 0 36px rgba(200,155,60,.05);
+  padding:20px;
+}
+.video-feature-copy {
+  margin-bottom:18px;
+}
+.video-feature-kicker {
+  display:inline-block;
+  font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:12px;
+}
+.video-feature-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(24px,4vw,36px);
+  font-weight:900; line-height:1.12; color:var(--white);
+  margin-bottom:10px;
+}
+.video-feature-text {
+  font-family:'Lora',serif;
+  font-size:17px; line-height:1.75; color:var(--silver);
+  max-width:34ch;
+}
+.video-feature-card .vid-thumb {
+  margin-bottom:0;
+}
+@media (min-width:900px) {
+  .video-feature-card {
+    display:grid;
+    grid-template-columns:minmax(0,1.1fr) minmax(320px,460px);
+    gap:26px;
+    align-items:center;
+    padding:24px;
+  }
+  .video-feature-copy {
+    margin-bottom:0;
+  }
+}
 /* LIGHTBOX */
 .vid-lightbox {
   position:fixed; inset:0; z-index:9000;
@@ -1212,24 +1258,8 @@ details[open] > .faq-q::after {
 
     </div>
 
-    <!-- RIGHT: video teaser + offer box stacked -->
+    <!-- RIGHT: offer box -->
     <div class="hero-offer">
-
-      <!-- VIDEO TEASER: thumbnail click opens lightbox -->
-      <button class="vid-thumb" id="vidThumb" aria-label="Watch: The 7 Collapse Patterns, 6 minutes 40 seconds">
-        <img src="hero-seven-fires.png" alt="The 7 Collapse Patterns" class="vid-thumb-img">
-        <div class="vid-thumb-overlay">
-          <div class="vid-play-btn" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <polygon points="6,3 20,12 6,21" fill="#C89B3C"/>
-            </svg>
-          </div>
-          <div class="vid-thumb-meta">
-            <span class="vid-thumb-title">The 7 Collapse Patterns</span>
-            <span class="vid-thumb-dur">6 min 40 sec</span>
-          </div>
-        </div>
-      </button>
 
       <!-- OFFER BOX -->
       <div class="free-offer">
@@ -1319,6 +1349,32 @@ details[open] > .faq-q::after {
     </div>
   </div>
 </div>
+
+<section class="video-feature sr" aria-label="Watch the overview">
+  <div class="wrap">
+    <div class="video-feature-card">
+      <div class="video-feature-copy">
+        <span class="video-feature-kicker">Watch the overview</span>
+        <h2 class="video-feature-title">See the 7 collapse patterns in 6 minutes.</h2>
+        <p class="video-feature-text">A fast orientation before you go deeper: what the seven patterns are, how they show up, and why naming the right one changes the repair path.</p>
+      </div>
+      <button class="vid-thumb" id="vidThumb" aria-label="Watch: The 7 Collapse Patterns, 6 minutes 40 seconds">
+        <img src="hero-seven-fires.png" alt="The 7 Collapse Patterns" class="vid-thumb-img">
+        <div class="vid-thumb-overlay">
+          <div class="vid-play-btn" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <polygon points="6,3 20,12 6,21" fill="#C89B3C"/>
+            </svg>
+          </div>
+          <div class="vid-thumb-meta">
+            <span class="vid-thumb-title">The 7 Collapse Patterns</span>
+            <span class="vid-thumb-dur">6 min 40 sec</span>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
 
 <!-- ============================================================
      PROBLEM SECTION
