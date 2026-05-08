@@ -762,6 +762,9 @@ body::after {
   border-color:rgba(200,155,60,.42);
   transform:translateY(-1px);
 }
+.hero-offer-ctas {
+  margin-bottom:16px;
+}
 
 /* Mobile fallback CTA: shown when Substack iframe doesn't render on mobile */
 .mobile-cta-btn {
@@ -782,19 +785,21 @@ body::after {
 /* SCROLL NUDGE */
 .scroll-nudge {
   display:flex; align-items:center; gap:12px;
-  margin-top:40px; margin-bottom:16px;
+  margin:30px auto 16px;
   opacity:0; animation:fadeUp .7s ease .9s forwards;
   flex-direction:column;
+  width:100%;
+  text-align:center;
 }
 .sn-line { width:1px; height:28px; background:linear-gradient(180deg,rgba(200,155,60,.6),transparent); }
 .sn-text {
   font-family:'Syne',sans-serif;
-  font-size:13px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  font-size:16px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
   color:rgba(200,155,60,.75);
   display:flex; flex-direction:column; align-items:center; gap:6px;
 }
 .sn-arrow {
-  display:block; font-size:18px; color:rgba(200,155,60,.6);
+  display:block; font-size:24px; color:rgba(200,155,60,.6);
   animation:bounce .9s ease-in-out infinite;
 }
 @keyframes bounce {
@@ -1336,15 +1341,6 @@ details[open] > .faq-q::after {
         <span class="byline-text">Based on the 33-chapter audiobook <strong>Bridging Earth &amp; Kanaria</strong></span>
       </p>
 
-      <div class="hero-cta-stack">
-        <a href="/diagnostic.html" class="hero-cta-primary">
-          Take the diagnostic
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </a>
-        <a href="https://quicklaunchconsulting.com/?utm_source=stopthecollapse&utm_medium=referral&utm_campaign=ready_to_act&utm_content=hero_cta" target="_blank" rel="noopener" class="hero-cta-secondary">Ready to fix this now</a>
-        <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);margin:0;">7 questions. Free. No signup to see your results.</p>
-      </div>
-
       <div class="scroll-nudge" style="margin-top:24px;margin-bottom:0;">
         <span class="sn-text">
           See the 7 patterns below
@@ -1357,6 +1353,15 @@ details[open] > .faq-q::after {
 
     <!-- RIGHT: offer box -->
     <div class="hero-offer">
+
+      <div class="hero-cta-stack hero-offer-ctas">
+        <a href="/diagnostic.html" class="hero-cta-primary">
+          Take the diagnostic
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="https://quicklaunchconsulting.com/?utm_source=stopthecollapse&utm_medium=referral&utm_campaign=ready_to_act&utm_content=hero_cta" target="_blank" rel="noopener" class="hero-cta-secondary">Ready to fix this now</a>
+        <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mist);margin:0;">7 questions. Free. No signup to see your results.</p>
+      </div>
 
       <!-- OFFER BOX -->
       <div class="free-offer">
