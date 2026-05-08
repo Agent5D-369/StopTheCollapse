@@ -507,6 +507,57 @@ body::after {
   font-size:17px; line-height:1.75; color:var(--silver);
   max-width:34ch;
 }
+.report-signup {
+  padding:0 0 34px;
+}
+.report-signup-card {
+  max-width:980px;
+  margin:0 auto;
+  background:rgba(10,12,24,.86);
+  border:1.5px solid rgba(200,155,60,.24);
+  border-radius:var(--r);
+  box-shadow:0 10px 48px rgba(0,0,0,.42), 0 0 36px rgba(200,155,60,.05);
+  padding:22px 20px 20px;
+}
+.report-signup-copy {
+  text-align:center;
+  margin-bottom:18px;
+}
+.report-signup-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,4vw,38px);
+  font-weight:900;
+  line-height:1.1;
+  color:var(--white);
+  margin-bottom:10px;
+}
+.report-signup-text {
+  font-family:'Lora',serif;
+  font-size:16px;
+  line-height:1.7;
+  color:var(--silver);
+  max-width:40ch;
+  margin:0 auto;
+}
+.report-signup-card .free-give {
+  max-width:760px;
+  margin:0 auto 16px;
+}
+.report-signup-card .sb-shell {
+  max-width:760px;
+  margin:0 auto;
+}
+.report-signup-card .form-micro,
+.report-signup-card .form-guarantee {
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+}
+@media (min-width:900px) {
+  .report-signup-card {
+    padding:28px 28px 24px;
+  }
+}
 .video-feature-card .vid-thumb {
   margin-bottom:0;
 }
@@ -1328,11 +1379,6 @@ details[open] > .faq-q::after {
             <span><strong>Builder Pass is optional.</strong> Separate, clearly explained, no pressure.</span>
           </div>
         </div>
-        <div class="sb-shell">
-          <iframe src="https://rickbroider.substack.com/embed" width="100%" height="150" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free to get the Top 7 Collapse Patterns report"></iframe>
-        </div>
-        <a href="/diagnostic.html" class="mobile-cta-btn">Take the diagnostic &rarr;</a>
-        <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
         <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07);text-align:center;">
           <p style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin-bottom:10px;">Want the audiobook directly?</p>
           <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px;">
@@ -1387,6 +1433,38 @@ details[open] > .faq-q::after {
           </div>
         </div>
       </button>
+    </div>
+  </div>
+</section>
+
+<section class="report-signup sr" aria-label="Get the report and chapters">
+  <div class="wrap">
+    <div class="report-signup-card">
+      <div class="report-signup-copy">
+        <span class="video-feature-kicker">Get the free report</span>
+        <h2 class="report-signup-title">Get the diagnostic report, chapter map, and first chapters.</h2>
+        <p class="report-signup-text">If the video confirmed this is structural, this is the next step. Subscribe free and get the report, the Navigation Legend, and three matched audiobook chapters.</p>
+      </div>
+      <div class="free-give">
+        <div class="fg-row">
+          <span class="fg-check">&#10003;</span>
+          <span><strong>The Top 7 Diagnostic Report.</strong> Score all 7 collapse patterns against your project. Routes you to the exact chapters for your highest-scoring one.</span>
+        </div>
+        <div class="fg-row">
+          <span class="fg-check">&#10003;</span>
+          <span><strong>Navigation Legend PDF.</strong> Maps every pattern to the audiobook chapters that address it. Share with your co-founder to compare reads.</span>
+        </div>
+        <div class="fg-row">
+          <span class="fg-check">&#10003;</span>
+          <span><strong>Three full audiobook chapters,</strong> matched to your pattern. Structural diagnosis, not inspiration filler.</span>
+        </div>
+      </div>
+      <div class="sb-shell">
+        <iframe src="https://rickbroider.substack.com/embed" width="100%" height="150" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe free to get the Top 7 Collapse Patterns report"></iframe>
+      </div>
+      <a href="/diagnostic.html" class="mobile-cta-btn">Take the diagnostic &rarr;</a>
+      <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
+      <p class="form-guarantee">If the report doesn't name what's happening in your project, reply. Rick diagnoses it personally.</p>
     </div>
   </div>
 </section>
