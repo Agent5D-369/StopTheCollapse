@@ -764,6 +764,20 @@ body::after {
 }
 .hero-offer-ctas {
   margin-bottom:16px;
+  width:100%;
+}
+@media (min-width:900px) {
+  .hero-cta-stack.hero-offer-ctas {
+    width:100%;
+    max-width:100%;
+    display:grid;
+    justify-items:stretch;
+    align-items:stretch;
+  }
+  .hero-cta-stack.hero-offer-ctas .hero-cta-primary,
+  .hero-cta-stack.hero-offer-ctas .hero-cta-secondary {
+    width:100%;
+  }
 }
 
 /* Mobile fallback CTA: shown when Substack iframe doesn't render on mobile */
