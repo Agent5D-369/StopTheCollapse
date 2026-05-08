@@ -666,6 +666,42 @@ body::after {
   margin-top:8px; line-height:1.6;
 }
 .form-micro strong { color:var(--silver); font-weight:600; }
+.consult-bridge {
+  margin-top:16px;
+  padding:16px 16px 14px;
+  border-radius:10px;
+  background:linear-gradient(180deg, rgba(200,155,60,.10), rgba(200,155,60,.04));
+  border:1px solid rgba(200,155,60,.24);
+  text-align:center;
+}
+.consult-bridge-kicker {
+  display:block;
+  font-size:10px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+.consult-bridge-copy {
+  font-family:'Lora',serif;
+  font-size:14px; line-height:1.55;
+  color:var(--silver);
+  margin:0 0 12px;
+}
+.consult-bridge-btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  width:100%;
+  font-family:'Syne',sans-serif;
+  font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--navy);
+  background:var(--gold);
+  border-radius:8px;
+  padding:12px 16px;
+  text-decoration:none;
+  transition:background .18s ease, transform .18s ease;
+}
+.consult-bridge-btn:hover {
+  background:var(--gold-hi);
+  transform:translateY(-1px);
+}
 
 /* Mobile fallback CTA: shown when Substack iframe doesn't render on mobile */
 .mobile-cta-btn {
@@ -1287,6 +1323,11 @@ details[open] > .faq-q::after {
         </div>
         <a href="/diagnostic.html" class="mobile-cta-btn">Name my pattern →</a>
         <p class="form-micro"><strong>No spam. Unsubscribe any time.</strong> Powered by Substack.</p>
+        <div class="consult-bridge">
+          <span class="consult-bridge-kicker">Ready to fix this now?</span>
+          <p class="consult-bridge-copy">If you already know this is structural and want hands-on help, QuickLaunch is the bridge from diagnosis into repair.</p>
+          <a href="https://quicklaunchconsulting.com/apply.html?utm_source=stopthecollapse&utm_medium=referral&utm_campaign=ready_to_act&utm_content=atf_bridge" target="_blank" rel="noopener" class="consult-bridge-btn">Book a free fit call &rarr;</a>
+        </div>
         <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07);text-align:center;">
           <p style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin-bottom:10px;">Want the audiobook directly?</p>
           <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px;">
